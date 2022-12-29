@@ -4,44 +4,43 @@ import LineTitle from '../../LineTitle'
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
+    let cre = [
+        {
+            id: 1,
+            name: "Banco do Brasil",
+            value: 627.500,
+            class: "Trabalhista",
+            img: ''
+        }
+        ,
+        {
+            id: 2,
+            name: "Banco do Brasil",
+            value: 627.500,
+            class: "Trabalhista",
+            img: ''
+        }
+        ,
+        {
+            id: 3,
+            name: "Banco do Brasil",
+            value: 627.500,
+            class: "Trabalhista",
+            img: ''
+        }
+        ,
+        {
+            id: 4,
+            name: "Banco do Brasil",
+            value: 627.500,
+            class: "Trabalhista",
+            img: ''
+        }
+        ,
+    ]
 
     useEffect(() => {
-        let cre = [
-            {
-                id: 1,
-                name: "Banco do Brasil",
-                value: 627.500,
-                class: "Trabalhista",
-                img: ''
-            }
-            ,
-            {
-                id: 2,
-                name: "Banco do Brasil",
-                value: 627.500,
-                class: "Trabalhista",
-                img: ''
-            }
-            ,
-            {
-                id: 3,
-                name: "Banco do Brasil",
-                value: 627.500,
-                class: "Trabalhista",
-                img: ''
-            }
-            ,
-            {
-                id: 4,
-                name: "Banco do Brasil",
-                value: 627.500,
-                class: "Trabalhista",
-                img: ''
-            }
-            ,
-        ]
         setCredits(cre)
-
         document.querySelectorAll(".portalCreditos .rec-dot").forEach((item, index)=>{
             item.setAttribute("aria-label", "navigation button")
         })

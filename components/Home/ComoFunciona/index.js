@@ -14,7 +14,7 @@ const ComoFunciona = () => {
         <div className="wrapper-funciona">
 
           <div className="video-wraper box">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/op_JGEk1oro" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true"></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/op_JGEk1oro" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
           </div>
           <div className="faq-video">
             <FaqSingle />

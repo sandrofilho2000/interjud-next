@@ -1,0 +1,107 @@
+section.vantagens {
+    .container {
+        .wrapper-vantagens {
+            max-width: 720px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-areas:
+                "a b"
+                "c d";
+            gap: 20px;
+            position: relative;
+            margin-top: 120px;
+
+            .Tilt {
+                width: 100%;
+                max-width: 360px;
+                &:nth-of-type(1) > div.single-vantagens {
+                    background-image: url(../public/assets/images/vantagens/pexels1.webp);
+                }
+    
+                &:nth-of-type(2) > div.single-vantagens {
+                    background-image: url(../public/assets/images/vantagens/pexels2.webp);
+                }
+    
+                &:nth-of-type(3) > div.single-vantagens {
+                    background-image: url(../public/assets/images/vantagens/pexels3.webp);
+                }
+    
+                &:nth-of-type(4) > div.single-vantagens {
+                    background-image: url(../public/assets/images/vantagens/pexels4.webp);
+                }
+            }
+
+
+            .single-vantagens {
+                height: auto;
+                width: 100%;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                min-height: 320px;
+                margin: 0 auto;
+                text-align: center;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                * {
+                    position: relative;
+                    z-index: 2;
+                    color: var(--txt-color);
+                }
+
+
+
+                &::before {
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    background: rgba(0, 0, 0, 0.863);
+                    outline: 2px solid #004b9f;
+                }
+
+                .vantagens-img {
+                    svg {
+                        fill: var(--txt-color);
+                        font-size: 65px;
+                    }
+                }
+
+                .vantagens-number {
+                    height: 50px;
+                    width: 50px;
+                    top: 0;
+                    left: 0;
+                    line-height: 50px;
+                    font-size: 35px;
+                    position: absolute;
+                    background: #004b9f;
+                }
+
+                .vantagens-txt {
+                    text-align: center;
+                    margin-top: 20px;
+                    position: relative;
+                    width: 90%;
+                    margin: 0 auto;
+
+                    h2 {
+                        font-size: 20px;
+                        margin-bottom: 20px;
+                    }
+
+                    p {
+                        margin-top: 10px;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,136 @@
+.credit_single {
+    position: relative;
+    border: 1px solid var(--interjud-blue);
+    cursor: pointer;
+
+    img {
+        position: relative;
+        object-fit: cover;
+    }
+
+    .credit_content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .rating {
+            display: flex;
+            width: 90%;
+            margin: 0 auto;
+            justify-content: space-evenly;
+
+            svg {
+                fill: #EBC917 !important;
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                font-size: 28px;
+            }
+        }
+
+        &::before {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            content: '';
+            top: 0;
+            left: 0;
+            background-color: var(--main-bg-color);
+            opacity: 0.85;
+        }
+
+        * {
+            position: relative;
+            z-index: 2;
+        }
+
+        p {
+            text-align: center;
+            width: 90%;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transform: translateY(-20%);
+        }
+
+        .value {
+            transform: translateY(-90%);
+            color: #1F9E08;
+            font-size: 24px;
+        }
+
+        .button {
+            transform: translateY(-90%);
+
+            a{
+                font-size: 14px;
+            }
+        }
+
+        svg.infoBtn {
+            fill: var(--txt-color);
+            font-size: 24px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+    }
+    .info{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        background-color: var(--main-bg-color);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.6s;
+        display: flex;
+        flex-direction: column;
+
+        svg{
+            fill: var(--txt-color);
+            font-size: 24px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            z-index: 2;
+        }
+
+        p{
+            color: var(--txt-color);
+            position: relative;
+            z-index: 2;
+            margin: 15px 10px;
+        }
+
+        &::before {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            content: '';
+            top: 0;
+            left: 0;
+            background-color: var(--main-bg-color);
+            opacity: 0.85;
+        }
+        
+        &.active{
+            opacity: 1;
+            pointer-events: initial;
+        }
+    }
+}

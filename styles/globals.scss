@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: montserrat;
+    color: var(--txt-color)
+}
+
+@import 'components/variables';
+@import 'components/lineTitle';
+@import 'components/button';
+@import 'components/fonts';
+@import 'components/credit';
+@import 'components/navbar';
+@import 'components/home/hero';
+@import 'components/home/portalCreditos';
+@import 'components/home/comoFunciona';
+@import 'components/home/vantagens';
+
+.container {
+    height: auto;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section{
+    padding: 40px 0;
+}
+
+section:nth-of-type(odd) {
+    background-color: var(--second-bg-color)
+}
+
+section:nth-of-type(even) {
+    background-color: var(--main-bg-color)
+}
+
+html {
+    background-color: var(--second-bg-color);
+}
+
+.rec-carousel button{
+    background-color: var(--interjud-blue) !important;
+    color: var(--txt-color) !important;
+
+    &[disabled]{
+        opacity: 0.3;
+    }
+}
+
+.rec-pagination{
+    button{
+        border: unset !important;
+        box-shadow: unset !important;
+        background-color: var(--txt-color);
+
+        &.rec-dot_active{
+            background-color: var(--interjud-blue);
+        }
+    }
+}

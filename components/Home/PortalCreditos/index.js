@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Credit from '../../Credit'
 import LineTitle from '../../LineTitle'
-import Carousel from 'react-elastic-carousel'
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
@@ -60,14 +59,14 @@ const PortalCreditos = () => {
         <section className='portalCreditos' id='portalCreditos'>
             <div className='container'>
                 <LineTitle text="Portal de Créditos" />
-                <Carousel breakPoints={breakPoints} className='creditsList'>
+                <div className='creditsList'>
         
                         {credits.map((item, index) => {
                             return (
                                 <Credit key={index} credit={item} />
                             )
                         })}
-                </Carousel>
+                </div>
             </div>
         </section>
     )

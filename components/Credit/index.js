@@ -54,7 +54,7 @@ const Credit = ({ credit }) => {
         >
             <article className='credit_single'>
                 {credit.img &&
-                    <img width={240} height={330} src={`../public/assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
+                    <img width={240} height={330} src={`/_next/static/media/${credit.img}`} loading="lazy" alt="Banco do brasil" />
                 }
                 <div className='credit_content'>
                     <div className='rating'>

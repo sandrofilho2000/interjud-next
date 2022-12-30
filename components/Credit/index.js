@@ -1,9 +1,8 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { FaStar, FaStarHalf, FaInfoCircle, FaClose } from 'react-icons/fa'
+import { FaStar, FaStarHalf, FaInfoCircle } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import logo_j from '../../public/assets/images/logo_j.png'
-import banco_do_brasil from '../../public/assets/images/credits/banco_do_brasil.webp'
 import Tilt from 'react-parallax-tilt'
 import Button from '../Button'
 
@@ -30,6 +29,8 @@ const Credit = ({ credit }) => {
         currency: 'BRL'
     })
 
+    console.log(credit.img)
+
 
     if (infoActive) {
         tiltOptions.max = 0
@@ -52,12 +53,14 @@ const Credit = ({ credit }) => {
             {...tiltOptions}
         >
             <article className='credit_single'>
-                <Image width={240} height={330} src={`/../public/assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
+                {credit.img &&
+                    <Image width={240} height={330} src={`/../public/assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
+                }
                 <div className='credit_content'>
                     <div className='rating'>
                         {
-                            stars.map((item)=>{ 
-                                return <FaStar/>
+                            stars.map((item, index)=>{ 
+                                return <FaStar key={index}/>
                             })
                             }
 

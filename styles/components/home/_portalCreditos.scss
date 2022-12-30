@@ -2,9 +2,16 @@ section.portalCreditos{
     padding: 60px 0;
     .container{
         max-width: 1200px;
-    }
-    .creditsList{
-        display: flex;
-        justify-content: space-between;
+
+        .creditsList{
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .Tilt{
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
     }
 }

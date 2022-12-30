@@ -39,6 +39,23 @@ html, body{
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+
+    .swiper {
+        padding: 30px;
+
+
+        .swiper-pagination{
+            bottom: 0px;
+
+            .swiper-pagination-bullet{
+                background-color: var(--txt-color);
+            }
+
+            .swiper-pagination-bullet-active{
+                background-color: var(--interjud-blue);
+            }
+        }
+    }
 } 
 
 section{

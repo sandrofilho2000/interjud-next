@@ -23,16 +23,16 @@ const Contato = () => {
                         <input className='contactName' type="text" name="contactName" id="contactName" placeholder='Nome: '/>
                         <input className='contactEmail' type="email" name="contactEmail" id="contactEmail" placeholder='E-mail: '/>
                         <select className='contactTopic' name="contactTopic" id="contactTopic">
-                            <option selected disabled>
+                            <option defaultValue>
                                 Assunto
                             </option>
-                            <option>
+                            <option defaultValue="Dúvidas">
                                 Dúvidas
                             </option>
-                            <option>
+                            <option defaultValue="Elogios">
                                 Elogios
                             </option>
-                            <option>
+                            <option defaultValue="Reclamações">
                                 Reclamações
                             </option>
                         </select>

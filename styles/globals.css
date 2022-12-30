@@ -227,6 +227,8 @@ html, body {
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
+  margin: 0;
+  width: 100%;
 }
 .credit_single .credit_content {
   position: absolute;
@@ -595,9 +597,13 @@ section.portalCreditos {
 section.portalCreditos .container {
   max-width: 1200px;
 }
-section.portalCreditos .creditsList {
+section.portalCreditos .container .creditsList {
   display: flex;
   justify-content: space-between;
+}
+section.portalCreditos .container .Tilt {
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 section.comoFunciona .container .wrapper-funciona {
@@ -735,7 +741,9 @@ section.depoimentos .container .depoimentos-wrapper {
 }
 section.depoimentos .container .depoimentos-wrapper .single-depoimentos {
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
+  align-items: center;
 }
 section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-depoimento {
   width: 250px;
@@ -767,7 +775,8 @@ section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-d
   border: 1px solid var(--interjud-blue);
 }
 section.depoimentos .container .depoimentos-wrapper .single-depoimentos .author-depoimento {
-  margin: 0 auto;
+  width: 250px;
+  padding: 0 10px;
   transform: translateY(-40%);
   text-align: center;
 }
@@ -952,6 +961,18 @@ main.main {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+}
+.container .swiper {
+  padding: 30px;
+}
+.container .swiper .swiper-pagination {
+  bottom: 0px;
+}
+.container .swiper .swiper-pagination .swiper-pagination-bullet {
+  background-color: var(--txt-color);
+}
+.container .swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--interjud-blue);
 }
 
 section {

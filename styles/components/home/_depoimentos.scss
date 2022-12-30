@@ -5,7 +5,9 @@ section.depoimentos{
 
             .single-depoimentos{
                 display: flex;
+                margin: 0 auto;
                 flex-direction: column;
+                align-items: center;
                 .quote-depoimento{
                     width: 250px;
                     min-height: 200px;
@@ -39,7 +41,8 @@ section.depoimentos{
                 }
 
                 .author-depoimento{
-                    margin: 0 auto;
+                    width: 250px;
+                    padding: 0 10px;
                     transform: translateY(-40%);
                     text-align: center;
                     img{
@@ -48,6 +51,7 @@ section.depoimentos{
                     }
                 }
             }
+
         }
     }
 }

@@ -2,8 +2,13 @@ import Image from 'next/image'
 import React from 'react'
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa'
 import LineTitle from '../../LineTitle'
-import daniel from '../../../public/assets/images/Depoimentos/Daniel.webp'
-import Carousel from 'react-elastic-carousel'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+SwiperCore.use([Navigation, Pagination]);
 
 const Depoimentos = () => {
 
@@ -16,14 +21,21 @@ const Depoimentos = () => {
         }
         ,
         {
-            id: 0,
+            id: 1,
             author: "Julia",
             quote: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
             img: "julia.webp"
         }
         ,
         {
-            id: 0,
+            id: 2,
+            author: "André",
+            quote: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+            img: "andre.webp"
+        }
+        ,
+        {
+            id: 3,
             author: "André",
             quote: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
             img: "andre.webp"
@@ -31,39 +43,56 @@ const Depoimentos = () => {
         ,
     ]
 
-    const breakPoints = [
-        {width: 1, itemsToShow: 1},
-        {width: 540, itemsToShow: 2},
-        {width: 768, itemsToShow: 3}
-    ]
 
     return (
         <section id='depoimentos' className='depoimentos'>
             <div className='container'>
-                <LineTitle text="Depoimentos"/>
-                <Carousel breakPoints={breakPoints} className='depoimentos-wrapper'>
+                <LineTitle text="Depoimentos" />
+                <Swiper
+                    className="depoimentos-wrapper"
+                    slidesPerView={1}
+                    spaceBetween= {20}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 1
+                        },
+                        768: {
+                            slidesPerView: 2
+                        },
+                        1024: {
+                            slidesPerView: 3
+                        },
+                    }}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={true}
+                    scrollbar={{ draggable: true }}
+                >
                     {
-                        quotes.map((item, index)=>{
+                        quotes.map((item, index) => {
                             return (
-                                <div key={index} className='single-depoimentos'>
+                                <SwiperSlide key={index} className='single-depoimentos'>
                                     <div className='quote-depoimento'>
-                                        <FaQuoteLeft/>
+                                        <FaQuoteLeft />
                                         <p>
                                             {item.quote}
                                         </p>
-                                        <FaQuoteRight/>
+                                        <FaQuoteRight />
                                     </div>
                                     <div className='author-depoimento'>
-                                        <Image alt={`Depoimento de ${item.author} à InterJud`} title={`Depoimento de ${item.author} à InterJud`} width={50} height={50} src={`/../public/assets/images/Depoimentos/${item.img}`}/>
+                                        <Image alt={`Depoimento de ${item.author} à InterJud`} title={`Depoimento de ${item.author} à InterJud`} width={50} height={50} src={`/../public/assets/images/Depoimentos/${item.img}`} />
                                         <p className='author-name'>
                                             {item.author}
                                         </p>
                                     </div>
-                                </div>
+                                </SwiperSlide>
                             )
                         })
                     }
-                </Carousel>
+
+                </Swiper>
+
             </div>
         </section>
     )

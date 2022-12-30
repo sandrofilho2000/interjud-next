@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Credit from '../../Credit'
 import LineTitle from '../../LineTitle'
-import Carousel from 'react-elastic-carousel'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+SwiperCore.use([Navigation, Pagination]);
+
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
@@ -12,7 +19,7 @@ const PortalCreditos = () => {
             value: 627500,
             rating: 3,
             class: "Trabalhista",
-            img: 'banco_do_brasil.webp'
+            img: 'banco_do_brasil.png'
         }
         ,
         {
@@ -46,31 +53,49 @@ const PortalCreditos = () => {
 
     useEffect(() => {
         setCredits(cre)
-        document.querySelectorAll(".portalCreditos .rec-dot").forEach((item, index)=>{
+        document.querySelectorAll(".portalCreditos .rec-dot").forEach((item, index) => {
             item.setAttribute("aria-label", "navigation button")
         })
     }, [])
 
-
-    const breakPoints = [
-        {width: 1, itemsToShow: 1},
-        {width: 540, itemsToShow: 2},
-        {width: 768, itemsToShow: 3}
-    ]
 
 
     return (
         <section className='portalCreditos' id='portalCreditos'>
             <div className='container'>
                 <LineTitle text="Portal de Créditos" />
-                <Carousel breakPoints={breakPoints} className='creditsList'>
+                <Swiper
+                    className='creditsList'
+                    slidesPerView={1}
+                    spaceBetween= {20}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 1
+                        },
+                        768: {
+                            slidesPerView: 2
+                        },
+                        1024: {
+                            slidesPerView: 3
+                        },
+                    }}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={true}
+                    scrollbar={{ draggable: true }}
+                >
 
-                        {credits.map((item, index) => {
-                            return (
-                                <Credit key={index} credit={item} />
-                            )
-                        })}
-                </Carousel>
+                    {credits.map((item, index) => {
+                        return (
+                            <SwiperSlide key={index}>
+                                <Credit credit={item} />
+                            </SwiperSlide>
+                        )
+                    })}
+                </Swiper>
+
+
             </div>
         </section>
     )

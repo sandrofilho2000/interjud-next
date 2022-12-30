@@ -22,10 +22,8 @@ const Credit = ({ credit }) => {
     }
 
     let halfStar = Number.isInteger(credit.rating)
-    let stars = Math.floor(credit.rating)
-
-    console.log(stars)
-
+    let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
+    let stars = Array.from(Array(fullStars).keys())
     let value = credit.value && !isNaN(credit.value) ? Number(credit.value) : ''
     value = value.toLocaleString('pt-BR', {
         style: 'currency',
@@ -57,9 +55,11 @@ const Credit = ({ credit }) => {
                 <Image width={240} height={330} src={`/../public/assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
                 <div className='credit_content'>
                     <div className='rating'>
-                        {Array.from(Array(stars), (e, i) => {
-                            return <FaStar />
-                        })}
+                        {
+                            stars.map((item)=>{
+                                return <FaStar/>
+                            })
+                            }
 
                         {
                             !halfStar && 

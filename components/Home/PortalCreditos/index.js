@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Credit from '../../Credit'
 import LineTitle from '../../LineTitle'
+import Carousel from 'react-elastic-carousel'
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
@@ -8,33 +9,37 @@ const PortalCreditos = () => {
         {
             id: 1,
             name: "Banco do Brasil",
-            value: 627.500,
+            value: 627500,
+            rating: 3,
             class: "Trabalhista",
-            img: ''
+            img: 'banco_do_brasil.webp'
         }
         ,
         {
             id: 2,
-            name: "Banco do Brasil",
-            value: 627.500,
-            class: "Trabalhista",
-            img: ''
+            name: "Via Varejo",
+            value: 45500,
+            rating: 4.5,
+            class: "Consumidor",
+            img: 'via_varejo.png'
         }
         ,
         {
             id: 3,
-            name: "Banco do Brasil",
-            value: 627.500,
+            name: "Caixa Econômica Federal",
+            value: 80500.50,
+            rating: 5,
             class: "Trabalhista",
-            img: ''
+            img: 'caixa_federal.png'
         }
         ,
         {
             id: 4,
-            name: "Banco do Brasil",
-            value: 627.500,
+            name: "Pão de Açucar",
+            value: 192500,
+            rating: 1.5,
             class: "Trabalhista",
-            img: ''
+            img: 'pao_de_acucar.png'
         }
         ,
     ]
@@ -58,14 +63,14 @@ const PortalCreditos = () => {
         <section className='portalCreditos' id='portalCreditos'>
             <div className='container'>
                 <LineTitle text="Portal de Créditos" />
-                <div className='creditsList'>
-        
+                <Carousel breakPoints={breakPoints} className='creditsList'>
+
                         {credits.map((item, index) => {
                             return (
                                 <Credit key={index} credit={item} />
                             )
                         })}
-                </div>
+                </Carousel>
             </div>
         </section>
     )

@@ -1,9 +1,13 @@
 import Head from 'next/head'
+import Contato from '../components/Contato'
 import ComoFunciona from '../components/Home/ComoFunciona'
+import Depoimentos from '../components/Home/Depoimentos'
+import Duvidas from '../components/Home/Duvidas'
 import Hero from '../components/Home/Hero'
 import PortalCreditos from '../components/Home/PortalCreditos'
 import Vantagens from '../components/Home/Vantagens'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 export default function Home() {
   let lang = 'pt-br'
@@ -15,12 +19,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" type="image-x/png" href="https://www.interjud.com.br/icon.png" />
         <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width"/>
+        <meta name="description" content="Compre ou venda créditos judiciais com a segurança da InterJud, Garanta agora seu direito e antecipe seus sonhos, ou Receba um valor justo pelo seu crédito judicial." />
+        <meta name="author" content="Design por DamixCode/Desenvolvimento por Aurora Web Design" />
+        <meta name="keywords" content="venda,creditos,judiciais,compra,creditos,judiciais,negocie,seu,credito,invista,em,creditos,judiciais" />
+        <meta name="og:description" content="Compre ou venda créditos judiciais com a segurança da InterJud" />
+        <meta name="og:url" content="https://www.interjud.com.br/" />
+        <meta name="og:image" content="https://www.interjud.com.br/img/logo.webp" />
       </Head>
       <Navbar />
       <Hero />
       <PortalCreditos />
       <ComoFunciona />
       <Vantagens />
+      <Depoimentos />
+      <Duvidas />
+      <Contato />
+      <Footer />
     </div>
   )
 }

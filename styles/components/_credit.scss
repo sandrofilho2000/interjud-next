@@ -6,6 +6,7 @@
     img {
         position: relative;
         object-fit: cover;
+        display: block;
     }
 
     .credit_content {
@@ -23,7 +24,7 @@
             display: flex;
             width: 90%;
             margin: 0 auto;
-            justify-content: space-evenly;
+            justify-content: center;
 
             svg {
                 fill: #EBC917 !important;
@@ -31,6 +32,8 @@
                 -webkit-background-clip: text;
                 color: transparent;
                 font-size: 28px;
+                width: 20%;
+                display: inline-block;
             }
         }
 

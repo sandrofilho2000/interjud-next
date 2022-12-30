@@ -4,26 +4,37 @@
     text-decoration: none;
     list-style: none;
     font-family: montserrat;
+    scroll-behavior: smooth;
+    resize: none;
     color: var(--txt-color)
+}
+
+html, body{
+    scroll-behavior: smooth;
 }
 
 @import 'components/variables';
 @import 'components/lineTitle';
 @import 'components/button';
 @import 'components/fonts';
-@import 'components/credit';
-@import 'components/navbar';
+@import 'components/credit'; 
+@import 'components/navbar'; 
+@import 'components/accordion'; 
 @import 'components/home/hero';
 @import 'components/home/portalCreditos';
 @import 'components/home/comoFunciona';
 @import 'components/home/vantagens';
+@import 'components/home/depoimentos'; 
+@import 'components/home/duvidas'; 
+@import 'components/home/contato'; 
+@import 'components/footer'; 
 
 .container {
     height: auto;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-}
+} 
 
 section{
     padding: 40px 0;
@@ -37,9 +48,6 @@ section:nth-of-type(even) {
     background-color: var(--main-bg-color)
 }
 
-html {
-    background-color: var(--second-bg-color);
-}
 
 .rec-carousel button{
     background-color: var(--interjud-blue) !important;

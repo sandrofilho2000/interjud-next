@@ -11,11 +11,11 @@ const Navbar = () => {
         setSubMenuActive(!subMenuActive)
     }
     return (
-        <header>
+        <header className='header' id="header">
 
             <div className="container">
                 <h1 className="logo">
-                    <Link href="https://www.interjud.com.br/index.php">
+                    <Link href="#index.php">
                         <Image src={Logo} width={140} height={70} alt="InterJud Logo" />
                     </Link>
                 </h1>
@@ -25,18 +25,18 @@ const Navbar = () => {
                             <Link href="#">CRÉDITOS</Link>
                             <ul className={`submenu-desktop ${subMenuActive ? 'active' : ''}`}>
 
-                                <li><Link href="https://www.interjud.com.br/cadastrar-se-vendedor">VENDA SEU CRÉDITO</Link></li>
+                                <li><Link href="#cadastrar-se-vendedor">VENDA SEU CRÉDITO</Link></li>
 
-                                <li><Link href="https://www.interjud.com.br/cadastrar-se-investidor">COMPRE UM CRÉDITO</Link></li>
+                                <li><Link href="#cadastrar-se-investidor">COMPRE UM CRÉDITO</Link></li>
 
-                                <li><Link href="https://www.interjud.com.br/portal-de-credito">PORTAL DE CRÉDITOS</Link></li>
+                                <li><Link href="#portal-de-credito">PORTAL DE CRÉDITOS</Link></li>
 
-                                <li><Link href="https://www.interjud.com.br/como-funciona">COMO FUNCIONA</Link></li>
+                                <li><Link href="#como-funciona">COMO FUNCIONA</Link></li>
                             </ul>
                         </li>
-                        <li><Link href="https://www.interjud.com.br/sobre-nos">SOBRE NÓS</Link></li>
-                        <li><Link href="https://www.interjud.com.br/contato">CONTATO</Link></li>
-                        <li><Link href="https://www.interjud.com.br/login">LOGIN</Link></li>
+                        <li><Link href="#sobre-nos">SOBRE NÓS</Link></li>
+                        <li><Link href="#contato">CONTATO</Link></li>
+                        <li><Link href="#login">LOGIN</Link></li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,78 @@
+section.contato{
+    .container{
+        display: flex;
+
+        .contato-side{
+            width: 50%;
+            height: 500px;
+        }
+
+        .contato-left{
+            .socialMedia{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                transform: translateY(-50%);
+                svg{    
+                    font-size: 80px;
+                }
+            }
+        }
+
+        .contato-right{
+            form{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                max-width: 500px;
+                *{
+                    width: 100%;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    padding: 0;
+                    padding-left: 5px;
+                    font-size: 15px;
+                    &::placeholder{
+                        color: var(--txt-color);
+                    }
+
+                    
+                }
+                input, select{
+                    height: 40px;
+                    margin-top: 10px;
+                    border-bottom: 1px solid var(--interjud-blue);
+                }
+
+                textarea{
+                    border-bottom: 1px solid var(--interjud-blue);
+                    height: 80px;
+                    padding-top: 20px;
+                }
+
+                select, option{
+                    padding-left: 0;
+                    font-size: 15px;                
+                    color: var(--txt-color);
+                }
+
+                option{
+                    background-color: var(--second-bg-color);
+                }
+
+                button{
+                    align-self: flex-start;
+                    background-color: var(--interjud-blue);
+                    width: 200px;
+                    margin-top: 30px;
+                    padding: 10px 15px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

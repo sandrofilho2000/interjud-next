@@ -4,7 +4,13 @@
   text-decoration: none;
   list-style: none;
   font-family: montserrat;
+  scroll-behavior: smooth;
+  resize: none;
   color: var(--txt-color);
+}
+
+html, body {
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -25,6 +31,7 @@
   margin-top: 75px;
   margin-bottom: 75px;
   margin-left: 70px;
+  transition: 0.3s;
 }
 .line-title h2 {
   font-size: 25px;
@@ -219,6 +226,7 @@
   position: relative;
   -o-object-fit: cover;
      object-fit: cover;
+  display: block;
 }
 .credit_single .credit_content {
   position: absolute;
@@ -235,7 +243,7 @@
   display: flex;
   width: 90%;
   margin: 0 auto;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 .credit_single .credit_content .rating svg {
   fill: #EBC917 !important;
@@ -243,6 +251,8 @@
   -webkit-background-clip: text;
   color: transparent;
   font-size: 28px;
+  width: 20%;
+  display: inline-block;
 }
 .credit_single .credit_content::before {
   width: 100%;
@@ -407,6 +417,51 @@ header .container .menu-desktop ul li ul.submenu-desktop.active {
   pointer-events: initial;
 }
 
+.accordion-wrapper {
+  height: auto;
+  width: 50%;
+  padding: 20px 2% 0 2%;
+  color: white;
+}
+.accordion-wrapper .accordionSingle {
+  background-color: var();
+  overflow: hidden;
+}
+.accordion-wrapper .accordionSingle .accordionHead {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--interjud-blue);
+  background-color: inherit;
+  height: 40px;
+}
+.accordion-wrapper .accordionSingle .accordionHead span:last-of-type {
+  cursor: pointer;
+  font-size: 30px;
+}
+.accordion-wrapper .accordionSingle .accordionContent {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  transform: translateY(-200%);
+}
+.accordion-wrapper .accordionSingle .accordionContent p {
+  padding: 15px;
+}
+.accordion-wrapper .accordionSingle[active] .accordionContent {
+  height: auto;
+  margin-top: 0;
+  opacity: 1;
+  pointer-events: initial;
+  transform: translateY(0%);
+}
+
 section.hero {
   background-position: center;
   background-size: cover;
@@ -524,57 +579,13 @@ section.comoFunciona .container .wrapper-funciona .video-wraper.box .overlay_vid
   text-align: center;
   z-index: 1;
 }
-section.comoFunciona .container .wrapper-funciona .faq-video {
-  height: 300px;
-  width: 50%;
-  padding: 20px 2% 0 2%;
-  color: white;
-}
-section.comoFunciona .container .wrapper-funciona .faq-video .faqSingle {
-  background-color: var();
-  overflow: hidden;
-}
-section.comoFunciona .container .wrapper-funciona .faq-video .faqSingle .faqHead {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid var(--interjud-blue);
-  background-color: inherit;
-  height: 40px;
-}
-section.comoFunciona .container .wrapper-funciona .faq-video .faqSingle .faqHead span:last-of-type {
-  cursor: pointer;
-  font-size: 30px;
-}
-section.comoFunciona .container .wrapper-funciona .faq-video .faqSingle .faqContent {
-  position: relative;
-  z-index: 1;
-  padding: 0;
-  opacity: 0;
-  pointer-events: none;
-  height: 0;
-  transform: translateY(-200%);
-}
-section.comoFunciona .container .wrapper-funciona .faq-video .faqSingle .faqContent p {
-  padding: 15px;
-}
-section.comoFunciona .container .wrapper-funciona .faq-video .faqSingle.active .faqContent {
-  height: auto;
-  margin-top: 0;
-  opacity: 1;
-  pointer-events: initial;
-  transform: translateY(0%);
-}
 section.comoFunciona .container .mosaico-title {
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
+  margin-top: 70px;
 }
 section.comoFunciona .container .mosaico-title h2 {
-  margin-top: 40px;
   font-size: 25px;
   color: white;
 }
@@ -668,6 +679,178 @@ section.vantagens .container .wrapper-vantagens .single-vantagens .vantagens-txt
   font-size: 15px;
 }
 
+section.depoimentos .container .depoimentos-wrapper {
+  display: flex;
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos {
+  display: flex;
+  flex-direction: column;
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-depoimento {
+  width: 250px;
+  min-height: 200px;
+  border: 1px dashed var(--txt-color);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-depoimento svg {
+  align-self: flex-start;
+  font-size: 20px;
+  fill: var(--interjud-blue);
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-depoimento svg:last-of-type {
+  align-self: flex-end;
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-depoimento p {
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .quote-depoimento:hover {
+  border: 1px solid var(--interjud-blue);
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .author-depoimento {
+  margin: 0 auto;
+  transform: translateY(-40%);
+  text-align: center;
+}
+section.depoimentos .container .depoimentos-wrapper .single-depoimentos .author-depoimento img {
+  border-radius: 50%;
+  border: 2px solid var(--txt-color);
+}
+
+section.duvidas .container .accordion-wrapper {
+  margin: 0 auto;
+  width: 75%;
+}
+
+section.contato .container {
+  display: flex;
+}
+section.contato .container .contato-side {
+  width: 50%;
+  height: 500px;
+}
+section.contato .container .contato-left .socialMedia {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transform: translateY(-50%);
+}
+section.contato .container .contato-left .socialMedia svg {
+  font-size: 80px;
+}
+section.contato .container .contato-right form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+section.contato .container .contato-right form * {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-left: 5px;
+  font-size: 15px;
+}
+section.contato .container .contato-right form *::-moz-placeholder {
+  color: var(--txt-color);
+}
+section.contato .container .contato-right form *:-ms-input-placeholder {
+  color: var(--txt-color);
+}
+section.contato .container .contato-right form *::placeholder {
+  color: var(--txt-color);
+}
+section.contato .container .contato-right form input, section.contato .container .contato-right form select {
+  height: 40px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--interjud-blue);
+}
+section.contato .container .contato-right form textarea {
+  border-bottom: 1px solid var(--interjud-blue);
+  height: 80px;
+  padding-top: 20px;
+}
+section.contato .container .contato-right form select, section.contato .container .contato-right form option {
+  padding-left: 0;
+  font-size: 15px;
+  color: var(--txt-color);
+}
+section.contato .container .contato-right form option {
+  background-color: var(--second-bg-color);
+}
+section.contato .container .contato-right form button {
+  align-self: flex-start;
+  background-color: var(--interjud-blue);
+  width: 200px;
+  margin-top: 30px;
+  padding: 10px 15px;
+  font-weight: bold;
+}
+
+footer {
+  background-color: var(--main-bg-color);
+  display: flex;
+  height: 95px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+footer .container {
+  max-height: 93px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+}
+footer .container .logo a {
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+footer .container .menu-desktop ul {
+  display: flex;
+  text-align: right;
+  gap: 30px;
+}
+footer .container .menu-desktop ul li {
+  text-align: right;
+  white-space: nowrap;
+  position: relative;
+}
+footer .container .menu-desktop ul li a {
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s;
+  color: white;
+  position: relative;
+  cursor: pointer;
+}
+footer .container .menu-desktop ul li a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0%;
+  transition: 0.3s;
+  height: 2px;
+  background-color: var(--interjud-blue);
+}
+footer .container .menu-desktop ul li a:hover::before {
+  width: 100%;
+}
+
 .container {
   height: auto;
   width: 90%;
@@ -685,10 +868,6 @@ section:nth-of-type(odd) {
 
 section:nth-of-type(even) {
   background-color: var(--main-bg-color);
-}
-
-html {
-  background-color: var(--second-bg-color);
 }
 
 .rec-carousel button {

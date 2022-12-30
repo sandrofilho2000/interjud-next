@@ -4,6 +4,7 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import logo_j from '../../public/assets/images/logo_j.png'
 import Tilt from 'react-parallax-tilt'
 import Button from '../Button'
+import Image from 'next/image'
 
 const Credit = ({ credit }) => {
     const [infoActive, setInfoActive] = useState(false)
@@ -53,7 +54,7 @@ const Credit = ({ credit }) => {
         >
             <article className='credit_single'>
                 {credit.img &&
-                    <img width={240} height={330} src={`assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
+                    <Image width={240} height={330} src={`/../public/assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
                 }
                 <div className='credit_content'>
                     <div className='rating'>

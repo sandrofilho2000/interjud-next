@@ -29,14 +29,14 @@ const Navbar = () => {
 
                                 <li><Link href="#cadastrar-se-investidor">COMPRE UM CRÉDITO</Link></li>
 
-                                <li><Link href="#portal-de-credito">PORTAL DE CRÉDITOS</Link></li>
+                                <li><Link href="/painel">PORTAL DE CRÉDITOS</Link></li>
 
                                 <li><Link href="#como-funciona">COMO FUNCIONA</Link></li>
                             </ul>
                         </li>
                         <li><Link href="#sobre-nos">SOBRE NÓS</Link></li>
                         <li><Link href="#contato">CONTATO</Link></li>
-                        <li><Link href="#login">LOGIN</Link></li>
+                        <li><Link href="/painel">LOGIN</Link></li>
                     </ul>
                 </div>
             </div>

@@ -20,6 +20,8 @@ html, body{
 @import 'components/credit'; 
 @import 'components/navbar'; 
 @import 'components/accordion'; 
+@import 'components/footer'; 
+
 @import 'components/home/hero';
 @import 'components/home/portalCreditos';
 @import 'components/home/comoFunciona';
@@ -27,7 +29,10 @@ html, body{
 @import 'components/home/depoimentos'; 
 @import 'components/home/duvidas'; 
 @import 'components/home/contato'; 
-@import 'components/footer'; 
+
+@import 'components/painel/sidemenu'; 
+@import 'components/painel/main'; 
+
 
 .container {
     height: auto;

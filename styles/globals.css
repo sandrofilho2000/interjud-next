@@ -462,6 +462,57 @@ header .container .menu-desktop ul li ul.submenu-desktop.active {
   transform: translateY(0%);
 }
 
+footer {
+  background-color: var(--main-bg-color);
+  display: flex;
+  height: 95px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+footer .container {
+  max-height: 93px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+}
+footer .container .logo a {
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+footer .container .menu-desktop ul {
+  display: flex;
+  text-align: right;
+  gap: 30px;
+}
+footer .container .menu-desktop ul li {
+  text-align: right;
+  white-space: nowrap;
+  position: relative;
+}
+footer .container .menu-desktop ul li a {
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s;
+  color: white;
+  position: relative;
+  cursor: pointer;
+}
+footer .container .menu-desktop ul li a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0%;
+  transition: 0.3s;
+  height: 2px;
+  background-color: var(--interjud-blue);
+}
+footer .container .menu-desktop ul li a:hover::before {
+  width: 100%;
+}
+
 section.hero {
   background-position: center;
   background-size: cover;
@@ -741,11 +792,11 @@ section.contato .container .contato-left .socialMedia {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   transform: translateY(-50%);
 }
 section.contato .container .contato-left .socialMedia svg {
-  font-size: 80px;
+  font-size: 65px;
 }
 section.contato .container .contato-right form {
   display: flex;
@@ -800,55 +851,100 @@ section.contato .container .contato-right form button {
   font-weight: bold;
 }
 
-footer {
+aside.sideMenu {
+  position: fixed;
+  z-index: 3;
+  width: 80px;
+  height: 100vh;
+  transition: all 0.3s ease 0s;
+  overflow: hidden;
   background-color: var(--main-bg-color);
-  display: flex;
-  height: 95px;
-  align-items: center;
-  position: relative;
-  z-index: 10;
+  border-left: 6px solid var(--main-bg-color);
+  box-sizing: border-box;
 }
-footer .container {
-  max-height: 93px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: visible;
+aside.sideMenu.active {
+  width: 300px;
 }
-footer .container .logo a {
-  height: auto;
-  display: flex;
-  align-items: center;
+aside.sideMenu ul {
+  top: 0px;
+  left: 0px;
+  width: 100%;
 }
-footer .container .menu-desktop ul {
-  display: flex;
-  text-align: right;
-  gap: 30px;
+aside.sideMenu ul li {
+  height: 60px;
+  padding-left: 2px;
 }
-footer .container .menu-desktop ul li {
-  text-align: right;
-  white-space: nowrap;
-  position: relative;
+aside.sideMenu ul li:first-of-type {
+  min-width: 260px;
+  padding-top: 20px;
+  height: 100px;
+  margin-bottom: 40px;
 }
-footer .container .menu-desktop ul li a {
-  text-decoration: none;
-  font-size: 13px;
-  transition: 0.3s;
-  color: white;
-  position: relative;
-  cursor: pointer;
+aside.sideMenu ul li:first-of-type a span {
+  font-size: 24px;
 }
-footer .container .menu-desktop ul li a::before {
-  content: "";
+aside.sideMenu ul li:last-of-type {
   position: absolute;
-  bottom: -2px;
-  width: 0%;
-  transition: 0.3s;
-  height: 2px;
+  bottom: 10px;
+}
+aside.sideMenu ul li a {
+  position: relative;
+  width: 100%;
+  display: flex;
+  color: var(--txt-color);
+  position: relative;
+  width: 100%;
+  list-style: none;
+}
+aside.sideMenu ul li a span {
+  position: relative;
+  display: flex;
+  min-width: 60px;
+  height: 60px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 60px;
+}
+aside.sideMenu ul li a span.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+aside.sideMenu ul li a span.icon svg {
+  font-size: 30px;
+}
+aside.sideMenu ul li a span.icon_text {
+  display: block;
+  padding: 0 20px;
+  text-align: start;
+  white-space: nowrap;
+}
+aside.sideMenu ul li:hover:not(:first-of-type) a {
+  border: 1px solid var(--txt-color);
   background-color: var(--interjud-blue);
 }
-footer .container .menu-desktop ul li a:hover::before {
-  width: 100%;
+aside.sideMenu ul li:hover:not(:first-of-type) a span, aside.sideMenu ul li:hover:not(:first-of-type) svg {
+  color: var(--txt-color) !important;
+  fill: var(--txt-color) !important;
+}
+
+main.main {
+  position: absolute;
+  min-width: calc(100vw - 300px);
+  left: 300px;
+  min-height: 100vh;
+  transition: 0.3s;
+  min-height: 100vh;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--second-bg-color);
 }
 
 .container {

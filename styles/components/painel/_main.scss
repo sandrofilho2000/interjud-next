@@ -1,0 +1,13 @@
+main.main{
+    position: absolute;
+    min-width: calc(100vw - 300px);
+    left: 300px;
+    min-height: 100vh;
+    -webkit-transition: .3s;
+    -webkit-transition: .3s;
+    transition: .3s;
+    min-height: 100vh;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--second-bg-color);
+}

@@ -1,0 +1,98 @@
+aside.sideMenu {
+    position: fixed;
+    z-index: 3;
+    width: 80px;
+    height: 100vh;
+    transition: all 0.3s ease 0s;
+    overflow: hidden;
+    background-color: var(--main-bg-color);
+    border-left: 6px solid var(--main-bg-color);
+    box-sizing: border-box;
+
+    &.active{
+        width: 300px;
+    }
+
+    ul {
+
+        top: 0px;
+        left: 0px;
+        width: 100%;
+
+        li {
+            height: 60px;
+            padding-left: 2px;
+            &:first-of-type {
+                min-width: 260px;
+                padding-top: 20px;
+                height: 100px;
+                margin-bottom: 40px;
+
+                a span{
+                    font-size: 24px;
+                }
+            }
+
+            &:last-of-type{
+                position: absolute;
+                bottom: 10px;
+            }
+
+            a{
+                position: relative;
+                width: 100%;
+                display: flex;
+                color: var(--txt-color);
+
+                span{
+                    position: relative;
+                    display: flex;
+                    min-width: 60px;
+                    height: 60px;
+                    text-align: center;
+                    font-family: 'Roboto',sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                    line-height: 60px;
+
+                    &.icon{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-width: 60px;
+                        height: 60px;
+                        line-height: 60px;
+                        text-align: center;
+                        svg{
+                            font-size: 30px
+                        }
+                    }
+
+                    &.icon_text{
+                        display: block;
+                        padding: 0 20px;
+                        text-align: start;
+                        white-space: nowrap;
+                    }
+                }
+    
+                position: relative;
+                width: 100%;
+                list-style: none;
+    
+            }
+
+            &:hover:not(:first-of-type){
+                a{
+                    border: 1px solid var(--txt-color);
+                    background-color: var(--interjud-blue);
+                }
+                a span, svg{
+                    color: var(--txt-color)!important;
+                    fill: var(--txt-color)!important;
+                }
+            }
+        }
+    }
+}

@@ -56,7 +56,7 @@ const Credit = ({ credit }) => {
                 <div className='credit_content'>
                     <div className='rating'>
                         {
-                            stars.map((item)=>{
+                            stars.map((item)=>{ 
                                 return <FaStar/>
                             })
                             }

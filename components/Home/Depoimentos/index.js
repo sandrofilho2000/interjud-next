@@ -81,7 +81,7 @@ const Depoimentos = () => {
                                         <FaQuoteRight />
                                     </div>
                                     <div className='author-depoimento'>
-                                        <Image alt={`Depoimento de ${item.author} à InterJud`} title={`Depoimento de ${item.author} à InterJud`} width={50} height={50} src={`/../public/assets/images/Depoimentos/${item.img}`} />
+                                        <img alt={`Depoimento de ${item.author} à InterJud`} title={`Depoimento de ${item.author} à InterJud`} width={50} height={50} src={`assets/images/Depoimentos/${item.img}`} />
                                         <p className='author-name'>
                                             {item.author}
                                         </p>

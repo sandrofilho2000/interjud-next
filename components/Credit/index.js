@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React, { useState } from 'react'
 import { FaStar, FaStarHalf, FaInfoCircle } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
@@ -54,7 +53,7 @@ const Credit = ({ credit }) => {
         >
             <article className='credit_single'>
                 {credit.img &&
-                    <Image width={240} height={330} src={`/../public/assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
+                    <img width={240} height={330} src={`assets/images/Credits/${credit.img}`} loading="lazy" alt="Banco do brasil" />
                 }
                 <div className='credit_content'>
                     <div className='rating'>

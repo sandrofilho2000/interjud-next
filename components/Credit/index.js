@@ -7,7 +7,6 @@ import Button from '../Button'
 import Image from 'next/image'
 
 const Credit = ({ credit }) => {
-
     const [infoActive, setInfoActive] = useState(false)
 
     let tiltOptions = {
@@ -52,9 +51,7 @@ const Credit = ({ credit }) => {
             {...tiltOptions}
         >
             <article className='credit_single'>
-                {credit.img &&
-                    <img width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
-                }
+                <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
                 <div className='credit_content'>
                     <div className='rating'>
                         {

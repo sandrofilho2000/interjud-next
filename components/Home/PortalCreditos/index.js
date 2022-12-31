@@ -15,25 +15,20 @@ SwiperCore.use([Navigation, Pagination]);
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
-    const usersCollectionRef = collection(db, "creditos")
+    const [loading, setLoading] = useState(true)
+    const creditsCollectionRef = collection(db, "creditos")
 
-    const getCreditImg = async (img) => {
+/*     const getCreditImg = async (img) => {
         const storageRef = ref(storage, "creditos/" + img);
         const url = await getDownloadURL(storageRef)
         return url
-    }
+    } */
 
     const getCredits = async () => {
-        const data = await getDocs(usersCollectionRef)
+        const data = await getDocs(creditsCollectionRef)
         let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-
-        cre.forEach(async (item) => {
-            if(item.img){
-                item.img = await getCreditImg(item.img)
-            }
-        })
-        console.log(cre)
         setCredits(cre)
+        setLoading(false) 
     }
 
     useEffect(() => {
@@ -79,8 +74,6 @@ const PortalCreditos = () => {
                         )
                     })}
                 </Swiper>
-
-
             </div>
         </section>
     )

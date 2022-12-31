@@ -26,13 +26,14 @@ html, body{
 @import 'components/home/portalCreditos';
 @import 'components/home/comoFunciona';
 @import 'components/home/vantagens';
-@import 'components/home/depoimentos'; 
-@import 'components/home/duvidas'; 
+@import 'components/home/depoimentos';  
+@import 'components/home/duvidas';  
 @import 'components/home/contato'; 
 
 @import 'components/painel/sidemenu'; 
 @import 'components/painel/main'; 
 
+@import 'components/login/login';  
 
 .container {
     height: auto;

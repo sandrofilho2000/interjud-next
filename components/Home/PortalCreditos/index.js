@@ -3,59 +3,44 @@ import Credit from '../../Credit'
 import LineTitle from '../../LineTitle'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
+import { collection, getDocs } from 'firebase/firestore'
+import { ref, getDownloadURL } from 'firebase/storage'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { db, storage } from '../../../firebase';
 
 SwiperCore.use([Navigation, Pagination]);
 
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
-    let cre = [
-        {
-            id: 1,
-            name: "Banco do Brasil",
-            value: 627500,
-            rating: 3,
-            class: "Trabalhista",
-            img: 'banco_do_brasil.png'
-        }
-        ,
-        {
-            id: 2,
-            name: "Via Varejo",
-            value: 45500,
-            rating: 4.5,
-            class: "Consumidor",
-            img: 'via_varejo.png'
-        }
-        ,
-        {
-            id: 3,
-            name: "Caixa Econômica Federal",
-            value: 80500.50,
-            rating: 5,
-            class: "Trabalhista",
-            img: 'caixa_federal.png'
-        }
-        ,
-        {
-            id: 4,
-            name: "Pão de Açucar",
-            value: 192500,
-            rating: 1.5,
-            class: "Trabalhista",
-            img: 'pao_de_acucar.png'
-        }
-        ,
-    ]
+    const usersCollectionRef = collection(db, "creditos")
+
+    const getCreditImg = async (img) => {
+        const storageRef = ref(storage, "creditos/" + img);
+        const url = await getDownloadURL(storageRef)
+        return url
+    }
+
+    const getCredits = async () => {
+        const data = await getDocs(usersCollectionRef)
+        let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+        cre.forEach(async (item) => {
+            if(item.img){
+                item.img = await getCreditImg(item.img)
+            }
+        })
+        console.log(cre)
+        setCredits(cre)
+    }
 
     useEffect(() => {
-        setCredits(cre)
         document.querySelectorAll(".portalCreditos .rec-dot").forEach((item, index) => {
             item.setAttribute("aria-label", "navigation button")
         })
+        getCredits()
     }, [])
 
 
@@ -67,7 +52,7 @@ const PortalCreditos = () => {
                 <Swiper
                     className='creditsList'
                     slidesPerView={1}
-                    spaceBetween= {20}
+                    spaceBetween={20}
                     breakpoints={{
                         640: {
                             slidesPerView: 1

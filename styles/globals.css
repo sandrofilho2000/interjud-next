@@ -956,6 +956,18 @@ main.main {
   background-color: var(--second-bg-color);
 }
 
+form.formLogin, form.formSignup {
+  width: 300px;
+  height: 450px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+}
+form.formLogin input, form.formSignup input {
+  background-color: transparent;
+  color: var(--txt-color);
+}
+
 .container {
   height: auto;
   width: 90%;

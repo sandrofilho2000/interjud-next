@@ -19,7 +19,7 @@ const Footer = () => {
                         <li className="menu-submenu-desktop"><Link href="#header">INÍCIO</Link></li>
                         <li><Link href="#sobre-nos">SOBRE NÓS</Link></li>
                         <li><Link href="#contato">CONTATO</Link></li>
-                        <li><Link href="#login">LOGIN</Link></li>
+                        <li><Link href="/login">LOGIN</Link></li>
                     </ul>
                 </div>
                 <h1 className="logo">

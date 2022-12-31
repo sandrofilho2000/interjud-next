@@ -1,0 +1,12 @@
+form.formLogin,form.formSignup{
+    width: 300px;
+    height: 450px;
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+
+    input{
+        background-color: transparent;
+        color: var(--txt-color);
+    }
+}

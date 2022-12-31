@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
 
 import Logo from '../../public/assets/images/logo.webp'
 
 const Navbar = () => {
+    const {user} = useAuth()
     const [subMenuActive, setSubMenuActive] = useState(false)
 
     let handleSubMenuActive = () =>{
@@ -15,7 +17,7 @@ const Navbar = () => {
 
             <div className="container">
                 <h1 className="logo">
-                    <Link href="#index.php">
+                    <Link href="/">
                         <Image src={Logo} width={140} height={70} alt="InterJud Logo" />
                     </Link>
                 </h1>
@@ -36,7 +38,16 @@ const Navbar = () => {
                         </li>
                         <li><Link href="#sobre-nos">SOBRE NÓS</Link></li>
                         <li><Link href="#contato">CONTATO</Link></li>
-                        <li><Link href="/painel">LOGIN</Link></li>
+                        {
+                            
+                            user ? (
+                                <li><Link href="/painel">PAINEL</Link></li>
+                                )
+                                : 
+                                (
+                                <li><Link href="/login">LOGIN</Link></li>
+                                )
+                        }
                     </ul>
                 </div>
             </div>

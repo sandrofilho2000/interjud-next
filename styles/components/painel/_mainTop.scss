@@ -1,0 +1,51 @@
+.mainTop{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+    color: var(--txt-color);
+
+    svg{
+        fill: var(--txt-color);
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .menuToggle{
+        svg{
+            font-size: 40px;
+        }
+    }
+
+    .searchField{
+        display: flex;
+        align-items: center;
+        input{
+            border: none;
+            outline: none;
+            background: transparent;
+            border-bottom: 1px solid var(--interjud-blue);
+            padding: 5px 25px ;
+            &::placeholder{
+                font-size: 16px;
+                color: var(--txt-color);
+                opacity: 0.8;
+            }
+            
+        }
+        svg{
+            opacity: 0.8;
+            font-size: 20px;
+            margin-right: -20px;
+        }
+    }
+
+    .notificationWrapper{
+        svg{
+            fill: var(--txt-color);
+            color: var(--txt-color);
+        }
+    }
+}

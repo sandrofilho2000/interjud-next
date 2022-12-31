@@ -10,11 +10,12 @@ import { useRouter } from 'next/router'
 
 
 const SideMenu = () => {
+    const {sideMenuOpen, setSideMenuOpen} = useAuth()
     const {user, logout} = useAuth()
     const router = useRouter()
 
     return (
-        <aside className='sideMenu active'>
+        <aside className={`sideMenu ${sideMenuOpen ? 'active' : ''}`}>
             <ul>
                 <li>
                     <Link href="../">

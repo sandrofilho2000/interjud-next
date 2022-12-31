@@ -4,6 +4,7 @@ import LineTitle from '../../LineTitle'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { collection, getDocs } from 'firebase/firestore'
+import Tilt from 'react-parallax-tilt'
 import { ref, getDownloadURL } from 'firebase/storage'
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -15,20 +16,29 @@ SwiperCore.use([Navigation, Pagination]);
 
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
-    const [loading, setLoading] = useState(true)
     const creditsCollectionRef = collection(db, "creditos")
 
-/*     const getCreditImg = async (img) => {
-        const storageRef = ref(storage, "creditos/" + img);
-        const url = await getDownloadURL(storageRef)
-        return url
-    } */
+    let tiltOptions = {
+        perspective: 500,
+        glareEnable: true,
+        glareMaxOpacity: 1,
+        scale: 1,
+        max: 3,
+        tiltMaxAngleX: 3,
+        tiltMaxAngleY: 3,
+        glarePosition: "all",
+    }
+
+    /*     const getCreditImg = async (img) => {
+            const storageRef = ref(storage, "creditos/" + img);
+            const url = await getDownloadURL(storageRef)
+            return url
+        } */
 
     const getCredits = async () => {
         const data = await getDocs(creditsCollectionRef)
         let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         setCredits(cre)
-        setLoading(false) 
     }
 
     useEffect(() => {
@@ -69,7 +79,11 @@ const PortalCreditos = () => {
                     {credits.map((item, index) => {
                         return (
                             <SwiperSlide key={index}>
-                                <Credit credit={item} />
+                                <Tilt className="Tilt"
+                                    {...tiltOptions}
+                                >
+                                    <Credit credit={item} />
+                                </Tilt>
                             </SwiperSlide>
                         )
                     })}

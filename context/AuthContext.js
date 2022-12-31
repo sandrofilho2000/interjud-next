@@ -10,6 +10,7 @@ export const AuthContextProvider = ({children})=>{
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [sideMenuOpen, setSideMenuOpen] = useState(false)
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (user)=>{
@@ -43,7 +44,7 @@ export const AuthContextProvider = ({children})=>{
     }
 
     return (
-        <AuthContext.Provider value={{user, login, signup, logout}}>
+        <AuthContext.Provider value={{user, login, signup, logout, sideMenuOpen, setSideMenuOpen}}>
             {loading ? '' : children}
         </AuthContext.Provider>
     )

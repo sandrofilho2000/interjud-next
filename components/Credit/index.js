@@ -2,23 +2,13 @@ import React, { useState } from 'react'
 import { FaStar, FaStarHalf, FaInfoCircle } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import logo_j from '../../public/assets/images/logo_j.png'
-import Tilt from 'react-parallax-tilt'
 import Button from '../Button'
 import Image from 'next/image'
 
 const Credit = ({ credit }) => {
     const [infoActive, setInfoActive] = useState(false)
 
-    let tiltOptions = {
-        perspective: 500,
-        glareEnable: true,
-        glareMaxOpacity: 1,
-        scale: 1,
-        max: 3,
-        tiltMaxAngleX: 3,
-        tiltMaxAngleY: 3,
-        glarePosition: "all",
-    }
+
 
     let halfStar = Number.isInteger(credit.rating)
     let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
@@ -47,9 +37,7 @@ const Credit = ({ credit }) => {
     }
 
     return (
-        <Tilt className="Tilt"
-            {...tiltOptions}
-        >
+
             <article className='credit_single'>
                 <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
                 <div className='credit_content'>
@@ -93,7 +81,6 @@ const Credit = ({ credit }) => {
                     </p>
                 </div>
             </article>
-        </Tilt>
     )
 }
 

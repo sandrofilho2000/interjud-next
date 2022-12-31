@@ -7,6 +7,7 @@ aside.sideMenu {
     overflow: hidden;
     background-color: var(--main-bg-color);
     border-left: 6px solid var(--main-bg-color);
+    border-right: 2px solid var(--interjud-blue);
     box-sizing: border-box;
 
     &.active{
@@ -24,7 +25,7 @@ aside.sideMenu {
             padding-left: 2px;
             &:first-of-type {
                 min-width: 260px;
-                padding-top: 20px;
+                padding-top: 10px;
                 height: 100px;
                 margin-bottom: 40px;
 

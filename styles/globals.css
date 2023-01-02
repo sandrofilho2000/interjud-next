@@ -246,6 +246,7 @@ html, body {
 .credit_single .credit_content .rating {
   display: flex;
   width: 90%;
+  min-height: 30px;
   margin: 0 auto;
   justify-content: center;
 }
@@ -280,6 +281,17 @@ html, body {
   font-weight: bold;
   text-transform: uppercase;
   transform: translateY(-20%);
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  border-bottom: 2px solid var(--main-color);
+  max-width: 300px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.credit_single .credit_content p.name {
+  min-height: 60px;
 }
 .credit_single .credit_content .value {
   transform: translateY(-90%);

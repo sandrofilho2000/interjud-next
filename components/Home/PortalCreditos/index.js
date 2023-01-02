@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { db, storage } from '../../../firebase';
+import { useAuth } from '../../../context/AuthContext';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -17,23 +18,7 @@ SwiperCore.use([Navigation, Pagination]);
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
     const creditsCollectionRef = collection(db, "creditos")
-
-    let tiltOptions = {
-        perspective: 500,
-        glareEnable: true,
-        glareMaxOpacity: 1,
-        scale: 1,
-        max: 3,
-        tiltMaxAngleX: 3,
-        tiltMaxAngleY: 3,
-        glarePosition: "all",
-    }
-
-    /*     const getCreditImg = async (img) => {
-            const storageRef = ref(storage, "creditos/" + img);
-            const url = await getDownloadURL(storageRef)
-            return url
-        } */
+    let {tiltOptions} = useAuth()
 
     const getCredits = async () => {
         const data = await getDocs(creditsCollectionRef)

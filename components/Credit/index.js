@@ -4,11 +4,13 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import logo_j from '../../public/assets/images/logo_j.png'
 import Button from '../Button'
 import Image from 'next/image'
+import { useAuth } from '../../context/AuthContext'
 
 const Credit = ({ credit }) => {
     const [infoActive, setInfoActive] = useState(false)
 
 
+    let {tiltOptions, setTiltOptions} = useAuth()
 
     let halfStar = Number.isInteger(credit.rating)
     let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
@@ -26,6 +28,8 @@ const Credit = ({ credit }) => {
         tiltOptions.tiltMaxAngleX = 0
         tiltOptions.tiltMaxAngleY = 0
         tiltOptions.glareEnable = false
+
+        setTiltOptions(tiltOptions)
     }
 
     let handleInfoActive = () => {
@@ -38,7 +42,7 @@ const Credit = ({ credit }) => {
 
     return (
 
-            <article className='credit_single'>
+            <article title={credit.name} className='credit_single'>
                 <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
                 <div className='credit_content'>
                     <div className='rating'>

@@ -6,9 +6,11 @@ import { useAuth } from '../../../../context/AuthContext'
 
 const MainTop = () => {
     const {sideMenuOpen, setSideMenuOpen} = useAuth()
+    
     let handleSideMenuOpen = () =>{
         setSideMenuOpen(!sideMenuOpen)
     }
+
     return (
         <div className='mainTop'>
             <div className='menuToggle'>

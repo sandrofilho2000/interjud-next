@@ -120,7 +120,7 @@ aside.sideMenu {
             &:hover:not(:first-of-type) {
                 margin-left: -5px;
                 a::before {
-                    width: 80%;
+                    width: 80%; 
                 }
             }
         }

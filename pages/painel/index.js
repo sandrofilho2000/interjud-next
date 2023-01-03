@@ -13,7 +13,7 @@ const Painel = () => {
                 <link rel="shortcut icon" type="image-x/png" href="https://www.interjud.com.br/icon.png" />
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width" />
+                <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
                 <meta name="description" content="Compre ou venda créditos judiciais com a segurança da InterJud, Garanta agora seu direito e antecipe seus sonhos, ou Receba um valor justo pelo seu crédito judicial." />
                 <meta name="author" content="Design por DamixCode/Desenvolvimento por Aurora Web Design" />
                 <meta name="keywords" content="venda,creditos,judiciais,compra,creditos,judiciais,negocie,seu,credito,invista,em,creditos,judiciais" />

@@ -22,7 +22,10 @@ const Credit = ({ credit, tilt = false }) => {
     })
 
     useEffect(()=>{
-        setTiltOptions({...tiltOptions, tiltEnable: true, glareEnable: true})
+        tiltOptions.max =  0,
+        tiltOptions.tiltMaxAngleX =  0,
+        tiltOptions.tiltMaxAngleY =  0
+        setTiltOptions(tiltOptions)
     }, [])
 
 

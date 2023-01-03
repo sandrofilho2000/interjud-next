@@ -4,11 +4,31 @@ aside.sideMenu {
     width: 80px;
     height: 100vh;
     transition: all 0.3s ease 0s;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: var(--main-bg-color);
     border-left: 6px solid var(--main-bg-color);
     border-right: 2px solid var(--interjud-blue);
     box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        width: 3px;
+        z-index: 99;
+        position: relative
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: var(--main-bg-color);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: var(--interjud-blue);
+        border-radius: 10px
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--main-bg-color)
+    }
 
     &.active{
         width: 300px;
@@ -32,11 +52,6 @@ aside.sideMenu {
                 a span{
                     font-size: 24px;
                 }
-            }
-
-            &:last-of-type{
-                position: absolute;
-                bottom: 10px;
             }
 
             a{

@@ -9,7 +9,7 @@ aside.sideMenu {
     background-color: var(--main-bg-color);
     border-left: 6px solid var(--main-bg-color);
     border-right: 2px solid var(--interjud-blue);
-    box-sizing: border-box;
+    box-sizing: border-box; 
 
     &::-webkit-scrollbar {
         width: 3px;

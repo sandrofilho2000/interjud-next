@@ -1,7 +1,8 @@
 import React from 'react'
 import { BiMenuAltLeft } from 'react-icons/bi'
 import { BsSearch } from 'react-icons/bs'
-import { AiFillNotification } from 'react-icons/ai'
+import { AiFillNotification, AiFillFilter } from 'react-icons/ai'
+import { FaFilter } from 'react-icons/fa'
 import { useAuth } from '../../../../context/AuthContext'
 
 const MainTop = () => {
@@ -19,6 +20,7 @@ const MainTop = () => {
             <div className='searchField'>
                 <BsSearch />
                 <input type="search" id='searchItems' className='searchItems' placeholder='Pesquisar'/>
+                <FaFilter/>
             </div>
             <div className="notificationWrapper">
                 <AiFillNotification/>

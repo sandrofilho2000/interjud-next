@@ -43,6 +43,8 @@ aside.sideMenu {
         li {
             height: 60px;
             padding-left: 2px;
+            transition: 0.3s;
+
             &:first-of-type {
                 min-width: 260px;
                 padding-top: 10px;
@@ -51,6 +53,11 @@ aside.sideMenu {
 
                 a span{
                     font-size: 24px;
+
+                    img{
+                        border-radius: 50%;
+                        border: 2px solid var(--interjud-blue)
+                    }
                 }
             }
 
@@ -59,7 +66,7 @@ aside.sideMenu {
                 width: 100%;
                 display: flex;
                 color: var(--txt-color);
-
+                
                 span{
                     position: relative;
                     display: flex;
@@ -97,16 +104,23 @@ aside.sideMenu {
                 width: 100%;
                 list-style: none;
     
-            }
-
-            &:hover:not(:first-of-type){
-                a{
-                    border: 1px solid var(--txt-color);
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    width: 0%;
+                    margin-left: 10px;
+                    transition: 0.3s;
+                    height: 2px;
                     background-color: var(--interjud-blue);
                 }
-                a span, svg{
-                    color: var(--txt-color)!important;
-                    fill: var(--txt-color)!important;
+        
+            }
+        
+            &:hover:not(:first-of-type) {
+                margin-left: -5px;
+                a::before {
+                    width: 80%;
                 }
             }
         }

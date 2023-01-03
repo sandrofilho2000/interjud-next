@@ -64,6 +64,30 @@ html, body{
     }
 } 
 
+.main{
+    .swiper {
+        padding: 30px;
+    
+        .swiper-slide{
+            width: 100% !important;
+            display: flex !important;
+            justify-content: space-between;
+        }
+    
+        .swiper-pagination{
+            bottom: 0px;
+    
+            .swiper-pagination-bullet{
+                background-color: var(--txt-color);
+            }
+    
+            .swiper-pagination-bullet-active{
+                background-color: var(--interjud-blue);
+            }
+        }
+    }
+}
+
 section{
     padding: 40px 0;
 }

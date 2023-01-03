@@ -10,6 +10,7 @@
         display: block;
         margin: 0;
         width: 100%;
+        user-select: none;
     }
 
     .credit_content {
@@ -31,7 +32,7 @@
             justify-content: center;
 
             svg {
-                fill: #EBC917 !important;
+                fill: var(--interjud-yellow) !important;
                 background-clip: text;
                 -webkit-background-clip: text;
                 color: transparent;
@@ -73,16 +74,17 @@
             max-width: 300px;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            
-            &.name{
+
+            &.name {
                 min-height: 60px;
             }
         }
 
         .value {
             transform: translateY(-90%);
-            color: #1F9E08;
+            color: var(--interjud-green);
             font-size: 24px;
+            user-select: none;
         }
 
         .button {
@@ -101,6 +103,162 @@
             bottom: 10px;
         }
 
+    }
+
+
+    .wishlist_icon {
+        fill: transparent;
+        stroke: var(--interjud-pink);
+        stroke-width: 20;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        z-index: 12;
+        transition: 0.3s;
+    }
+
+    .wishlist_icon:active {
+        transform: scale(0.85);
+    }
+
+    .wishlist_icon *,
+    .wishlist_icon *::before,
+    .wishlist_icon *::after {
+        box-sizing: border-box;
+    }
+
+    .wishlist_icon svg {
+        overflow: visible;
+        width: 1.5rem;
+    }
+
+    .wishlist_icon path {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 1550;
+        transform-origin: center;
+    }
+
+    .wishlist_icon .heart-background {
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        stroke: none;
+    }
+
+    .wishlist_icon.active .heart-main path {
+        -webkit-animation: stroke-animation 2s ease-in-out forwards;
+        animation: stroke-animation 2s ease-in-out forwards;
+    }
+
+    .wishlist_icon.active .heart-background path {
+        -webkit-animation: fade-animation 2s ease-in-out forwards;
+        animation: fade-animation 2s ease-in-out forwards;
+    }
+
+    @-webkit-keyframes stroke-animation {
+        0% {
+            stroke-dashoffset: 0;
+        }
+
+        30% {
+            stroke-dashoffset: 1550;
+        }
+
+        60% {
+            stroke-dashoffset: 3100;
+            fill: transparent;
+            transform: scale(1);
+        }
+
+        80% {
+            fill: var(--interjud-pink);
+            transform: scale(1.1);
+        }
+
+        90% {
+            transform: scale(1);
+        }
+
+        100% {
+            stroke-dashoffset: 3100;
+            fill: var(--interjud-pink);
+        }
+    }
+
+    @keyframes stroke-animation {
+        0% {
+            stroke-dashoffset: 0;
+        }
+
+        30% {
+            stroke-dashoffset: 1550;
+        }
+
+        60% {
+            stroke-dashoffset: 3100;
+            fill: transparent;
+            transform: scale(1);
+        }
+
+        80% {
+            fill: var(--interjud-pink);
+            transform: scale(1.1);
+        }
+
+        90% {
+            transform: scale(1);
+        }
+
+        100% {
+            stroke-dashoffset: 3100;
+            fill: var(--interjud-pink);
+        }
+    }
+
+    @-webkit-keyframes fade-animation {
+        70% {
+            fill: transparent;
+            transform: scale(1);
+        }
+
+        80% {
+            fill: var(--interjud-pink);
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fade-animation {
+        70% {
+            fill: transparent;
+            transform: scale(1);
+        }
+
+        80% {
+            fill: var(--interjud-pink);
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(2.5);
+            opacity: 0;
+        }
     }
 
     .info {

@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import Logo_J from '../../../public/assets/images/logo_j.webp'
+import Avatar from '../../../public/assets/images/Depoimentos/foto1.jpg'
 import { FaGlobeAmericas, FaHandshake } from 'react-icons/fa'
 import { BiLogOut } from 'react-icons/bi'
-import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage, AiFillNotification } from 'react-icons/ai'
+import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage, AiFillNotification, AiFillHome } from 'react-icons/ai'
 import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
 
@@ -18,9 +18,9 @@ const SideMenu = () => {
         <aside className={`sideMenu ${sideMenuOpen ? 'active' : ''}`}>
             <ul>
                 <li>
-                    <Link href="../">
-                        <span className='icon'>
-                            <Image src={Logo_J} width={40} height={55} alt="Logo interjud da área logada"/>
+                    <Link href="#">
+                        <span className='icon' title="Olá, Sandro">
+                            <Image src={Avatar} width={50} height={50} alt="Logo interjud da área logada"/>
                         </span>
                         <span className='icon_text'>
                             Olá, Sandro
@@ -29,8 +29,8 @@ const SideMenu = () => {
                 </li>
                 <li>
                     <Link href="#">
-                        <span className='icon'>
-                            <FaGlobeAmericas/>
+                        <span className='icon' title="Home">
+                            <AiFillHome/>
                         </span>
                         <span className='icon_text'>
                             Home
@@ -40,7 +40,7 @@ const SideMenu = () => {
 
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Créditos">
                             <AiFillCreditCard/>
                         </span>
                         <span className='icon_text'>
@@ -51,7 +51,7 @@ const SideMenu = () => {
 
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Créditos Avaliados">
                             <AiFillStar/>
                         </span>
                         <span className='icon_text'>
@@ -62,7 +62,7 @@ const SideMenu = () => {
 
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Propostas">
                             <FaHandshake/>
                         </span>
                         <span className='icon_text'>
@@ -73,7 +73,7 @@ const SideMenu = () => {
 
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Favoritos">
                             <AiFillHeart/>
                         </span>
                         <span className='icon_text'>
@@ -83,7 +83,7 @@ const SideMenu = () => {
                 </li>
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Perfil">
                             <AiOutlineUser/>
                         </span>
                         <span className='icon_text'>
@@ -94,7 +94,7 @@ const SideMenu = () => {
 
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Mensagens">
                             <AiFillMessage/>
                         </span>
                         <span className='icon_text'>
@@ -104,11 +104,21 @@ const SideMenu = () => {
                 </li>
                 <li>
                     <Link href="#">
-                        <span className='icon'>
+                        <span className='icon' title="Notificações">
                             <AiFillNotification/>
                         </span>
                         <span className='icon_text'>
                             Notificações
+                        </span>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="../">
+                        <span className='icon' title="Notificações">
+                            <FaGlobeAmericas/>
+                        </span>
+                        <span className='icon_text'>
+                            Site
                         </span>
                     </Link>
                 </li>
@@ -120,7 +130,7 @@ const SideMenu = () => {
                         }} 
                         href="#"
                     >
-                        <span className='icon'>
+                        <span className='icon' title="Sair">
                             <BiLogOut/>
                         </span>
                         <span className='icon_text'>

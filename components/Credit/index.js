@@ -9,6 +9,7 @@ import { useAuth } from '../../context/AuthContext'
 
 const Credit = ({ credit, tilt = false }) => {
     const [infoActive, setInfoActive] = useState(false)
+    const [favToggle, setFavToggle] = useState(false)
     let [tiltOptions, setTiltOptions] = useState({
         perspective: 500,
         tiltEnable: false,
@@ -21,10 +22,10 @@ const Credit = ({ credit, tilt = false }) => {
         glarePosition: "all",
     })
 
-    useEffect(()=>{
-        tiltOptions.max =  0,
-        tiltOptions.tiltMaxAngleX =  0,
-        tiltOptions.tiltMaxAngleY =  0
+    useEffect(() => {
+        tiltOptions.max = 0,
+            tiltOptions.tiltMaxAngleX = 0,
+            tiltOptions.tiltMaxAngleY = 0
         setTiltOptions(tiltOptions)
     }, [])
 
@@ -43,13 +44,13 @@ const Credit = ({ credit, tilt = false }) => {
 
         setInfoActive(!infoActive)
         if (infoActive) {
-            tiltOptions.max =  3,
-            tiltOptions.tiltMaxAngleX =  3,
-            tiltOptions.tiltMaxAngleY =  3
+            tiltOptions.max = 3,
+                tiltOptions.tiltMaxAngleX = 3,
+                tiltOptions.tiltMaxAngleY = 3
         } else {
-            tiltOptions.max =  0,
-            tiltOptions.tiltMaxAngleX =  0,
-            tiltOptions.tiltMaxAngleY =  0
+            tiltOptions.max = 0,
+                tiltOptions.tiltMaxAngleX = 0,
+                tiltOptions.tiltMaxAngleY = 0
         }
 
         setTiltOptions(tiltOptions)
@@ -57,6 +58,10 @@ const Credit = ({ credit, tilt = false }) => {
 
     var infoBG = {
         backgroundImage: `url('${logo_j.src}')`,
+    }
+
+    let handleFavToggle = () =>{
+        setFavToggle(!favToggle)
     }
 
     return (
@@ -67,6 +72,14 @@ const Credit = ({ credit, tilt = false }) => {
             <article title={credit.name} className='credit_single'>
                 <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
                 <div className='credit_content'>
+                    <div onClick={()=>{handleFavToggle()}} class={`wishlist_icon ${favToggle ? 'active' : ''}`}>
+                        <svg class="heart-main" viewBox="0 0 512 512" width="200" title="heart">
+                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                        </svg>
+                        <svg class="heart-background" viewBox="0 0 512 512" width="200" title="heart">
+                            <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                        </svg>
+                    </div>
                     <div className='rating'>
                         {
                             stars.map((item, index) => {

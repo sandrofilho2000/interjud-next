@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaStar, FaStarHalf, FaInfoCircle } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import logo_j from '../../public/assets/images/logo_j.png'
+import Tilt from 'react-parallax-tilt'
 import Button from '../Button'
 import Image from 'next/image'
 import { useAuth } from '../../context/AuthContext'
 
-const Credit = ({ credit }) => {
+const Credit = ({ credit, tilt = false }) => {
     const [infoActive, setInfoActive] = useState(false)
+    let [tiltOptions, setTiltOptions] = useState({
+        perspective: 500,
+        tiltEnable: false,
+        glareEnable: false,
+        glareMaxOpacity: 1,
+        scale: 1,
+        max: 3,
+        tiltMaxAngleX: 3,
+        tiltMaxAngleY: 3,
+        glarePosition: "all",
+    })
 
+    useEffect(()=>{
+        setTiltOptions({...tiltOptions, tiltEnable: true, glareEnable: true})
+    }, [])
 
-    let {tiltOptions, setTiltOptions} = useAuth()
 
     let halfStar = Number.isInteger(credit.rating)
     let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
@@ -22,18 +36,20 @@ const Credit = ({ credit }) => {
     })
 
 
-    if (infoActive) {
-        tiltOptions.max = 0
-        tiltOptions.max = 0
-        tiltOptions.tiltMaxAngleX = 0
-        tiltOptions.tiltMaxAngleY = 0
-        tiltOptions.glareEnable = false
+    let handleInfoActive = () => {
+
+        setInfoActive(!infoActive)
+        if (infoActive) {
+            tiltOptions.max =  3,
+            tiltOptions.tiltMaxAngleX =  3,
+            tiltOptions.tiltMaxAngleY =  3
+        } else {
+            tiltOptions.max =  0,
+            tiltOptions.tiltMaxAngleX =  0,
+            tiltOptions.tiltMaxAngleY =  0
+        }
 
         setTiltOptions(tiltOptions)
-    }
-
-    let handleInfoActive = () => {
-        setInfoActive(!infoActive)
     }
 
     var infoBG = {
@@ -42,21 +58,24 @@ const Credit = ({ credit }) => {
 
     return (
 
+        <Tilt className="Tilt"
+            {...tiltOptions}
+        >
             <article title={credit.name} className='credit_single'>
                 <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
                 <div className='credit_content'>
                     <div className='rating'>
                         {
-                            stars.map((item, index)=>{ 
-                                return <FaStar key={index}/>
+                            stars.map((item, index) => {
+                                return <FaStar key={index} />
                             })
-                            }
+                        }
 
                         {
-                            !halfStar && 
+                            !halfStar &&
                             <FaStarHalf />
                         }
-                    
+
                     </div>
                     <p className='name'>
                         {credit.name}
@@ -85,6 +104,8 @@ const Credit = ({ credit }) => {
                     </p>
                 </div>
             </article>
+        </Tilt>
+
     )
 }
 

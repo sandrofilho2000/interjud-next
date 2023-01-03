@@ -8,17 +8,6 @@ export const useAuth = () => useContext(AuthContext)
 
 export const AuthContextProvider = ({children})=>{
 
-    let [tiltOptions, setTiltOptions] =useState ({
-        perspective: 500,
-        glareEnable: true,
-        glareMaxOpacity: 1,
-        scale: 1,
-        max: 3,
-        tiltMaxAngleX: 3,
-        tiltMaxAngleY: 3,
-        glarePosition: "all",
-    })
-
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
@@ -55,7 +44,7 @@ export const AuthContextProvider = ({children})=>{
     }
 
     return (
-        <AuthContext.Provider value={{user, login, signup, logout, sideMenuOpen, setSideMenuOpen, tiltOptions, setTiltOptions}}>
+        <AuthContext.Provider value={{user, login, signup, logout, sideMenuOpen, setSideMenuOpen}}>
             {loading ? '' : children}
         </AuthContext.Provider>
     )

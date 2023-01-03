@@ -4,8 +4,6 @@ import LineTitle from '../../LineTitle'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { collection, getDocs } from 'firebase/firestore'
-import Tilt from 'react-parallax-tilt'
-import { ref, getDownloadURL } from 'firebase/storage'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -18,7 +16,8 @@ SwiperCore.use([Navigation, Pagination]);
 const PortalCreditos = () => {
     const [credits, setCredits] = useState([{}])
     const creditsCollectionRef = collection(db, "creditos")
-    let {tiltOptions} = useAuth()
+
+
 
     const getCredits = async () => {
         const data = await getDocs(creditsCollectionRef)
@@ -64,11 +63,7 @@ const PortalCreditos = () => {
                     {credits.map((item, index) => {
                         return (
                             <SwiperSlide key={index}>
-                                <Tilt className="Tilt"
-                                    {...tiltOptions}
-                                >
-                                    <Credit credit={item} />
-                                </Tilt>
+                                    <Credit credit={item} tilt={true} />
                             </SwiperSlide>
                         )
                     })}

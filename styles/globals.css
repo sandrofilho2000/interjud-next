@@ -22,7 +22,7 @@ html, body {
   --main-bg-color: #131313;
   --second-bg-color: #333333;
   --interjud-blue: #004b9f;
-  --interjud-pink: #ce382a;
+  --interjud-red: #ce382a;
   --interjud-green: #1F9E08;
   --interjud-yellow: #EBC917;
   --box-shadow: rgba(0,0,0,.2) 0px 5px 10px;
@@ -328,7 +328,7 @@ html, body {
 }
 .credit_single .wishlist_icon {
   fill: transparent;
-  stroke: var(--interjud-pink);
+  stroke: var(--interjud-red);
   stroke-width: 20;
   cursor: pointer;
   position: absolute;
@@ -382,7 +382,7 @@ html, body {
     transform: scale(1);
   }
   80% {
-    fill: var(--interjud-pink);
+    fill: var(--interjud-red);
     transform: scale(1.1);
   }
   90% {
@@ -390,7 +390,7 @@ html, body {
   }
   100% {
     stroke-dashoffset: 3100;
-    fill: var(--interjud-pink);
+    fill: var(--interjud-red);
   }
 }
 @keyframes stroke-animation {
@@ -406,7 +406,7 @@ html, body {
     transform: scale(1);
   }
   80% {
-    fill: var(--interjud-pink);
+    fill: var(--interjud-red);
     transform: scale(1.1);
   }
   90% {
@@ -414,7 +414,7 @@ html, body {
   }
   100% {
     stroke-dashoffset: 3100;
-    fill: var(--interjud-pink);
+    fill: var(--interjud-red);
   }
 }
 @-webkit-keyframes fade-animation {
@@ -423,7 +423,7 @@ html, body {
     transform: scale(1);
   }
   80% {
-    fill: var(--interjud-pink);
+    fill: var(--interjud-red);
     transform: scale(1.1);
     opacity: 1;
   }
@@ -441,7 +441,7 @@ html, body {
     transform: scale(1);
   }
   80% {
-    fill: var(--interjud-pink);
+    fill: var(--interjud-red);
     transform: scale(1.1);
     opacity: 1;
   }
@@ -677,6 +677,74 @@ footer .container .menu-desktop ul li a::before {
 }
 footer .container .menu-desktop ul li a:hover::before {
   width: 100%;
+}
+
+.OfferOverlay {
+  position: fixed;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.721);
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.OfferOverlay.active {
+  opacity: 1;
+  pointer-events: initial;
+}
+.OfferOverlay .closeOfferOverlay {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  font-size: 26px;
+}
+.OfferOverlay article.credit_single {
+  width: 320px;
+  border-color: var(--interjud-blue);
+}
+.OfferOverlay article.credit_single .credit_content {
+  justify-content: flex-start;
+}
+.OfferOverlay article.credit_single .credit_content .rating {
+  margin-top: 20px;
+}
+.OfferOverlay article.credit_single .credit_content p, .OfferOverlay article.credit_single .credit_content .rating {
+  margin-bottom: 50px;
+}
+.OfferOverlay article.credit_single .credit_content p.name {
+  min-height: 40px;
+}
+.OfferOverlay article.credit_single .credit_content .offerInput {
+  margin-top: -25px;
+  display: flex;
+  align-items: center;
+}
+.OfferOverlay article.credit_single .credit_content .offerInput span {
+  font-size: 23px;
+}
+.OfferOverlay article.credit_single .credit_content .offerInput input {
+  background-color: transparent;
+  outline: none;
+  margin: 0 10px;
+  font-size: 20px;
+  max-width: 120px;
+  border: none;
+  font-weight: bold;
+  border-bottom: 2px solid var(--interjud-blue);
+}
+.OfferOverlay article.credit_single .credit_content .offerInput svg {
+  display: inline-block;
+  height: 26px;
+  width: 26px;
+  font-size: 26px;
+  stroke: white;
+  transition: 0.3s;
+}
+.OfferOverlay article.credit_single .credit_content .offerInput svg:hover {
+  stroke: var(--interjud-green);
 }
 
 section.hero {
@@ -1302,7 +1370,7 @@ main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
   font-size: 11px;
   height: 16px;
   line-height: 16px;
-  background-color: var(--interjud-pink);
+  background-color: var(--interjud-red);
   text-align: center;
   border-radius: 50%;
   font-weight: bold;
@@ -1498,69 +1566,35 @@ section:nth-of-type(even) {
   background-color: var(--interjud-blue);
 }
 
-.OfferOverlay {
+.SystemNotification {
   position: fixed;
-  z-index: 999999;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.721);
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-}
-.OfferOverlay.active {
-  opacity: 1;
-  pointer-events: initial;
-}
-.OfferOverlay .closeOfferOverlay {
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  font-size: 26px;
-}
-.OfferOverlay article.credit_single {
-  width: 320px;
-  border-color: var(--interjud-blue);
-}
-.OfferOverlay article.credit_single .credit_content {
-  justify-content: flex-start;
-}
-.OfferOverlay article.credit_single .credit_content .rating {
-  margin-top: 20px;
-}
-.OfferOverlay article.credit_single .credit_content p, .OfferOverlay article.credit_single .credit_content .rating {
-  margin-bottom: 50px;
-}
-.OfferOverlay article.credit_single .credit_content p.name {
-  min-height: 40px;
-}
-.OfferOverlay article.credit_single .credit_content .offerInput {
-  margin-top: -25px;
+  width: auto;
+  padding-left: 5px;
+  border-left: 3px solid white;
+  height: auto;
+  min-height: 50px;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--interjud-green);
+  z-index: 909;
   display: flex;
   align-items: center;
 }
-.OfferOverlay article.credit_single .credit_content .offerInput span {
-  font-size: 23px;
+.SystemNotification span {
+  text-align: left;
+  font-weight: bold;
+  margin-right: 30px;
 }
-.OfferOverlay article.credit_single .credit_content .offerInput input {
-  background-color: transparent;
-  outline: none;
-  margin: 0 10px;
-  font-size: 20px;
-  max-width: 120px;
-  border: none;
-  border-bottom: 2px solid var(--interjud-blue);
+.SystemNotification span:first-of-type {
+  display: block;
+  width: 70%;
 }
-.OfferOverlay article.credit_single .credit_content .offerInput svg {
-  display: inline-block;
-  height: 26px;
-  width: 26px;
-  font-size: 26px;
-  stroke: white;
-  transition: 0.3s;
-}
-.OfferOverlay article.credit_single .credit_content .offerInput svg:hover {
-  stroke: var(--interjud-green);
+.SystemNotification .closeNoti {
+  font-weight: normal;
+  font-size: 40px;
+  margin-right: 0;
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+  transform: rotate(45deg);
 }/*# sourceMappingURL=globals.css.map */

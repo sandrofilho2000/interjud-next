@@ -1,0 +1,75 @@
+.OfferOverlay{
+    position: fixed;
+    z-index: 999999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.721);
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active{
+        opacity: 1;
+        pointer-events: initial;
+    }
+
+    .closeOfferOverlay{
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        font-size: 26px;
+    }
+
+    article.credit_single{
+        width: 320px;
+        border-color: var(--interjud-blue);
+        .credit_content {
+            justify-content: flex-start;
+            .rating{
+                margin-top: 20px;
+            }
+            p, .rating{
+                margin-bottom: 50px;
+            }
+            p.name{
+                min-height: 40px;
+            }
+
+            .offerInput{
+                margin-top: -25px;
+                display: flex;
+                align-items: center;
+                span{
+                    font-size: 23px;
+                }
+                input{
+                    background-color: transparent;
+                    outline: none;
+                    margin: 0 10px;
+                    font-size: 20px;
+                    max-width: 120px;
+                    border: none;
+                    font-weight: bold;
+                    border-bottom: 2px solid var(--interjud-blue);
+                }
+
+                svg{
+                    display: inline-block;
+                    height: 26px;
+                    width: 26px;
+                    font-size: 26px;
+                    stroke: white;
+                    transition: 0.3s;
+
+                    &:hover{
+                        stroke: var(--interjud-green);
+                    }
+                }
+            }
+        }
+        
+    }
+    
+}

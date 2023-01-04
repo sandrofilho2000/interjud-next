@@ -75,6 +75,7 @@ const OfferOverlay = () => {
 
     let handleOfferActive = (e) => {
         setOfferOverlayActive(false)
+        setInfoActive(false)
     }
 
     if(currCreditOffer.name){

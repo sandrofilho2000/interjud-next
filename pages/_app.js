@@ -3,6 +3,7 @@ import { AuthContextProvider } from '../context/AuthContext'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import ProtectedRoute from '../components/ProtectedRoute'
+import SystemNotification from '../components/SystemNotification'
 
 const noAuthRequired = ['/', '/login', '/signup']
 
@@ -18,6 +19,8 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ProtectedRoute>
       )}
+
+      <SystemNotification/>
 
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-P2W368DGW0" />
 

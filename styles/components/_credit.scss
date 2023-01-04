@@ -108,7 +108,7 @@
 
     .wishlist_icon {
         fill: transparent;
-        stroke: var(--interjud-pink);
+        stroke: var(--interjud-red);
         stroke-width: 20;
         cursor: pointer;
         position: absolute;
@@ -173,7 +173,7 @@
         }
 
         80% {
-            fill: var(--interjud-pink);
+            fill: var(--interjud-red);
             transform: scale(1.1);
         }
 
@@ -183,7 +183,7 @@
 
         100% {
             stroke-dashoffset: 3100;
-            fill: var(--interjud-pink);
+            fill: var(--interjud-red);
         }
     }
 
@@ -203,7 +203,7 @@
         }
 
         80% {
-            fill: var(--interjud-pink);
+            fill: var(--interjud-red);
             transform: scale(1.1);
         }
 
@@ -213,7 +213,7 @@
 
         100% {
             stroke-dashoffset: 3100;
-            fill: var(--interjud-pink);
+            fill: var(--interjud-red);
         }
     }
 
@@ -224,7 +224,7 @@
         }
 
         80% {
-            fill: var(--interjud-pink);
+            fill: var(--interjud-red);
             transform: scale(1.1);
             opacity: 1;
         }
@@ -246,7 +246,7 @@
         }
 
         80% {
-            fill: var(--interjud-pink);
+            fill: var(--interjud-red);
             transform: scale(1.1);
             opacity: 1;
         }

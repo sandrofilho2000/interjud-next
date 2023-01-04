@@ -12,7 +12,9 @@ export const AuthContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
+    const [offerOverlayActive, setOfferOverlayActive] = useState(false)
     const [searchedCredits, setSearchedCredits] = useState([{}])
+    const [currCreditOffer, setCurrCreditOffer] = useState({})
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -56,7 +58,11 @@ export const AuthContextProvider = ({ children }) => {
             searchMainActive,
             setSearchMainActive,
             searchedCredits,
-            setSearchedCredits
+            setSearchedCredits,
+            offerOverlayActive,
+            setOfferOverlayActive,
+            currCreditOffer,
+            setCurrCreditOffer
         }}>
             {loading ? '' : children}
         </AuthContext.Provider>

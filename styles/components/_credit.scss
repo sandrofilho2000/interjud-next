@@ -292,6 +292,15 @@
             position: relative;
             z-index: 2;
             margin: 15px 10px;
+
+            &.name {
+                text-align: center;
+                display: block;
+                width: 90%;
+                margin: 0 auto;
+                font-size: 16px;
+                margin-top: 15px;
+            }
         }
 
         &::before {
@@ -304,6 +313,8 @@
             left: 0;
             background-color: var(--main-bg-color);
             opacity: 0.85;
+
+
         }
 
         &.active {

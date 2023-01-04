@@ -1,10 +1,8 @@
 import '../styles/globals.css'
-import Navbar from '../components/Navbar'
 import { AuthContextProvider } from '../context/AuthContext'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import ProtectedRoute from '../components/ProtectedRoute'
-import Router from 'next/router';
 
 const noAuthRequired = ['/', '/login', '/signup']
 

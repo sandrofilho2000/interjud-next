@@ -5,6 +5,7 @@ import Main from '../../components/Painel/Main'
 import { useAuth } from '../../context/AuthContext'
 import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/Main/MainTop'
+import OfferOverlay from '../../components/OfferOverlay'
 
 const Painel = () => {
     const { searchMainActive } = useAuth()
@@ -34,6 +35,7 @@ const Painel = () => {
                     :
                     <SearchMain />
             }
+            <OfferOverlay/>
         </div>
     )
 }

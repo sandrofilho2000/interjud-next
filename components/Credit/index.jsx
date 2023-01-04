@@ -6,10 +6,14 @@ import Tilt from 'react-parallax-tilt'
 import Button from '../Button'
 import Image from 'next/image'
 import { useAuth } from '../../context/AuthContext'
+import Link from 'next/link'
 
 const Credit = ({ credit, tilt = false }) => {
     const [infoActive, setInfoActive] = useState(false)
     const [favToggle, setFavToggle] = useState(false)
+    
+    const {setOfferOverlayActive, setCurrCreditOffer} = useAuth()
+
     let [tiltOptions, setTiltOptions] = useState({
         perspective: 500,
         tiltEnable: false,
@@ -28,6 +32,8 @@ const Credit = ({ credit, tilt = false }) => {
             tiltOptions.tiltMaxAngleY = 0
         setTiltOptions(tiltOptions)
     }, [])
+
+
 
 
     let halfStar = Number.isInteger(credit.rating)
@@ -60,19 +66,25 @@ const Credit = ({ credit, tilt = false }) => {
         backgroundImage: `url('${logo_j.src}')`,
     }
 
-    let handleFavToggle = () =>{
+    let handleFavToggle = () => {
         setFavToggle(!favToggle)
+    }
+
+    let handleOfferActive = (e) => {
+        setOfferOverlayActive(true)
+        setCurrCreditOffer(credit)
     }
 
     return (
 
-        <Tilt className="Tilt"
+        <Tilt className='Tilt'
             {...tiltOptions}
         >
             <article title={credit.name} className='credit_single'>
                 <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
+
                 <div className='credit_content'>
-                    <div onClick={()=>{handleFavToggle()}} class={`wishlist_icon ${favToggle ? 'active' : ''}`}>
+                    <div onClick={() => { handleFavToggle() }} class={`wishlist_icon ${favToggle ? 'active' : ''}`}>
                         <svg class="heart-main" viewBox="0 0 512 512" width="200" title="heart">
                             <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
                         </svg>
@@ -80,6 +92,7 @@ const Credit = ({ credit, tilt = false }) => {
                             <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
                         </svg>
                     </div>
+
                     <div className='rating'>
                         {
                             stars.map((item, index) => {
@@ -93,6 +106,7 @@ const Credit = ({ credit, tilt = false }) => {
                         }
 
                     </div>
+
                     <p className='name'>
                         {credit.name}
                     </p>
@@ -100,12 +114,18 @@ const Credit = ({ credit, tilt = false }) => {
                         {value}
                     </p>
 
-                    <Button text="Fazer oferta" link="#" />
+                    <div onClick={() => handleOfferActive(credit)} className="button">
+                        <Link href="#">FAZER OFERTA</Link>
+                    </div>
 
                     <FaInfoCircle onClick={() => handleInfoActive()} className='infoBtn' />
                 </div>
+
                 <div className={`info ${infoActive ? 'active' : ''}`} style={infoBG}>
                     <AiFillCloseCircle onClick={() => handleInfoActive()} />
+                    <p className="name">
+                        {credit.name}
+                    </p>
                     <p className='tempo_recebimento'>
                         Tempo estimado recebimento: 6 meses
                     </p>

@@ -7,32 +7,20 @@ import { collection, getDocs } from 'firebase/firestore'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { db, storage } from '../../../firebase';
-import { useAuth } from '../../../context/AuthContext';
+import useCredits from '../../hooks/useCredits';
 
 SwiperCore.use([Navigation, Pagination]);
 
 
 const PortalCreditos = () => {
-    const [credits, setCredits] = useState([{}])
-    const creditsCollectionRef = collection(db, "creditos")
 
-
-
-    const getCredits = async () => {
-        const data = await getDocs(creditsCollectionRef)
-        let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        setCredits(cre)
-    }
+    const { credits } = useCredits()
 
     useEffect(() => {
         document.querySelectorAll(".portalCreditos .rec-dot").forEach((item, index) => {
             item.setAttribute("aria-label", "navigation button")
         })
-        getCredits()
     }, [])
-
-
 
     return (
         <section className='portalCreditos' id='portalCreditos'>

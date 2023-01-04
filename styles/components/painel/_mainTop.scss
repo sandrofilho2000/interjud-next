@@ -1,12 +1,14 @@
 .mainTop{
     min-width: calc(100vw - 80px);
     padding: 0 30px;
+    z-index: 999;
     left: 80px;
     background-color: #111111;
     height: 60px;
     right: 0;
     position: absolute;
     display: flex;
+    overflow: visible;
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
@@ -58,9 +60,25 @@
     }
 
     .notificationWrapper{
+        position: relative;
         svg{
             fill: var(--txt-color);
             color: var(--txt-color);
+        }
+        .notificationNumber{
+            user-select: none;
+            pointer-events: none;
+            display: block;
+            width: 16px;
+            position: absolute;
+            top: 0;
+            font-size: 11px;
+            height: 16px;
+            line-height: 16px;
+            background-color: var(--interjud-pink);
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
         }
     }
 }

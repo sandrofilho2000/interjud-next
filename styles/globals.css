@@ -25,7 +25,8 @@ html, body {
   --interjud-pink: #ce382a;
   --interjud-green: #1F9E08;
   --interjud-yellow: #EBC917;
-  --box-shadow: rgba(0,0,0,.2) 0px 5px 10px ;
+  --box-shadow: rgba(0,0,0,.2) 0px 5px 10px;
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .line-title {
@@ -1213,12 +1214,14 @@ main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
 .mainTop {
   min-width: calc(100vw - 80px);
   padding: 0 30px;
+  z-index: 999;
   left: 80px;
   background-color: #111111;
   height: 60px;
   right: 0;
   position: absolute;
   display: flex;
+  overflow: visible;
   justify-content: space-between;
   box-sizing: border-box;
   align-items: center;
@@ -1271,9 +1274,110 @@ main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
 .mainTop .searchField svg {
   font-size: 24px;
 }
+.mainTop .notificationWrapper {
+  position: relative;
+}
 .mainTop .notificationWrapper svg {
   fill: var(--txt-color);
   color: var(--txt-color);
+}
+.mainTop .notificationWrapper .notificationNumber {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+  display: block;
+  width: 16px;
+  position: absolute;
+  top: 0;
+  font-size: 11px;
+  height: 16px;
+  line-height: 16px;
+  background-color: var(--interjud-pink);
+  text-align: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.notifications {
+  width: 270px;
+  height: 300px;
+  padding: 5px;
+  overflow-y: auto;
+  position: absolute;
+  top: 30px;
+  transform: scale(0);
+  right: 30px;
+  border: 2px solid var(--interjud-blue);
+  background-color: var(--second-bg-color);
+  transform-origin: top right;
+  transition: transform 0.5s;
+}
+.notifications.active {
+  transform: scale(1);
+}
+.notifications::-webkit-scrollbar {
+  width: 3px;
+  z-index: 99;
+  position: relative;
+}
+.notifications::-webkit-scrollbar-track {
+  background: var(--main-bg-color);
+}
+.notifications::-webkit-scrollbar-thumb {
+  background: var(--interjud-blue);
+  border-radius: 10px;
+}
+.notifications::-webkit-scrollbar-thumb:hover {
+  background: var(--main-bg-color);
+}
+.notifications ul {
+  width: 100%;
+  height: auto;
+}
+.notifications ul li {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  margin-bottom: 5px;
+  padding-left: 0px;
+  border-bottom: 1px solid var(--interjud-blue);
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.notifications ul li:hover {
+  margin-left: -5px;
+}
+.notifications ul li.not_read {
+  opacity: 1;
+}
+.notifications ul li a {
+  display: flex;
+  align-items: center;
+}
+.notifications ul li a > img {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 2px solid var(--interjud-blue);
+}
+.notifications ul li a > div {
+  margin-left: 5px;
+}
+.notifications ul li a > div span {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  border-bottom: 2px solid var(--main-color);
+  max-width: 300px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 main.searchMain .searchMainClose {

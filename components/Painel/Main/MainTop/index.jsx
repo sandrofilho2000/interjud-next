@@ -6,15 +6,21 @@ import { FaFilter } from 'react-icons/fa'
 import { useAuth } from '../../../../context/AuthContext'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../../../firebase'
+import Notifications from '../../Notifications'
 
 const MainTop = () => {
     const { sideMenuOpen, setSideMenuOpen, searchMainActive, setSearchMainActive, searchedCredits, setSearchedCredits } = useAuth()
     const [credits, setCredits] = useState([{}])
+    const [notificationActive, setNotificationActive] = useState(false)
     const inputSearch = useRef()
     const creditsCollectionRef = collection(db, "creditos")
 
     let handleSideMenuOpen = () => {
         setSideMenuOpen(!sideMenuOpen)
+    }
+
+    let handleNotificationActive = () =>{
+        setNotificationActive(!notificationActive)
     }
 
     const getCredits = async () => {
@@ -57,7 +63,11 @@ const MainTop = () => {
                 <FaFilter />
             </div>
             <div className="notificationWrapper">
-                <AiFillNotification />
+                <AiFillNotification onClick={()=>{handleNotificationActive()}} />
+                <p className="notificationNumber">
+                    1
+                </p>
+                <Notifications active={notificationActive}/>
             </div>
         </div>
     )

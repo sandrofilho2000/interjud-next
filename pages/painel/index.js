@@ -2,8 +2,12 @@ import Head from 'next/head'
 import React from 'react'
 import SideMenu from '../../components/Painel/SideMenu'
 import Main from '../../components/Painel/Main'
+import { useAuth } from '../../context/AuthContext'
+import SearchMain from '../../components/Painel/SearchMain'
+import MainTop from '../../components/Painel/Main/MainTop'
 
 const Painel = () => {
+    const { searchMainActive } = useAuth()
     return (
         <div>
             <Head>
@@ -13,7 +17,7 @@ const Painel = () => {
                 <link rel="shortcut icon" type="image-x/png" href="https://www.interjud.com.br/icon.png" />
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                <meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no"/>
+                <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no" />
                 <meta name="description" content="Compre ou venda créditos judiciais com a segurança da InterJud, Garanta agora seu direito e antecipe seus sonhos, ou Receba um valor justo pelo seu crédito judicial." />
                 <meta name="author" content="Design por DamixCode/Desenvolvimento por Aurora Web Design" />
                 <meta name="keywords" content="venda,creditos,judiciais,compra,creditos,judiciais,negocie,seu,credito,invista,em,creditos,judiciais" />
@@ -21,8 +25,15 @@ const Painel = () => {
                 <meta name="og:url" content="https://www.interjud.com.br/" />
                 <meta name="og:image" content="https://www.interjud.com.br/img/logo.webp" />
             </Head>
-            <SideMenu/>
-            <Main/>
+            <SideMenu />
+            <MainTop/>
+            {
+                !searchMainActive
+                ?
+                    <Main />
+                    :
+                    <SearchMain />
+            }
         </div>
     )
 }

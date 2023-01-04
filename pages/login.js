@@ -14,8 +14,6 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault()
-
-        console.log(user)
         try {
             await login(data.email, data.password)
             router.push('/painel')

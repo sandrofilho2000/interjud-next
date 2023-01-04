@@ -1,0 +1,25 @@
+main.searchMain{
+    
+    .searchMainClose{
+        position: absolute;
+        display: flex;
+        align-self: flex-end;
+        right: 60px;
+        font-size: 35px;
+        cursor: pointer;
+    }
+
+    .creditsWrapper{
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 60px;
+        max-width: 1400px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        > .Tilt{
+            margin: 0 auto;
+        }
+    }
+}

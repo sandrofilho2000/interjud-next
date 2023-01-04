@@ -1,11 +1,22 @@
 .mainTop{
-    width: calc(100vw - 130px);
+    min-width: calc(100vw - 80px);
+    padding: 0 30px;
+    left: 80px;
+    background-color: #111111;
     height: 60px;
+    right: 0;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
     color: var(--txt-color);
+    transition: 0.3s;
+
+    &.active {
+        min-width: calc(100vw - 300px);
+        left: 300px;
+    }
 
     svg{
         fill: var(--txt-color);

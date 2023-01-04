@@ -1125,13 +1125,14 @@ aside.sideMenu ul li:hover:not(:first-of-type) a::before {
   width: 80%;
 }
 
-main.main {
+main {
   position: absolute;
   min-width: calc(100vw - 80px);
   padding: 10px 30px;
   padding-bottom: 40px;
   box-sizing: border-box;
   left: 80px;
+  top: 60px;
   min-height: 100vh;
   transition: 0.3s;
   min-height: 100vh;
@@ -1139,27 +1140,27 @@ main.main {
   overflow: auto;
   background-color: #111111;
 }
-main.main.active {
+main.active {
   min-width: calc(100vw - 300px);
   left: 300px;
 }
-main.main h1 {
+main h1 {
   font-size: 26px;
   margin-top: 20px;
 }
-main.main .creditsWrapper {
+main .creditsWrapper {
   max-height: 360px;
 }
-main.main .creditsWrapper .creditsSlider {
+main .creditsWrapper .creditsSlider {
   margin-top: 40px;
   margin-bottom: 60px;
   overflow-x: hidden;
   position: relative;
 }
-main.main .creditsWrapper .creditsSlider .creditsSliderController {
+main .creditsWrapper .creditsSlider .creditsSliderController {
   position: absolute;
   height: 332px;
-  width: calc(100vw - 110px);
+  width: calc(100vw - 130px);
   z-index: 100;
   bottom: 0;
   background-color: transparent;
@@ -1168,7 +1169,7 @@ main.main .creditsWrapper .creditsSlider .creditsSliderController {
   align-items: center;
   pointer-events: none;
 }
-main.main .creditsWrapper .creditsSlider .creditsSliderController > div {
+main .creditsWrapper .creditsSlider .creditsSliderController > div {
   pointer-events: none;
   height: 100%;
   width: 50px;
@@ -1181,7 +1182,7 @@ main.main .creditsWrapper .creditsSlider .creditsSliderController > div {
   pointer-events: initial;
   position: absolute;
 }
-main.main .creditsWrapper .creditsSlider .creditsSliderController > div::before {
+main .creditsWrapper .creditsSlider .creditsSliderController > div::before {
   content: "";
   height: 25px;
   width: 25px;
@@ -1189,34 +1190,44 @@ main.main .creditsWrapper .creditsSlider .creditsSliderController > div::before 
   border-left: 3px solid white;
   transform: rotate(-45deg);
 }
-main.main .creditsWrapper .creditsSlider .creditsSliderController > div.sliderControllerNext {
+main .creditsWrapper .creditsSlider .creditsSliderController > div.sliderControllerNext {
   transform: scaleX(-1);
   right: 0px !important;
 }
-main.main .creditsWrapper .creditsSlider h2 {
+main .creditsWrapper .creditsSlider h2 {
   font-size: 18px;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
-main.main .creditsWrapper .creditsSlider > .creditsSliderSingle {
+main .creditsWrapper .creditsSlider > .creditsSliderSingle {
   display: flex;
   align-items: center;
   gap: 20px;
   height: 100%;
   transition: 0.3s;
 }
-main.main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
+main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
   position: relative;
 }
 
 .mainTop {
-  width: calc(100vw - 130px);
+  min-width: calc(100vw - 80px);
+  padding: 0 30px;
+  left: 80px;
+  background-color: #111111;
   height: 60px;
+  right: 0;
+  position: absolute;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
   align-items: center;
   color: var(--txt-color);
+  transition: 0.3s;
+}
+.mainTop.active {
+  min-width: calc(100vw - 300px);
+  left: 300px;
 }
 .mainTop svg {
   fill: var(--txt-color);
@@ -1263,6 +1274,28 @@ main.main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
 .mainTop .notificationWrapper svg {
   fill: var(--txt-color);
   color: var(--txt-color);
+}
+
+main.searchMain .searchMainClose {
+  position: absolute;
+  display: flex;
+  align-self: flex-end;
+  right: 60px;
+  font-size: 35px;
+  cursor: pointer;
+}
+main.searchMain .creditsWrapper {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 60px;
+  max-width: 1400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+main.searchMain .creditsWrapper > .Tilt {
+  margin: 0 auto;
 }
 
 form.formLogin, form.formSignup {

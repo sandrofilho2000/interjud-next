@@ -1,10 +1,11 @@
-main.main {
+main {
     position: absolute;
     min-width: calc(100vw - 80px);
     padding: 10px 30px;
     padding-bottom: 40px;
     box-sizing: border-box;
     left: 80px;
+    top: 60px;
     min-height: 100vh;
     -webkit-transition: .3s;
     -webkit-transition: .3s;
@@ -36,7 +37,7 @@ main.main {
             .creditsSliderController {
                 position: absolute;
                 height: 332px;
-                width: calc(100vw - 110px);
+                width: calc(100vw - 130px);
                 z-index: 100;
                 bottom: 0;
                 background-color: transparent;

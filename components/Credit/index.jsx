@@ -68,7 +68,6 @@ const CreditContainer = ({ credit }) => {
                             !halfStar &&
                             <FaStarHalf />
                         }
-
                     </div>
 
                     <p className='name'>

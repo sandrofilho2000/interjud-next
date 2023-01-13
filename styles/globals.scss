@@ -92,6 +92,13 @@ html, body{
     }
 }
 
+input[type=number]{
+    &::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 !important;
+    }
+}
+
 section{
     padding: 40px 0;
 }

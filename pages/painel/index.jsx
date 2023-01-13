@@ -5,7 +5,8 @@ import Main from '../../components/Painel/Main'
 import { useAuth } from '../../context/AuthContext'
 import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/Main/MainTop'
-import FilterOverlay from '../../components/filterOverlay'
+import FilterOverlay from '../../components/Painel/FilterOverlay'
+
 
 const Painel = () => {
     const { searchMainActive } = useAuth()

@@ -4,16 +4,14 @@ import { BsSearch } from 'react-icons/bs'
 import { AiFillNotification, AiFillFilter } from 'react-icons/ai'
 import { FaFilter } from 'react-icons/fa'
 import { useAuth } from '../../../../context/AuthContext'
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../../../../firebase'
 import Notifications from '../../Notifications'
 import useCredits from '../../../hooks/useCredits'
 
 const MainTop = () => {
     const { sideMenuOpen, setSideMenuOpen, searchMainActive, setSearchMainActive, searchedCredits, setSearchedCredits } = useAuth()
     const [notificationActive, setNotificationActive] = useState(false)
+    const {filterOverlayActive, setFilterOverlayActive} = useAuth()
     const inputSearch = useRef()
-    const creditsCollectionRef = collection(db, "creditos")
     const { credits } = useCredits()
 
     let handleSideMenuOpen = () => {
@@ -50,10 +48,7 @@ const MainTop = () => {
             <div className='searchField'>
                 <BsSearch />
                 <input type="search" ref={inputSearch} onChange={(e) => { handleSearchMainActive(e) }} id='searchItems' className='searchItems' placeholder='Pesquisar' />
-                <FaFilter />
-                <div className="searchFilter">
-                    
-                </div>
+                <FaFilter onClick={()=>{setFilterOverlayActive(!filterOverlayActive)}} />
             </div>
             <div className="notificationWrapper">
                 <AiFillNotification onClick={()=>{handleNotificationActive()}} />

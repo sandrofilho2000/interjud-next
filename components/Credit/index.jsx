@@ -7,6 +7,7 @@ import Button from '../Button'
 import Image from 'next/image'
 import { useAuth } from '../../context/AuthContext'
 import Link from 'next/link'
+import creditPlaceholder from '../../public/assets/images/credit_placeholder.png'
 
 const CreditContainer = ({ credit }) => {
     const [infoActive, setInfoActive] = useState(false)
@@ -42,10 +43,12 @@ const CreditContainer = ({ credit }) => {
         setCurrCreditOffer(credit)
     }
 
+    let img = credit.img ? credit.img : creditPlaceholder
+    
     return (
 
             <article title={credit.name} className='credit_single'>
-                <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
+                <Image placeholder="empty" width={240} height={330} src={img} loading="lazy" alt="Banco do brasil" />
 
                 <div className='credit_content'>
                     <div onClick={() => { handleFavToggle() }} class={`wishlist_icon ${favToggle ? 'active' : ''}`}>

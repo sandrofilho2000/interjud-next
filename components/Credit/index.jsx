@@ -7,6 +7,7 @@ import Button from '../Button'
 import Image from 'next/image'
 import { useAuth } from '../../context/AuthContext'
 import Link from 'next/link'
+import creditPlaceholder from '../../public/assets/images/credit_placeholder.png'
 
 const Credit = ({ credit, tilt = false }) => {
     const [infoActive, setInfoActive] = useState(false)
@@ -75,13 +76,15 @@ const Credit = ({ credit, tilt = false }) => {
         setCurrCreditOffer(credit)
     }
 
+    let img = credit.img ? credit.img : creditPlaceholder
+    
     return (
 
         <Tilt className='Tilt'
             {...tiltOptions}
         >
             <article title={credit.name} className='credit_single'>
-                <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
+                <Image placeholder="empty" width={240} height={330} src={img} loading="lazy" alt="Banco do brasil" />
 
                 <div className='credit_content'>
                     <div onClick={() => { handleFavToggle() }} class={`wishlist_icon ${favToggle ? 'active' : ''}`}>

@@ -7,13 +7,14 @@ import { useAuth } from '../../../../context/AuthContext'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../../../firebase'
 import Notifications from '../../Notifications'
+import useCredits from '../../../hooks/useCredits'
 
 const MainTop = () => {
     const { sideMenuOpen, setSideMenuOpen, searchMainActive, setSearchMainActive, searchedCredits, setSearchedCredits } = useAuth()
-    const [credits, setCredits] = useState([{}])
     const [notificationActive, setNotificationActive] = useState(false)
     const inputSearch = useRef()
     const creditsCollectionRef = collection(db, "creditos")
+    const { credits } = useCredits()
 
     let handleSideMenuOpen = () => {
         setSideMenuOpen(!sideMenuOpen)
@@ -22,17 +23,6 @@ const MainTop = () => {
     let handleNotificationActive = () =>{
         setNotificationActive(!notificationActive)
     }
-
-    const getCredits = async () => {
-        const data = await getDocs(creditsCollectionRef)
-        let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        setCredits(cre)
-    }
-
-    useEffect(() => {
-        getCredits()
-    }, [])
-
 
     let handleSearchMainActive = (e) => {
         if (inputSearch.current.value) {
@@ -61,6 +51,9 @@ const MainTop = () => {
                 <BsSearch />
                 <input type="search" ref={inputSearch} onChange={(e) => { handleSearchMainActive(e) }} id='searchItems' className='searchItems' placeholder='Pesquisar' />
                 <FaFilter />
+                <div className="searchFilter">
+                    
+                </div>
             </div>
             <div className="notificationWrapper">
                 <AiFillNotification onClick={()=>{handleNotificationActive()}} />

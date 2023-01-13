@@ -13,8 +13,10 @@ export const AuthContextProvider = ({ children }) => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
     const [offerOverlayActive, setOfferOverlayActive] = useState(false)
+    const [filterOverlayActive, setFilterOverlayActive] = useState(false)
     const [searchedCredits, setSearchedCredits] = useState([{}])
     const [currCreditOffer, setCurrCreditOffer] = useState({})
+    const [systemNotificationActive, setSystemNotificationActive] = useState({active: false, status: '', message: ""})
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -31,8 +33,15 @@ export const AuthContextProvider = ({ children }) => {
         })
 
         return () => unsubscribe()
-
     }, [])
+
+    useEffect(() => {
+        setTimeout(()=>{
+            if(systemNotificationActive.active){
+                setSystemNotificationActive({...systemNotificationActive, active: false})
+            }
+        }, 4000)
+    }, [systemNotificationActive])
 
     const signup = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -61,8 +70,12 @@ export const AuthContextProvider = ({ children }) => {
             setSearchedCredits,
             offerOverlayActive,
             setOfferOverlayActive,
+            filterOverlayActive,
+            setFilterOverlayActive,
             currCreditOffer,
-            setCurrCreditOffer
+            setCurrCreditOffer,
+            systemNotificationActive,
+            setSystemNotificationActive
         }}>
             {loading ? '' : children}
         </AuthContext.Provider>

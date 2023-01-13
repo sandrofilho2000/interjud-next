@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Script from 'next/script'
 import ProtectedRoute from '../components/ProtectedRoute'
 import SystemNotification from '../components/SystemNotification'
+import OfferOverlay from '../components/OfferOverlay'
 
 const noAuthRequired = ['/', '/login', '/signup']
 
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }) {
       )}
 
       <SystemNotification/>
+      <OfferOverlay/>
 
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-P2W368DGW0" />
 

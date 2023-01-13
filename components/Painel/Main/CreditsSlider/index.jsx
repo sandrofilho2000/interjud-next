@@ -58,21 +58,21 @@ const CreditsSlider = ({credits, text}) => {
                 {
                     credits.map((item) => {
                         return (
-                            <Credit credit={item} />
+                            <Credit key={item.id} credit={item} />
                         )
                     })
                 }
                 {
                     credits.map((item) => {
                         return (
-                            <Credit credit={item} />
+                            <Credit key={item.id} credit={item} />
                         )
                     })
                 }
                 {
                     credits.map((item) => {
                         return (
-                            <Credit credit={item} />
+                            <Credit key={item.id} credit={item} />
                         )
                     })
                 }

@@ -689,6 +689,7 @@ footer .container .menu-desktop ul li a:hover::before {
   place-items: center;
   justify-content: center;
   opacity: 0;
+  top: 0;
   pointer-events: none;
 }
 .OfferOverlay.active {
@@ -1250,7 +1251,7 @@ main .creditsWrapper .creditsSlider .creditsSliderController > div {
   pointer-events: none;
   height: 100%;
   width: 50px;
-  background-color: rgba(0, 0, 0, 0.301);
+  height: 50px;
   transition: 0.3s;
   cursor: pointer;
   display: flex;
@@ -1319,6 +1320,7 @@ main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
 .mainTop .searchField {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .mainTop .searchField input {
   border: none;
@@ -1349,6 +1351,17 @@ main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
 }
 .mainTop .searchField svg {
   font-size: 24px;
+}
+.mainTop .searchField .searchFilter {
+  height: 400px;
+  position: absolute;
+  width: 500px;
+  opacity: 0;
+  right: 50%;
+  transform: translateX(50%);
+  top: 30px;
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--interjud-blue);
 }
 .mainTop .notificationWrapper {
   position: relative;
@@ -1488,6 +1501,24 @@ main.searchMain .creditsWrapper > .Tilt {
   margin: 0 auto;
 }
 
+.FilterOverlay {
+  position: fixed;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.721);
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  opacity: 0;
+  top: 0;
+  pointer-events: none;
+}
+.FilterOverlay.active {
+  opacity: 1;
+  pointer-events: initial;
+}
+
 form.formLogin, form.formSignup {
   width: 300px;
   height: 450px;
@@ -1573,12 +1604,29 @@ section:nth-of-type(even) {
   border-left: 3px solid white;
   height: auto;
   min-height: 50px;
-  bottom: 20px;
+  bottom: -20px;
   right: 20px;
-  background-color: var(--interjud-green);
-  z-index: 909;
+  z-index: 99999999;
   display: flex;
   align-items: center;
+  opacity: 0;
+  transition: 0.8s;
+}
+.SystemNotification.active {
+  bottom: 20px;
+  opacity: 1;
+}
+.SystemNotification.active.success {
+  background-color: var(--interjud-green);
+}
+.SystemNotification.active.warning {
+  background-color: var(--interjud-yellow);
+}
+.SystemNotification.active.warning * {
+  color: white !important;
+}
+.SystemNotification.active.error {
+  background-color: var(--interjud-red);
 }
 .SystemNotification span {
   text-align: left;

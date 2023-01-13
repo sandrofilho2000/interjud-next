@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { FaStar, FaStarHalf, FaInfoCircle } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import logo_j from '../../public/assets/images/logo_j.png'
@@ -8,33 +8,11 @@ import Image from 'next/image'
 import { useAuth } from '../../context/AuthContext'
 import Link from 'next/link'
 
-const Credit = ({ credit, tilt = false }) => {
+const CreditContainer = ({ credit }) => {
     const [infoActive, setInfoActive] = useState(false)
     const [favToggle, setFavToggle] = useState(false)
     
-    const {setOfferOverlayActive, setCurrCreditOffer} = useAuth()
-
-    let [tiltOptions, setTiltOptions] = useState({
-        perspective: 500,
-        tiltEnable: false,
-        glareEnable: false,
-        glareMaxOpacity: 1,
-        scale: 1,
-        max: 3,
-        tiltMaxAngleX: 3,
-        tiltMaxAngleY: 3,
-        glarePosition: "all",
-    })
-
-    useEffect(() => {
-        tiltOptions.max = 0,
-            tiltOptions.tiltMaxAngleX = 0,
-            tiltOptions.tiltMaxAngleY = 0
-        setTiltOptions(tiltOptions)
-    }, [])
-
-
-
+    const {setOfferOverlayActive, setCurrCreditOffer, currCreditOffer} = useAuth()
 
     let halfStar = Number.isInteger(credit.rating)
     let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
@@ -46,20 +24,9 @@ const Credit = ({ credit, tilt = false }) => {
     })
 
 
+
     let handleInfoActive = () => {
-
         setInfoActive(!infoActive)
-        if (infoActive) {
-            tiltOptions.max = 3,
-                tiltOptions.tiltMaxAngleX = 3,
-                tiltOptions.tiltMaxAngleY = 3
-        } else {
-            tiltOptions.max = 0,
-                tiltOptions.tiltMaxAngleX = 0,
-                tiltOptions.tiltMaxAngleY = 0
-        }
-
-        setTiltOptions(tiltOptions)
     }
 
     var infoBG = {
@@ -77,9 +44,6 @@ const Credit = ({ credit, tilt = false }) => {
 
     return (
 
-        <Tilt className='Tilt'
-            {...tiltOptions}
-        >
             <article title={credit.name} className='credit_single'>
                 <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
 
@@ -140,9 +104,10 @@ const Credit = ({ credit, tilt = false }) => {
                     </p>
                 </div>
             </article>
-        </Tilt>
 
     )
 }
+
+const Credit = memo(CreditContainer)
 
 export default Credit

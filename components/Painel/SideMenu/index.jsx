@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { memo } from 'react'
 import Avatar from '../../../public/assets/images/Depoimentos/foto1.jpg'
 import { FaGlobeAmericas, FaHandshake } from 'react-icons/fa'
 import { BiLogOut } from 'react-icons/bi'
@@ -8,8 +8,7 @@ import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage
 import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
 
-
-const SideMenu = () => {
+const SideMenuContainer = () => {
     const {sideMenuOpen, setSideMenuOpen} = useAuth()
     const {user, logout} = useAuth()
     const router = useRouter()
@@ -142,5 +141,7 @@ const SideMenu = () => {
         </aside>
     )
 }
+
+const SideMenu = memo(SideMenuContainer)
 
 export default SideMenu

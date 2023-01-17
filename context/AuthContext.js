@@ -16,6 +16,13 @@ export const AuthContextProvider = ({ children }) => {
     const [filterOverlayActive, setFilterOverlayActive] = useState(false)
     const [searchedCredits, setSearchedCredits] = useState([{}])
     const [currCreditOffer, setCurrCreditOffer] = useState({})
+    const [searchContext, setSearchContext] = useState({
+        name: null,
+        class: null,
+        min: null,
+        max: null,
+        rating: null
+    })
     const [systemNotificationActive, setSystemNotificationActive] = useState({active: false, status: '', message: ""})
 
     useEffect(() => {
@@ -75,7 +82,9 @@ export const AuthContextProvider = ({ children }) => {
             currCreditOffer,
             setCurrCreditOffer,
             systemNotificationActive,
-            setSystemNotificationActive
+            setSystemNotificationActive,
+            searchContext, 
+            setSearchContext
         }}>
             {loading ? '' : children}
         </AuthContext.Provider>

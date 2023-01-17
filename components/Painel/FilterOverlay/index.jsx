@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
 import { FaStar, FaStarHalf } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 const FilterOverlay = () => {
-    const { filterOverlayActive, setFilterOverlayActive } = useAuth()
+    const { filterOverlayActive, setFilterOverlayActive, searchContext, setSearchContext } = useAuth()
     const [filterRatingValue, setFilterRatingValue] = useState('')
     const [halfStar, setHalfStar] = useState(false)
     const [fullStars, setFullStars] = useState(0)
+
+    let filterClasse = useRef()
+    let filterValueMin = useRef()
+    let filterValueMax = useRef()
+    let filterRating = useRef() 
 
     !isNaN(filterRatingValue) ? Math.floor(filterRatingValue) : 0
     let stars = Array.from(Array(fullStars).keys())
@@ -15,16 +20,27 @@ const FilterOverlay = () => {
     useEffect(()=>{
         setHalfStar(Number.isInteger(Number(filterRatingValue)))
         setFullStars(!isNaN(filterRatingValue) ? Math.floor(filterRatingValue) : 0)
-        console.log(fullStars, halfStar)
     }, [filterRatingValue])
+
+    let handleSearchContext = (e) =>{
+        e.preventDefault()
+        var obj = {
+            name: searchContext.name,
+            classe: filterClasse.current.value,
+            min: filterValueMin.current.value,
+            max: filterValueMax.current.value,
+            rating: filterRating.current.value
+        }
+        setSearchContext('{classe: filterClasse.current.value, active: true}')
+    }
 
     return (
         <div className={`filterOverlay ${filterOverlayActive ? 'active' : ''}`}>
-            <form className='searchFilter'>
+            <form onSubmit={(e)=>{handleSearchContext(e)}} className='searchFilter'>
                 <AiFillCloseCircle onClick={() => setFilterOverlayActive(false)} className="filterOverlayClose"/>
 
-                <select name="filter_classe" id="filter_classe">
-                    <option selected disabled>Classe Judicial - Todas</option>
+                <select onChange={(e)=>setSearchContext({classe: e.target.defaultValue})} name="filterClasse" ref={filterClasse} id="filterClasse">
+                    <option selected value="">Classe Judicial - Todas</option>
                     <option value="Trabalhista">Trabalhista</option>
                     <option value="Cívil">Cívil</option>
                     <option value="Precatório">Precatório</option>
@@ -35,8 +51,8 @@ const FilterOverlay = () => {
                         Valor: 
                     </p>
                     <div className="inputsMinMax">
-                        <input type="number" className='filterValueMin' id="filterValueMin" placeholder='Mínimo: R$' />
-                        <input type="number" className='filterValueMax' id="filterValueMax" placeholder='Máximo: R$' />
+                        <input type="number" className='filterValueMin' ref={filterValueMin} id="filterValueMin" placeholder='Mínimo: R$' />
+                        <input type="number" className='filterValueMax' ref={filterValueMax} id="filterValueMax" placeholder='Máximo: R$' />
                     </div>
                 </div>
                 <div className="filterRatingContainer">
@@ -44,7 +60,7 @@ const FilterOverlay = () => {
                         Rating: 
                     </p>
                     <div className="inputRating">
-                        <input type="range" onChange={(e)=>{setFilterRatingValue(e.target.value)}} name="filterRating" className="filterRating" id="filterRating" defaultValue={0} min={0} max={5} step={0.5} />
+                        <input type="range" onChange={(e)=>{setFilterRatingValue(e.target.value)}} name="filterRating" className="filterRating" ref={filterRating} id="filterRating" defaultValue={0} min={0} max={5} step={0.5} />
                         <div className="stars">
                         {
                             stars.map((item, index) => {

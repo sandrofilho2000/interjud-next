@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { BiMenuAltLeft } from 'react-icons/bi'
 import { BsSearch } from 'react-icons/bs'
-import { AiFillNotification, AiFillFilter } from 'react-icons/ai'
+import { AiFillNotification } from 'react-icons/ai'
 import { FaFilter } from 'react-icons/fa'
-import { useAuth } from '../../../../context/AuthContext'
-import Notifications from '../../Notifications'
-import useCredits from '../../../hooks/useCredits'
+import { useAuth } from '../../../context/AuthContext'
+import Notifications from '../Notifications'
+import useCredits from '../../hooks/useCredits'
 
 const MainTop = () => {
     const { sideMenuOpen, setSideMenuOpen, searchMainActive, setSearchMainActive, searchedCredits, setSearchedCredits } = useAuth()

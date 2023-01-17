@@ -6,15 +6,12 @@ import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
 import useCredits from '../../components/hooks/useCredits'
-import HomeMain from '../../components/Painel/Home/HomeMain'
-
+import MyCreditsMain from '../../components/Painel/MyCredits/MyCreditsMain'
 
 
 const Painel = () => {
     const { searchContext } = useAuth()
-
-    let { credits }  = useCredits()
-
+    const { credits } = useCredits()
     return (
         <div>
             <Head>
@@ -37,7 +34,7 @@ const Painel = () => {
             {
                 !searchContext.name
                     ?
-                    <HomeMain credits={credits} />
+                    <MyCreditsMain credits={credits} />
                     :
                     <SearchMain credits={credits} />
             }

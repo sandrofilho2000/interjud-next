@@ -9,7 +9,8 @@
   color: var(--txt-color);
 }
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   scroll-behavior: smooth;
@@ -748,6 +749,56 @@ footer .container .menu-desktop ul li a:hover::before {
   stroke: var(--interjud-green);
 }
 
+.SystemNotification {
+  position: fixed;
+  width: auto;
+  padding-left: 5px;
+  border-left: 3px solid white;
+  height: auto;
+  min-height: 50px;
+  bottom: -20px;
+  right: 20px;
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: 0.8s;
+}
+.SystemNotification.active {
+  bottom: 20px;
+  opacity: 1;
+}
+.SystemNotification.active.success {
+  background-color: var(--interjud-green);
+}
+.SystemNotification.active.warning {
+  background-color: var(--interjud-yellow);
+}
+.SystemNotification.active.warning * {
+  color: white !important;
+}
+.SystemNotification.active.error {
+  background-color: var(--interjud-red);
+}
+.SystemNotification span {
+  text-align: left;
+  font-weight: bold;
+  margin-right: 30px;
+}
+.SystemNotification span:first-of-type {
+  display: block;
+  width: 70%;
+}
+.SystemNotification .closeNoti {
+  font-weight: normal;
+  font-size: 40px;
+  margin-right: 0;
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+  transform: rotate(45deg);
+}
+
 section.hero {
   background-position: center;
   background-size: cover;
@@ -1226,67 +1277,6 @@ main h1 {
   font-size: 26px;
   margin-top: 20px;
 }
-main .creditsWrapper {
-  max-height: 360px;
-}
-main .creditsWrapper .creditsSlider {
-  margin-top: 40px;
-  margin-bottom: 60px;
-  overflow-x: hidden;
-  position: relative;
-}
-main .creditsWrapper .creditsSlider .creditsSliderController {
-  position: absolute;
-  height: 332px;
-  width: calc(100vw - 130px);
-  z-index: 100;
-  bottom: 0;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  pointer-events: none;
-}
-main .creditsWrapper .creditsSlider .creditsSliderController > div {
-  pointer-events: none;
-  height: 100%;
-  width: 50px;
-  height: 50px;
-  transition: 0.3s;
-  cursor: pointer;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  pointer-events: initial;
-  position: absolute;
-}
-main .creditsWrapper .creditsSlider .creditsSliderController > div::before {
-  content: "";
-  height: 25px;
-  width: 25px;
-  border-top: 3px solid white;
-  border-left: 3px solid white;
-  transform: rotate(-45deg);
-}
-main .creditsWrapper .creditsSlider .creditsSliderController > div.sliderControllerNext {
-  transform: scaleX(-1);
-  right: 0px !important;
-}
-main .creditsWrapper .creditsSlider h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-main .creditsWrapper .creditsSlider > .creditsSliderSingle {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  height: 100%;
-  transition: 0.3s;
-}
-main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
-  position: relative;
-}
 
 .mainTop {
   min-width: calc(100vw - 80px);
@@ -1376,6 +1366,68 @@ main .creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
   text-align: center;
   border-radius: 50%;
   font-weight: bold;
+}
+
+.creditsWrapper {
+  max-height: 360px;
+}
+.creditsWrapper .creditsSlider {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  overflow-x: hidden;
+  position: relative;
+}
+.creditsWrapper .creditsSlider .creditsSliderController {
+  position: absolute;
+  height: 332px;
+  width: calc(100vw - 130px);
+  z-index: 100;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+.creditsWrapper .creditsSlider .creditsSliderController > div {
+  pointer-events: none;
+  height: 100%;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s;
+  cursor: pointer;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  pointer-events: initial;
+  position: absolute;
+}
+.creditsWrapper .creditsSlider .creditsSliderController > div::before {
+  content: "";
+  height: 25px;
+  width: 25px;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  transform: rotate(-45deg);
+}
+.creditsWrapper .creditsSlider .creditsSliderController > div.sliderControllerNext {
+  transform: scaleX(-1);
+  right: 0px !important;
+}
+.creditsWrapper .creditsSlider h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.creditsWrapper .creditsSlider > .creditsSliderSingle {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  transition: 0.3s;
+}
+.creditsWrapper .creditsSlider > .creditsSliderSingle .Tilt {
+  position: relative;
 }
 
 .notifications {
@@ -1646,7 +1698,8 @@ form.formLogin input, form.formSignup input {
   background-color: var(--interjud-blue);
 }
 
-input[type=number]::-webkit-inner-spin-button, input[type=number] .no-spin::-webkit-outer-spin-button {
+input[type=number]::-webkit-inner-spin-button,
+input[type=number] .no-spin::-webkit-outer-spin-button {
   -webkit-appearance: none !important;
   margin: 0 !important;
 }
@@ -1680,52 +1733,137 @@ section:nth-of-type(even) {
   background-color: var(--interjud-blue);
 }
 
-.SystemNotification {
-  position: fixed;
-  width: auto;
-  padding-left: 5px;
-  border-left: 3px solid white;
-  height: auto;
-  min-height: 50px;
-  bottom: -20px;
-  right: 20px;
-  z-index: 99999999;
+.myCreditsMain {
+  margin-top: 40px;
+}
+.myCreditsMain .myCreditsContainer {
+  max-width: 80vw;
+  width: 100%;
+  border: 1px solid var(--interjud-blue);
+  overflow: scroll;
   display: flex;
   align-items: center;
-  opacity: 0;
-  transition: 0.8s;
 }
-.SystemNotification.active {
-  bottom: 20px;
-  opacity: 1;
+.myCreditsMain .myCreditsContainer::-webkit-scrollbar {
+  width: 1px;
+  z-index: 99;
+  position: relative;
 }
-.SystemNotification.active.success {
-  background-color: var(--interjud-green);
+.myCreditsMain .myCreditsContainer::-webkit-scrollbar-track {
+  background: var(--main-bg-color);
 }
-.SystemNotification.active.warning {
-  background-color: var(--interjud-yellow);
+.myCreditsMain .myCreditsContainer::-webkit-scrollbar-thumb {
+  background: var(--interjud-blue);
+  border-radius: 10px;
 }
-.SystemNotification.active.warning * {
-  color: white !important;
+.myCreditsMain .myCreditsContainer table {
+  padding: 10px;
+  margin: 0;
+  width: 300vw;
+  border-collapse: collapse;
+  min-width: 100%;
+  overflow: auto;
 }
-.SystemNotification.active.error {
-  background-color: var(--interjud-red);
-}
-.SystemNotification span {
+.myCreditsMain .myCreditsContainer table th,
+.myCreditsMain .myCreditsContainer table td,
+.myCreditsMain .myCreditsContainer table tr {
+  padding: 10px;
   text-align: left;
-  font-weight: bold;
-  margin-right: 30px;
 }
-.SystemNotification span:first-of-type {
-  display: block;
-  width: 70%;
+.myCreditsMain .myCreditsContainer table .th_add_credit,
+.myCreditsMain .myCreditsContainer table .td_image {
+  width: 75px;
 }
-.SystemNotification .closeNoti {
-  font-weight: normal;
-  font-size: 40px;
-  margin-right: 0;
-  position: absolute;
-  right: 5px;
+.myCreditsMain .myCreditsContainer table .th_add_credit {
+  position: -webkit-sticky;
+  position: sticky;
+  left: -1px;
+  background-color: var(--interjud-blue);
+  transition: 0.3s;
   cursor: pointer;
-  transform: rotate(45deg);
+}
+.myCreditsMain .myCreditsContainer table .th_add_credit:hover {
+  opacity: 0.8;
+}
+.myCreditsMain .myCreditsContainer table .th_add_credit span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 46px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: normal;
+}
+.myCreditsMain .myCreditsContainer table tr {
+  border: 1px solid var(--interjud-blue);
+  border-collapse: collapse;
+}
+.myCreditsMain .myCreditsContainer table tr td {
+  border: 1px solid var(--interjud-blue);
+}
+.myCreditsMain .myCreditsContainer table tr td:not(:first-of-type) {
+  min-width: 200px;
+}
+.myCreditsMain .myCreditsContainer table tr .img_container {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.myCreditsMain .myCreditsContainer table tr .img_container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.myCreditsMain .myCreditsContainer table tr span.credit_name {
+  padding-left: 10px;
+  display: inline-block;
+}
+.myCreditsMain .myCreditsContainer table tr span.credit_rating svg {
+  fill: var(--interjud-yellow);
+}
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 5px;
+}
+.pagination.prevNotAllowed span:first-of-type {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.pagination.nextNotAllowed span:last-of-type {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: unset !important;
+}
+.pagination > span {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  display: grid;
+  border: 1px solid var(--interjud-blue);
+  place-items: center;
+  transition: 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.pagination > span.active {
+  color: var(--interjud-blue);
+  font-weight: bold;
+}
+.pagination > span:hover {
+  transform: translateY(-10%);
+}
+.pagination > span svg,
+.pagination > span polygon {
+  color: var(--txt-color);
+  fill: var(--txt-color);
+  stroke: var(--txt-color);
 }/*# sourceMappingURL=globals.css.map */

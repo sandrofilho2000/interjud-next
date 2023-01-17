@@ -1,0 +1,55 @@
+.SystemNotification{
+    position: fixed;
+    width: auto;
+    padding-left: 5px;
+    border-left: 3px solid white;
+    height: auto;
+    min-height: 50px;
+    bottom: -20px;
+    right: 20px;
+    z-index: 99999999;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: 0.8s;
+    
+    
+    &.active{
+        bottom: 20px;
+        opacity: 1;
+        
+        &.success{
+            background-color: var(--interjud-green);
+        }
+        &.warning{
+            background-color: var(--interjud-yellow);
+            *{
+                color: white !important;
+            }
+        }
+        &.error{
+            background-color: var(--interjud-red);
+        }
+    }
+    
+    span{
+        text-align: left;
+        font-weight: bold;
+        margin-right: 30px;
+
+        &:first-of-type{
+            display: block;
+            width: 70%;
+        }
+    }
+
+    .closeNoti{
+        font-weight: normal;
+        font-size: 40px;
+        margin-right: 0;
+        position: absolute;
+        right: 5px;
+        cursor: pointer;
+        transform: rotate(45deg);
+    }
+}

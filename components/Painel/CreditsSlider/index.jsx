@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Credit from '../../../Credit'
+import Credit from '../../Credit'
 
 const CreditsSlider = ({credits, text}) => {
     let slider = useRef()

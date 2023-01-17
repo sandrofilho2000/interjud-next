@@ -229,7 +229,6 @@ body {
 .credit_single {
   position: relative;
   width: 250px;
-  margin: 0 auto;
   border: 1px solid var(--interjud-blue);
   cursor: pointer;
 }
@@ -885,6 +884,9 @@ section.portalCreditos .container {
 section.portalCreditos .container .creditsList {
   display: flex;
   justify-content: space-between;
+}
+section.portalCreditos .container .creditsList .credit_single {
+  margin: 0 auto;
 }
 section.portalCreditos .container .Tilt {
   max-width: 250px;

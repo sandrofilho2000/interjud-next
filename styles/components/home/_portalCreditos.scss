@@ -6,6 +6,10 @@ section.portalCreditos{
         .creditsList{
             display: flex;
             justify-content: space-between;
+
+            .credit_single{
+                margin: 0 auto;
+            }
         }
     
         .Tilt{

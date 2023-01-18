@@ -108,7 +108,7 @@ const OfferOverlay = () => {
 
     if(currCreditOffer.name){
         return (
-            <div className={`${offerOverlayActive ? 'OfferOverlay active' : 'OfferOverlay'}`}>
+            <div className={`${offerOverlayActive ? 'OfferOverlay overlay active' : 'OfferOverlay overlay'}`}>
                 <article title={credit.name} className='credit_single'>
                     <AiFillCloseCircle onClick={() => handleOfferActive()} className="closeOfferOverlay"/>
                     <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />

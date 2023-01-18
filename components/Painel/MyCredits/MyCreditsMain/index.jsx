@@ -7,7 +7,8 @@ import Pagination from '../../../Pagination'
 
 
 const MyCreditsMain = ({ credits }) => {
-  const { sideMenuOpen, setSideMenuOpen } = useAuth()
+  const { sideMenuOpen, setSideMenuOpen, newCreditOverlayActive, setNewCreditOverlayActive } = useAuth()
+
   const [currPage, setCurrPage] = useState(1)
   const [creditsPerPage, setCreditsPerPage] = useState(4)
   const [showPagination, setShowPagination] = useState(true)
@@ -59,7 +60,7 @@ const MyCreditsMain = ({ credits }) => {
         <div className="myCreditsContainer">
           <table>
             <tr>
-              <th className='th_add_credit'>
+              <th onClick={() => setNewCreditOverlayActive(true)} className='th_add_credit'>
                 <span>
                   +
                 </span>

@@ -7,6 +7,7 @@ import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
 import useCredits from '../../components/hooks/useCredits'
 import MyCreditsMain from '../../components/Painel/MyCredits/MyCreditsMain'
+import NewCreditOverlay from '../../components/Painel/MyCredits/NewCreditOverlay'
 
 
 const Painel = () => {
@@ -39,6 +40,7 @@ const Painel = () => {
                     <SearchMain credits={credits} />
             }
             <FilterOverlay />
+            <NewCreditOverlay />
         </div>
     )
 }

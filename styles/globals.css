@@ -680,23 +680,6 @@ footer .container .menu-desktop ul li a:hover::before {
   width: 100%;
 }
 
-.OfferOverlay {
-  position: fixed;
-  z-index: 999999;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.721);
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  opacity: 0;
-  top: 0;
-  pointer-events: none;
-}
-.OfferOverlay.active {
-  opacity: 1;
-  pointer-events: initial;
-}
 .OfferOverlay .closeOfferOverlay {
   position: absolute;
   top: -30px;
@@ -749,6 +732,24 @@ footer .container .menu-desktop ul li a:hover::before {
   stroke: var(--interjud-green);
 }
 
+.overlay {
+  position: fixed;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.721);
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  opacity: 0;
+  top: 0;
+  pointer-events: none;
+}
+.overlay.active {
+  opacity: 1;
+  pointer-events: initial;
+}
+
 .SystemNotification {
   position: fixed;
   width: auto;
@@ -797,6 +798,48 @@ footer .container .menu-desktop ul li a:hover::before {
   right: 5px;
   cursor: pointer;
   transform: rotate(45deg);
+}
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 5px;
+}
+.pagination.prevNotAllowed span:first-of-type {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.pagination.nextNotAllowed span:last-of-type {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: unset !important;
+}
+.pagination > span {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  display: grid;
+  border: 1px solid var(--interjud-blue);
+  place-items: center;
+  transition: 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.pagination > span.active {
+  color: var(--interjud-blue);
+  font-weight: bold;
+}
+.pagination > span:hover {
+  transform: translateY(-10%);
+}
+.pagination > span svg,
+.pagination > span polygon {
+  color: var(--txt-color);
+  fill: var(--txt-color);
+  stroke: var(--txt-color);
 }
 
 section.hero {
@@ -1433,6 +1476,99 @@ main h1 {
   position: relative;
 }
 
+.myCreditsMain {
+  margin-top: 40px;
+}
+.myCreditsMain .myCreditsContainer {
+  max-width: 80vw;
+  width: 100%;
+  border: 1px solid var(--interjud-blue);
+  overflow: scroll;
+  display: flex;
+  align-items: center;
+}
+.myCreditsMain .myCreditsContainer::-webkit-scrollbar {
+  width: 1px;
+  z-index: 99;
+  position: relative;
+}
+.myCreditsMain .myCreditsContainer::-webkit-scrollbar-track {
+  background: var(--main-bg-color);
+}
+.myCreditsMain .myCreditsContainer::-webkit-scrollbar-thumb {
+  background: var(--interjud-blue);
+  border-radius: 10px;
+}
+.myCreditsMain .myCreditsContainer table {
+  padding: 10px;
+  margin: 0;
+  width: 300vw;
+  border-collapse: collapse;
+  min-width: 100%;
+  overflow: auto;
+}
+.myCreditsMain .myCreditsContainer table th,
+.myCreditsMain .myCreditsContainer table td,
+.myCreditsMain .myCreditsContainer table tr {
+  padding: 10px;
+  text-align: left;
+}
+.myCreditsMain .myCreditsContainer table .th_add_credit,
+.myCreditsMain .myCreditsContainer table .td_image {
+  width: 75px;
+}
+.myCreditsMain .myCreditsContainer table .th_add_credit {
+  position: -webkit-sticky;
+  position: sticky;
+  left: -1px;
+  background-color: var(--interjud-blue);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.myCreditsMain .myCreditsContainer table .th_add_credit:hover {
+  opacity: 0.8;
+}
+.myCreditsMain .myCreditsContainer table .th_add_credit span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 46px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: normal;
+}
+.myCreditsMain .myCreditsContainer table tr {
+  border: 1px solid var(--interjud-blue);
+  border-collapse: collapse;
+}
+.myCreditsMain .myCreditsContainer table tr td {
+  border: 1px solid var(--interjud-blue);
+}
+.myCreditsMain .myCreditsContainer table tr td:not(:first-of-type) {
+  min-width: 200px;
+}
+.myCreditsMain .myCreditsContainer table tr .img_container {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.myCreditsMain .myCreditsContainer table tr .img_container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.myCreditsMain .myCreditsContainer table tr span.credit_name {
+  padding-left: 10px;
+  display: inline-block;
+}
+.myCreditsMain .myCreditsContainer table tr span.credit_rating svg {
+  fill: var(--interjud-yellow);
+}
+
 .notifications {
   width: 270px;
   height: 300px;
@@ -1736,137 +1872,284 @@ section:nth-of-type(even) {
   background-color: var(--interjud-blue);
 }
 
-.myCreditsMain {
-  margin-top: 40px;
-}
-.myCreditsMain .myCreditsContainer {
-  max-width: 80vw;
-  width: 100%;
-  border: 1px solid var(--interjud-blue);
-  overflow: scroll;
-  display: flex;
-  align-items: center;
-}
-.myCreditsMain .myCreditsContainer::-webkit-scrollbar {
-  width: 1px;
-  z-index: 99;
-  position: relative;
-}
-.myCreditsMain .myCreditsContainer::-webkit-scrollbar-track {
-  background: var(--main-bg-color);
-}
-.myCreditsMain .myCreditsContainer::-webkit-scrollbar-thumb {
-  background: var(--interjud-blue);
-  border-radius: 10px;
-}
-.myCreditsMain .myCreditsContainer table {
-  padding: 10px;
-  margin: 0;
-  width: 300vw;
-  border-collapse: collapse;
-  min-width: 100%;
-  overflow: auto;
-}
-.myCreditsMain .myCreditsContainer table th,
-.myCreditsMain .myCreditsContainer table td,
-.myCreditsMain .myCreditsContainer table tr {
-  padding: 10px;
-  text-align: left;
-}
-.myCreditsMain .myCreditsContainer table .th_add_credit,
-.myCreditsMain .myCreditsContainer table .td_image {
-  width: 75px;
-}
-.myCreditsMain .myCreditsContainer table .th_add_credit {
-  position: -webkit-sticky;
-  position: sticky;
-  left: -1px;
-  background-color: var(--interjud-blue);
-  transition: 0.3s;
-  cursor: pointer;
-}
-.myCreditsMain .myCreditsContainer table .th_add_credit:hover {
-  opacity: 0.8;
-}
-.myCreditsMain .myCreditsContainer table .th_add_credit span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 46px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  font-weight: normal;
-}
-.myCreditsMain .myCreditsContainer table tr {
-  border: 1px solid var(--interjud-blue);
-  border-collapse: collapse;
-}
-.myCreditsMain .myCreditsContainer table tr td {
-  border: 1px solid var(--interjud-blue);
-}
-.myCreditsMain .myCreditsContainer table tr td:not(:first-of-type) {
-  min-width: 200px;
-}
-.myCreditsMain .myCreditsContainer table tr .img_container {
-  width: 54px;
-  height: 54px;
+.newCreditOverlay {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
-.myCreditsMain .myCreditsContainer table tr .img_container img {
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.myCreditsMain .myCreditsContainer table tr span.credit_name {
-  padding-left: 10px;
-  display: inline-block;
-}
-.myCreditsMain .myCreditsContainer table tr span.credit_rating svg {
-  fill: var(--interjud-yellow);
-}
-
-.pagination {
-  margin-top: 30px;
+.newCreditOverlay .titleClose {
   display: flex;
-  gap: 5px;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 10px;
 }
-.pagination.prevNotAllowed span:first-of-type {
-  opacity: 0.5;
-  pointer-events: none;
+.newCreditOverlay .titleClose h2 {
+  text-align: left;
+  width: 420px;
+  font-size: 22px;
 }
-.pagination.nextNotAllowed span:last-of-type {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: unset !important;
-}
-.pagination > span {
-  display: inline-block;
-  height: 30px;
-  width: 30px;
-  display: grid;
-  border: 1px solid var(--interjud-blue);
-  place-items: center;
-  transition: 0.3s;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+.newCreditOverlay .titleClose > svg {
+  position: absolute;
+  right: -40px;
+  font-size: 26px;
   cursor: pointer;
 }
-.pagination > span.active {
-  color: var(--interjud-blue);
-  font-weight: bold;
+.newCreditOverlay .newCreditContainer {
+  width: 420px;
+  height: 430px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--interjud-blue);
 }
-.pagination > span:hover {
-  transform: translateY(-10%);
+.newCreditOverlay .newCreditContainer > img {
+  display: block;
+  position: absolute;
+  z-index: 1;
 }
-.pagination > span svg,
-.pagination > span polygon {
-  color: var(--txt-color);
+.newCreditOverlay .newCreditContainer .newCreditSlider {
+  width: 1260px;
+  transition: 0.3s;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle {
+  background-color: rgba(0, 0, 0, 0.855);
+  width: 420px;
+  position: relative;
+  height: 440px;
+  text-align: center;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form {
+  display: flex;
+  height: 90%;
+  width: 75%;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm {
+  margin: unset;
+  margin-left: 20px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm .num_processo_container {
+  position: relative;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm .num_processo_container p {
+  font-size: 13px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%);
+  right: -23px;
+  display: flex;
+  align-items: center;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm .num_processo_container p svg {
+  position: relative;
+  right: -5px;
+  fill: var(--interjud-green);
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm .num_processo_container p svg.error {
+  fill: var(--interjud-red);
+  display: none;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm .num_processo_container p.error svg.error {
+  display: inline-block;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form.firstForm .num_processo_container p.error svg.success {
+  display: none;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .porcentagem_negociar {
+  position: relative;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .porcentagem_negociar p {
+  position: absolute;
+  transform: translateY(-100%);
+  font-size: 14px;
+  height: 20px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .porcentagem_negociar * {
+  max-height: 100%;
+  height: unset;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .porcentagem_negociar span {
+  color: white;
+  height: unset !important;
+  height: 20px;
+  line-height: 20px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .porcentagem_negociar input {
+  width: 80%;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .valores {
+  position: relative;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .valores p {
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 10px;
+  position: relative;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form .valores p span {
+  display: inline-block;
+  right: 0;
+  position: absolute;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button]),
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0 0 0 5px;
+  font-size: 15px;
+  height: 40px;
+  margin-top: 10px;
+  color: white;
+  border-bottom: 1px solid var(--interjud-blue);
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button])::-moz-placeholder, .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select::-moz-placeholder {
+  color: var(--txt-color) !important;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button]):-ms-input-placeholder, .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select:-ms-input-placeholder {
+  color: var(--txt-color) !important;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button])::placeholder,
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select::placeholder {
+  color: var(--txt-color) !important;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button]) option,
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select option {
+  background-color: black;
+  padding-left: 0;
+  font-size: 15px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm * {
+  transition: 0.3s;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .stars svg {
+  font-size: 20px;
+  fill: var(--interjud-yellow);
+  margin: 0 4px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm h2 {
+  font-size: 20px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm p {
+  font-size: 15px;
+  width: 85%;
+  margin: 0 auto;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .vantagens {
+  margin-top: -10px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .vantagens > div {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .vantagens > div svg {
+  fill: var(--interjud-green);
+  margin-right: 5px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .aceitarRating input {
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 10px;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .aceitarRating input:hover {
+  opacity: 0.8;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .aceitarRating input.recusar {
+  background-color: var(--interjud-red);
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .aceitarRating input.aceitar {
+  background-color: var(--interjud-green);
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm svg.setInfoRating {
   fill: var(--txt-color);
-  stroke: var(--txt-color);
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  cursor: pointer;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .ratingInfo {
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .ratingInfo p {
+  text-align: justify;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm .ratingInfo small {
+  width: 85%;
+  margin: 0 auto;
+  text-align: justify;
+  font-size: 11px;
+  display: block;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm.ratingInfoActive .ratingInfo {
+  pointer-events: initial;
+  opacity: 1;
+}
+.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle.ratingForm.ratingInfoActive *:not(.ratingInfo, .ratingInfo *) {
+  opacity: 0;
+  pointer-events: none;
+}
+.newCreditOverlay .newCreditContainer .newCreditArrows {
+  width: 100%;
+  position: absolute;
+  height: 40px;
+  display: flex;
+  z-index: 3;
+  align-items: center;
+  justify-content: space-between;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.newCreditOverlay .newCreditContainer .newCreditArrows .arrow {
+  pointer-events: initial;
+  position: absolute;
+  cursor: pointer;
+}
+.newCreditOverlay .newCreditContainer .newCreditArrows .arrow.arrowPrev {
+  left: 0;
+}
+.newCreditOverlay .newCreditContainer .newCreditArrows .arrow.arrowNext {
+  right: 0;
+}
+.newCreditOverlay .newCreditContainer .newCreditArrows .arrow svg,
+.newCreditOverlay .newCreditContainer .newCreditArrows .arrow polygon {
+  fill: var(--txt-color);
+  font-size: 30px;
+  display: flex;
+  align-items: center;
 }/*# sourceMappingURL=globals.css.map */

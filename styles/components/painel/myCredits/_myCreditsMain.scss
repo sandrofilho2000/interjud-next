@@ -1,0 +1,101 @@
+.myCreditsMain {
+    margin-top: 40px;
+    .myCreditsContainer {
+      max-width: 80vw;
+      width: 100%;
+      border: 1px solid var(--interjud-blue);
+      overflow: scroll;
+      display: flex;
+      align-items: center;
+  
+      &::-webkit-scrollbar {
+        width: 1px;
+        z-index: 99;
+        position: relative;
+      }
+  
+      &::-webkit-scrollbar-track {
+        background: var(--main-bg-color);
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background: var(--interjud-blue);
+        border-radius: 10px;
+      }
+  
+      table {
+        padding: 10px;
+        margin: 0;
+        width: 300vw;
+        border-collapse: collapse;
+        min-width: 100%;
+        overflow: auto;
+        th,
+        td,
+        tr {
+          padding: 10px;
+          text-align: left;
+        }
+  
+        .th_add_credit,
+        .td_image {
+          width: 75px;
+        }
+  
+        .th_add_credit {
+          position: sticky;
+          left: -1px;
+          background-color: var(--interjud-blue);
+          transition: 0.3s;
+          cursor: pointer;
+          
+          &:hover{
+            opacity: 0.8;
+          }
+          span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 46px;
+            user-select: none;
+            font-weight: normal;
+          }
+        }
+  
+        tr {
+          border: 1px solid var(--interjud-blue);
+          border-collapse: collapse;
+          td {
+            border: 1px solid var(--interjud-blue);
+          }
+  
+          td:not(:first-of-type) {
+            min-width: 200px;
+          }
+  
+          .img_container {
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              object-fit: cover;
+            }
+          }
+  
+          span.credit_name {
+            padding-left: 10px;
+            display: inline-block;
+          }
+  
+          span.credit_rating {
+            svg {
+              fill: var(--interjud-yellow);
+            }
+          }
+        }
+      }
+    }
+  }

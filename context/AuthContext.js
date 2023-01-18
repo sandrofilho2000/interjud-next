@@ -13,6 +13,7 @@ export const AuthContextProvider = ({ children }) => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
     const [offerOverlayActive, setOfferOverlayActive] = useState(false)
+    const [newCreditOverlayActive, setNewCreditOverlayActive] = useState(false)
     const [filterOverlayActive, setFilterOverlayActive] = useState(false)
     const [searchedCredits, setSearchedCredits] = useState([{}])
     const [currCreditOffer, setCurrCreditOffer] = useState({})
@@ -84,7 +85,9 @@ export const AuthContextProvider = ({ children }) => {
             systemNotificationActive,
             setSystemNotificationActive,
             searchContext, 
-            setSearchContext
+            setSearchContext,
+            newCreditOverlayActive,
+            setNewCreditOverlayActive
         }}>
             {loading ? '' : children}
         </AuthContext.Provider>

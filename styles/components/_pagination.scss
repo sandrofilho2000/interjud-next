@@ -1,0 +1,46 @@
+.pagination {
+    margin-top: 30px;
+    display: flex;
+    gap: 5px;
+  
+    &.prevNotAllowed {
+      span:first-of-type {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+    &.nextNotAllowed {
+      span:last-of-type {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: unset !important;
+      }
+    }
+  
+    > span {
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      display: grid;
+      border: 1px solid var(--interjud-blue);
+      place-items: center;
+      transition: 0.3s;
+      user-select: none;
+      &.active {
+        color: var(--interjud-blue);
+        font-weight: bold;
+      }
+  
+      cursor: pointer;
+      &:hover {
+        transform: translateY(-10%);
+      }
+  
+      svg,
+      polygon {
+        color: var(--txt-color);
+        fill: var(--txt-color);
+        stroke: var(--txt-color);
+      }
+    }
+  }

@@ -1,0 +1,18 @@
+.overlay{
+    position: fixed;
+    z-index: 999999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.721);
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    opacity: 0;
+    top: 0;
+    pointer-events: none;
+
+    &.active{
+        opacity: 1;
+        pointer-events: initial;
+    }
+}

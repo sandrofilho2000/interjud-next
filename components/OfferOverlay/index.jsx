@@ -42,18 +42,22 @@ const OfferOverlay = () => {
         backgroundImage: `url('${logo_j.src}')`,
     }
 
-    let handleOfferCurrency = (e) => {
-        let valor = e.currentTarget.value
+    let passToCurrency = (num) =>{
+        let valor = num
         valor = valor.replaceAll(".", "")
         valor = valor.replaceAll(",", ".")
-        valor = Number(valor)
+        valor = valor.replaceAll("R$", "")
+        valor = Number(valor.trim())
         let newValor = valor.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         })
 
-        newValor = newValor.replaceAll('R$', '').trim()
-        e.currentTarget.value = newValor
+        return newValor
+    }
+
+    let handleOfferCurrency = (e) => {
+        e.currentTarget.value = passToCurrency(e.currentTarget.value)
     }
 
     let handleInfoActive = () => {

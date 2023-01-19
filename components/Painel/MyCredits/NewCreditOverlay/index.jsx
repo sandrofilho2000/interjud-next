@@ -6,56 +6,149 @@ import { FcPrevious, FcNext } from 'react-icons/fc'
 import { useAuth } from '../../../../context/AuthContext'
 import logo from '../../../../public/assets/images/logo_j.webp'
 const NewCreditOverlay = () => {
+
+    const { newCreditOverlayActive, setNewCreditOverlayActive, systemNotificationActive, setSystemNotificationActive } = useAuth()
+
     const [ porcentagemNegociar, setPorcentagemNegociar ] = useState(100)
     const [ sliderLeft, setSliderLeft ] = useState(0)
     const [ ratingInfoActive, setRatingInfoActive ] = useState(false)
-    const { newCreditOverlayActive, setNewCreditOverlayActive } = useAuth()
 
-    const [ numProcesso, setNumProcesso ] = useState()
-    const [ numProcessoLength, setNumProcessoLength ] = useState(0)
-    const numProcessoInput = useRef()
+    const numProcesso = useRef()
+    const nameProcesso = useRef()
+    const classeProcesso = useRef()
+
+    const valueProcesso = useRef()
+    const honProcesso = useRef()
+    const porcentagemProcesso = useRef()
+
+    const [ firstSlideOk, setFirstSlideOk ] = useState()
+    const [ secondSlideOk, setSecondSlideOk ] = useState()
+    const [ numProcessoLength, setNumProcessoLength ] = useState(false)
+
+    const [valorComHonorarios, setValorComHonorarios] = useState("")
+    const [valorNegociar, setValorNegociar] = useState("")
+
+    let passToCurrency = (num) =>{
+        let valor = String(num)
+        valor = valor.replaceAll(".", "")
+        valor = valor.replaceAll(",", ".")
+        valor = valor.replaceAll("R$", "")
+        valor = Number(valor.trim())
+        let newValor = valor.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        })
+
+        return newValor
+    }
+
+    let passToInteger = (num) =>{
+        let valor = num
+        valor = valor.replaceAll(".", "")
+        valor = valor.replaceAll(",", ".")
+        valor = valor.replaceAll("R$", "")
+
+        let newValor = Number(valor.trim())
+
+        return newValor
+    }
+
+
+
+    let formatNumProcess = (e) =>{
+        e.target.value = (e.target.value.match(/\d/g) || []).join('')
+        let valor = e.target.value
+        let format_value = (valor.match(/\d/g) || []).join('')
+
+        if(numProcessoLength === 20 && valor.length === 20){
+            let new_valor = [valor.slice(0, 7), '-', valor.slice(7, 9), '.', valor.slice(9,13), '.', valor.slice(13,14), '.', valor.slice(14,16), '.', valor.slice(16, 20) ].join('')
+            e.target.value = new_valor
+        }
+    }
+
+    let formatValueProcess = (e) =>{
+        let _valor = e.target.value
+        let newValor = passToCurrency(_valor)
+        e.target.value = newValor
+    }
+
+
+
+
+    let handleFirstSlideOk = (e) =>{
+        let num_processo = numProcesso.current.value
+        let count_num_processo = (num_processo.match(/\d/g) || []).length
+
+        let name_processo = nameProcesso.current.value
+        setNumProcessoLength(count_num_processo)
+
+        let classe_processo = classeProcesso.current.value
+
+        if(name_processo.length === 0 || count_num_processo !== 20 || classe_processo === ''){
+            setFirstSlideOk(false)
+        }else{
+            setFirstSlideOk(true)
+        }
+    }
+
+    let handleSecondSliderOk = () =>{
+        let valor_processo = Number(passToInteger(valueProcesso.current.value))
+        let hon_processo = Number(honProcesso.current.value)
+        hon_processo = hon_processo > 100 ? hon_processo = 100 : hon_processo
+        let porcentagem_processo = Number(porcentagemProcesso.current.value)
+
+        let valor_com_honorarios = (valor_processo / 100) * hon_processo
+        valor_com_honorarios =  valor_processo - valor_com_honorarios
+        valor_com_honorarios = valor_com_honorarios.toFixed(2).replaceAll(".", ',')
+
+        setValorComHonorarios(passToCurrency(valor_com_honorarios))
+
+        let valor_negociar = (passToInteger(valor_com_honorarios) / 100) * porcentagem_processo
+        valor_negociar = valor_negociar.toFixed(2).replaceAll(".", ',')
+        setValorNegociar(passToCurrency(valor_negociar))
+
+        if(passToInteger(valor_negociar)){
+            setSecondSlideOk(true)
+        }else{
+            setSecondSlideOk(false)
+        }
+    }
+
 
     let handleSliderLeft = (num) => {
         const maxLeft = sliderLeft === 2 && num === 1
         const minLeft = sliderLeft === 0 && num === -1
-        if (!maxLeft && !minLeft) {
-            setSliderLeft(sliderLeft + num)
-        }
-    }
 
-    let handleNumProcesso = (e) =>{
-        let valor = numProcessoInput.current.value
-        let count = (valor.match(/\d/g) || []).length
-        let numbers = valor.match(/\d/g) || []
+        const notification = {}
 
-/*         let output;
-
-        setNumProcessoLength(count)
-        setNumProcesso(numbers.join(''))
         
-
-        if(count == 7){
-            output = [numbers.slice(0, 7), '-', numbers.slice(7)]
-            output = output.join('')
-            setNumProcesso(output)
+        if (!maxLeft && !minLeft) {
+            if(num === 1){
+                if(sliderLeft === 0){
+                    if(firstSlideOk){
+                        setSliderLeft(sliderLeft + num)
+                    }else{
+                        notification.message = "Revise todos os campos antes de prosseguir"
+                        notification.status = 'error'
+                        notification.active = true
+                        setSystemNotificationActive(notification)
+                    }
+                }if(sliderLeft === 1){
+                    if(secondSlideOk){
+                        setSliderLeft(sliderLeft + num)
+                    }else{
+                        notification.message = "Insira um valor à ser negociádo valido!"
+                        notification.status = 'error'
+                        notification.active = true
+                        setSystemNotificationActive(notification)
+                    }
+                }
+            }else{
+                setSliderLeft(sliderLeft + num)
+            }
         }
-        if(count == 9){
-            output = [numbers.slice(0, 7), '-', numbers.slice(7,9), '.', numbers.slice(9)]
-            output = output.join('')
-            setNumProcesso(output)
-        }
-        if(count == 14){
-            output = [numbers.slice(0, 7), '-', numbers.slice(7,9), '.', numbers.slice(9,13), '.', numbers.slice(13,14)]
-            output = output.join('')
-            setNumProcesso(output)
-        }
-        if(count == 16){
-            output = [numbers.slice(0, 7), '-', numbers.slice(7,9), '.', numbers.slice(9,13), '.', numbers.slice(13,14), '.', numbers.slice(14,16)]
-            output = output.join('')
-            setNumProcesso(output)
-        } */
-
     }
+
 
     return (
         <div className={`newCreditOverlay overlay ${newCreditOverlayActive ? 'active' : ''}`}>
@@ -66,20 +159,20 @@ const NewCreditOverlay = () => {
             </div>
 
             <div className="newCreditContainer">
-                <Image src={logo} width={420} height={430} />
-                <div className="newCreditSlider" style={{ left: -(420 * sliderLeft) }}>
+                <Image src={logo} width={520} height={530} />
+                <div className="newCreditSlider" style={{ left: -(520 * sliderLeft) }}>
                     <div className="newCreditSingle">
                         <form className='firstForm'>
-                            <input type="text" placeholder='Réu/Devedor' />
+                            <input type="text" onChange={(e)=>{handleFirstSlideOk(e)}} ref={nameProcesso} maxLength={25} placeholder='Réu/Devedor' />
                             <div className="num_processo_container">
-                                <input type="text" onChange={(e)=>{handleNumProcesso(e)}} ref={numProcessoInput}  placeholder='Nº do processo (Apenas dígitos)' />
-                                <p className='error'>
+                                <input type="text" onChange={(e)=>{handleFirstSlideOk(e)}} maxLength={25} ref={numProcesso} onBlur={(e)=>{formatNumProcess(e)}}  placeholder='Nº do processo (Apenas dígitos)' />
+                                <p className={numProcessoLength === 20 ? 'success' : 'error'}>
                                     {numProcessoLength}/20
                                     <FaCheck className='success'/>
                                     <AiOutlineClose className='error'/>
                                 </p>
                             </div>
-                            <select name="" id="">
+                            <select onChange={(e)=>{handleFirstSlideOk(e)}} ref={classeProcesso}>
                                 <option defaultValue="">
                                     Classe judicial
                                 </option>
@@ -101,21 +194,22 @@ const NewCreditOverlay = () => {
 
                     <div className="newCreditSingle">
                         <form className='secondForm'>
-                            <input type="text" placeholder='Valor: R$' />
-                            <input type="number" min={0} max={100} placeholder='Hon. contratuais(%):' />
+                            <input type="text" ref={valueProcesso}  onChange={(e)=>{handleSecondSliderOk(e)}} placeholder='Valor: R$' onBlur={(e)=>{formatValueProcess(e)}}  />
+
+                            <input type="number" ref={honProcesso} min={0} max={100} onChange={(e)=>{handleSecondSliderOk(e)}} placeholder='Hon. contratuais(%):' />
 
                             <div className="porcentagem_negociar">
                                 <p>Porcentagem a negociar</p>
-                                <input type="range" id="porcentagem_negociar" onChange={(e) => { setPorcentagemNegociar(e.target.value) }} min={20} max={100} step={20} defaultValue={100} />
+                                <input type="range" id="porcentagem_negociar" ref={porcentagemProcesso} onChange={(e) => { setPorcentagemNegociar(e.target.value); handleSecondSliderOk(e) }} min={20} max={100} step={20} defaultValue={100} />
                                 <span>{porcentagemNegociar}%</span>
                             </div>
 
                             <div className="valores">
                                 <p className="com_honorarios">
-                                    Valor com honorários: <span>R$12.000,00</span>
+                                    Valor com honorários: <span>{valorComHonorarios}</span>
                                 </p>
                                 <p className="valor_negociado">
-                                    Valor a ser negociado: <span>R$12.000,00</span>
+                                    Valor a ser negociado: <span>{valorNegociar}</span>
                                 </p>
                             </div>
                         </form>
@@ -152,7 +246,7 @@ const NewCreditOverlay = () => {
                         </div>
                         <div className="aceitarRating">
                             <input type="button" className='recusar' id='recusar' value="RECUSAR" />
-                            <input type="button" className='aceitar' id='aceitar' value="ACEITAR" />
+                            <input type="button" className='aceitar' id='aceitar' value="ACEITAR" onClick={() => setRatingInfoActive(true)}/>
                         </div>
 
                         <AiFillInfoCircle className='setInfoRating' onClick={() => setRatingInfoActive(true)}/>
@@ -161,6 +255,8 @@ const NewCreditOverlay = () => {
                             <p>
                                 A INTERJUD disponibiliza GRATUITAMENTE um serviço de avaliação do seu crédito, realizada por uma equipe de especialista. Serão atribuídas de uma a cinco ESTRELAS ao seu crédito, considerando a solidez do devedor, a fase processual em que se encontra, o tempo médio de conclusão do processo, dentre outras características.
                             </p>
+
+                            <input type="button" className='aceitar' id='aceitar' value="ACEITAR" onClick={() => setRatingInfoActive(true)}/>
 
                             <small>
                             **Ao aderir à avaliação do seu crédito, você aceita a pontuação atribuída pelos especialistas e se compromete a negociar este crédito exclusivamente pela plataforma InterJud pelo prazo de 6 meses.

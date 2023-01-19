@@ -6,7 +6,7 @@ import { db } from '../../../firebase'
 import Credit from '../../Credit'
 import useCredits from '../../hooks/useCredits'
 
-const SearchMain = ({credits}) => {
+const SearchMain = ({ credits }) => {
     const { sideMenuOpen, searchMainActive, setSearchMainActive, searchContext } = useAuth()
     const [searchedCredits, setSearchedCredits] = useState([])
 
@@ -14,48 +14,71 @@ const SearchMain = ({credits}) => {
         setSearchMainActive(!searchMainActive)
     }
 
-    useEffect(() => {
-        var list = [];
+    let isEmpty = (obj) => {
+        return Object.values(obj).every(x => x === null || x === '');
+    }
 
-         credits.filter((item) => {
- 
-            if(item.name.toLowerCase().includes(searchContext.name.toLowerCase())){
-                list.push(item)
+    useEffect(() => {
+        var list = [...credits];
+
+        list.filter((item) => {
+            if (searchContext.name) {
+                list = list.filter((item) => {
+                    return item.name.toLowerCase().includes(searchContext.name.toLowerCase())
+                })
             }
-            if(searchContext.class){
-                if(item.class.toLowerCase().includes(searchContext.class.toLowerCase())){
-                    list.push(item)
-                }
+            if (searchContext.classe) {
+                list = list.filter((item) => {
+                    return item.class.toLowerCase().includes(searchContext.classe.toLowerCase())
+                })
+                console.log(item.class, searchContext.classe)
+            }
+            if (searchContext.min) {
+                list = list.filter((item) => {
+                    return Number(item.value) >= Number(searchContext.min)
+                })
+            }
+            if (searchContext.max) {
+                list = list.filter((item) => {
+                    return Number(item.value) <= Number(searchContext.max)
+                })
+            }
+            if (searchContext.rating) {
+                list = list.filter((item) => {
+                    return Number(item.rating) >= Number(searchContext.rating)
+                })
             }
         })
 
         setSearchedCredits(list)
+        console.log(isEmpty(searchContext))
     }, [searchContext])
 
-    return (
-        <main className={`searchMain ${sideMenuOpen ? 'active' : ''}`}>
-            <AiFillCloseCircle onClick={() => { handleSearchMainActive() }} className='searchMainClose' />
-            <div className="creditsWrapper">
+    if (!isEmpty(searchContext)) {
+        return (
 
-                {
-                    searchedCredits ?
+            <main className={`searchMain ${sideMenuOpen ? 'active' : ''}`}>
+                <AiFillCloseCircle onClick={() => { handleSearchMainActive() }} className='searchMainClose' />
+                <div className="creditsWrapper">
 
-                        searchedCredits.map((item) => {
-                            return (
-                                <Credit key={item.id} credit={item} />
-                            )
-                        })
-                        :
-                        <h1>
-                            Sem créditos disponíveis
-                        </h1>
-                }
+                    {
+                        searchedCredits ?
+                            searchedCredits.map((item) => {
+                                return (
+                                    <Credit key={item.id} credit={item} />
+                                )
+                            })
+                            :
+                            <h1>
+                                Sem créditos disponíveis
+                            </h1>
+                    }
+                </div>
+            </main>
+        )
+    }
 
 
-
-            </div>
-        </main>
-    )
 }
 
 export default SearchMain

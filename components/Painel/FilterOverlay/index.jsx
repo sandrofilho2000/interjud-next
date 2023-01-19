@@ -31,7 +31,9 @@ const FilterOverlay = () => {
             max: filterValueMax.current.value,
             rating: filterRating.current.value
         }
-        setSearchContext('{classe: filterClasse.current.value, active: true}')
+
+        setSearchContext(obj)
+        setFilterOverlayActive(false)
     }
 
     return (
@@ -39,7 +41,7 @@ const FilterOverlay = () => {
             <form onSubmit={(e)=>{handleSearchContext(e)}} className='searchFilter'>
                 <AiFillCloseCircle onClick={() => setFilterOverlayActive(false)} className="filterOverlayClose"/>
 
-                <select onChange={(e)=>setSearchContext({classe: e.target.defaultValue})} name="filterClasse" ref={filterClasse} id="filterClasse">
+                <select name="filterClasse" ref={filterClasse} id="filterClasse">
                     <option selected value="">Classe Judicial - Todas</option>
                     <option value="Trabalhista">Trabalhista</option>
                     <option value="Cívil">Cívil</option>

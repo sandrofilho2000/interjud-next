@@ -13,7 +13,7 @@ import HomeMain from '../../components/Painel/Home/HomeMain'
 const Painel = () => {
     const { searchContext } = useAuth()
 
-    let { credits }  = useCredits()
+    let { credits } = useCredits()
 
     return (
         <div>
@@ -34,13 +34,8 @@ const Painel = () => {
             </Head>
             <SideMenu />
             <MainTop />
-            {
-                !searchContext.name
-                    ?
-                    <HomeMain credits={credits} />
-                    :
-                    <SearchMain credits={credits} />
-            }
+            <HomeMain credits={credits} />
+            <SearchMain credits={credits} />
             <FilterOverlay />
         </div>
     )

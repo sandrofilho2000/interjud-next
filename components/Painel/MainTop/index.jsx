@@ -8,7 +8,7 @@ import Notifications from '../Notifications'
 import useCredits from '../../hooks/useCredits'
 
 const MainTop = () => {
-    const { sideMenuOpen, setSideMenuOpen, searchMainActive, setSearchMainActive, searchedCredits, setSearchedCredits } = useAuth()
+    const { sideMenuOpen, setSideMenuOpen, searchMainActive, setSearchMainActive, searchContext, setSearchContext } = useAuth()
     const [notificationActive, setNotificationActive] = useState(false)
     const {filterOverlayActive, setFilterOverlayActive} = useAuth()
     const inputSearch = useRef()
@@ -23,21 +23,8 @@ const MainTop = () => {
     }
 
     let handleSearchMainActive = (e) => {
-        if (inputSearch.current.value) {
-            setSearchMainActive(true)
-        } else {
-            setSearchMainActive(false)
-        }
 
-
-        let filteredCredits = []
-        credits.filter((item) => {
-            if(item.name.toLowerCase().includes(inputSearch.current.value.toLowerCase())){
-                filteredCredits.push(item)
-            }
-        })
-
-        setSearchedCredits(filteredCredits)
+        setSearchContext({name: inputSearch.current.value})
     }
 
     return (

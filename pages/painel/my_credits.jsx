@@ -32,13 +32,8 @@ const Painel = () => {
             </Head>
             <SideMenu />
             <MainTop />
-            {
-                !searchContext.name
-                    ?
-                    <MyCreditsMain credits={credits} />
-                    :
-                    <SearchMain credits={credits} />
-            }
+            <MyCreditsMain credits={credits} />
+            <SearchMain credits={credits} />
             <FilterOverlay />
             <NewCreditOverlay />
         </div>

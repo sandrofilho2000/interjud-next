@@ -3,23 +3,29 @@ import { useAuth } from '../../../../context/AuthContext'
 import CreditsSlider from '../../CreditsSlider'
 
 const HomeMain = ({ credits }) => {
-    const { sideMenuOpen } = useAuth()
+    const { sideMenuOpen, searchContext } = useAuth()
 
-    return (
-        <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
-            <h1>
-                HOME
-            </h1>
+    let isEmpty = (obj) => {
+        return Object.values(obj).every(x => x === null || x === '');
+    }
 
-            <div className='creditsWrapper'>
-                <CreditsSlider credits={credits} text="MAIS RECENTES" />
-                <CreditsSlider credits={credits} text="5 ESTRELAS" />
-                <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
-                <CreditsSlider credits={credits} text="FAVORITOS" />
-                <CreditsSlider credits={credits} text="MAIS POPULARES" />
-            </div>
-        </main>
-    )
+    if (isEmpty(searchContext)) {
+        return (
+            <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
+                <h1>
+                    HOME
+                </h1>
+
+                <div className='creditsWrapper'>
+                    <CreditsSlider credits={credits} text="MAIS RECENTES" />
+                    <CreditsSlider credits={credits} text="5 ESTRELAS" />
+                    <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
+                    <CreditsSlider credits={credits} text="FAVORITOS" />
+                    <CreditsSlider credits={credits} text="MAIS POPULARES" />
+                </div>
+            </main>
+        )
+    }
 }
 
 export default HomeMain

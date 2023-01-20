@@ -2,7 +2,6 @@ import Head from 'next/head'
 import React, { useEffect, useLayoutEffect } from 'react'
 import SideMenu from '../../components/Painel/SideMenu'
 import { useAuth } from '../../context/AuthContext'
-import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
 import useCredits from '../../components/hooks/useCredits'
@@ -42,16 +41,8 @@ const Painel = () => {
                 <meta name="og:image" content="https://www.interjud.com.br/img/logo.webp" />
             </Head>
             <SideMenu />
-            <MainTop />
-            {
-                !searchMainActive ? (
-                    <MyCreditsMain credits={credits} />
-                )
-                : (
-
-                    <SearchMain credits={credits} />
-                )
-            }
+            <MainTop page="my_credits"/>
+            <MyCreditsMain credits={credits} />
             <FilterOverlay />
             <NewCreditOverlay />
         </div>

@@ -1569,309 +1569,6 @@ main h1 {
   fill: var(--interjud-yellow);
 }
 
-.notifications {
-  width: 270px;
-  height: 300px;
-  padding: 5px;
-  overflow-y: auto;
-  position: absolute;
-  top: 30px;
-  transform: scale(0);
-  right: 30px;
-  border: 2px solid var(--interjud-blue);
-  background-color: var(--second-bg-color);
-  transform-origin: top right;
-  transition: transform 0.5s;
-}
-.notifications.active {
-  transform: scale(1);
-}
-.notifications::-webkit-scrollbar {
-  width: 3px;
-  z-index: 99;
-  position: relative;
-}
-.notifications::-webkit-scrollbar-track {
-  background: var(--main-bg-color);
-}
-.notifications::-webkit-scrollbar-thumb {
-  background: var(--interjud-blue);
-  border-radius: 10px;
-}
-.notifications::-webkit-scrollbar-thumb:hover {
-  background: var(--main-bg-color);
-}
-.notifications ul {
-  width: 100%;
-  height: auto;
-}
-.notifications ul a.allNotifications {
-  font-size: 13px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  text-align: center;
-  width: 70%;
-  display: block;
-  border-bottom: 1px solid var(--interjud-blue);
-}
-.notifications ul li {
-  width: 100%;
-  height: auto;
-  padding: 5px;
-  margin-bottom: 5px;
-  padding-left: 0px;
-  border-bottom: 1px solid var(--interjud-blue);
-  opacity: 0.5;
-  transition: 0.3s;
-}
-.notifications ul li:hover {
-  margin-left: -5px;
-}
-.notifications ul li.not_read {
-  opacity: 1;
-}
-.notifications ul li a {
-  display: flex;
-  align-items: center;
-}
-.notifications ul li a > img {
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border: 2px solid var(--interjud-blue);
-}
-.notifications ul li a > div {
-  margin-left: 5px;
-}
-.notifications ul li a > div span {
-  font-size: 13px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  border-bottom: 2px solid var(--main-color);
-  max-width: 300px;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-main.searchMain .searchMainClose {
-  position: absolute;
-  display: flex;
-  align-self: flex-end;
-  right: 60px;
-  font-size: 35px;
-  cursor: pointer;
-}
-main.searchMain .creditsWrapper {
-  width: 90%;
-  height: auto;
-  margin: 0 auto;
-  margin-top: 60px;
-  max-width: 1400px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-main.searchMain .creditsWrapper > .Tilt {
-  margin: 0 auto;
-}
-
-.filterOverlay {
-  position: fixed;
-  z-index: 999999;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.721);
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  opacity: 0;
-  top: 0;
-  pointer-events: none;
-}
-.filterOverlay .filterOverlayClose {
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  cursor: pointer;
-  font-size: 26px !important;
-}
-.filterOverlay.active {
-  opacity: 1;
-  pointer-events: initial;
-}
-.filterOverlay .searchFilter {
-  height: 400px;
-  position: absolute;
-  width: 500px;
-  right: 50%;
-  padding: 20px;
-  transform: translateX(50%);
-  background-color: var(--main-bg-color);
-  border: 1px solid var(--interjud-blue);
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  justify-content: space-evenly;
-  transition: 0.3s;
-}
-.filterOverlay .searchFilter * {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  padding: 0;
-  padding-left: 5px;
-  font-size: 15px;
-}
-.filterOverlay .searchFilter select {
-  padding-left: 0;
-  font-size: 15px;
-  color: var(--txt-color);
-  height: 40px;
-  margin-top: 10px;
-  border-bottom: 1px solid var(--interjud-blue);
-}
-.filterOverlay .searchFilter select option {
-  padding-left: 0;
-  font-size: 15px;
-  border-radius: 0;
-  color: var(--txt-color);
-  background-color: var(--second-bg-color);
-}
-.filterOverlay .searchFilter .valueMinMax > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-}
-.filterOverlay .searchFilter .valueMinMax > div input[type=number] {
-  border: none;
-  outline: none;
-  background: transparent;
-  border-bottom: 1px solid var(--interjud-blue);
-  padding: 5px 25px;
-}
-.filterOverlay .searchFilter .filterRatingContainer .inputRating .stars {
-  min-height: 22.8px;
-  display: flex;
-  justify-content: flex-start;
-  padding: 0;
-}
-.filterOverlay .searchFilter .filterRatingContainer .inputRating .stars svg {
-  display: inline-block;
-  width: 20%;
-  fill: var(--interjud-yellow);
-}
-.filterOverlay .searchFilter .searchClear {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-.filterOverlay .searchFilter .searchClear input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  outline: none;
-  background-color: var(--interjud-blue);
-  width: auto;
-  height: auto;
-  padding: 7px 15px;
-}
-.filterOverlay .searchFilter .searchClear input:last-of-type {
-  margin-left: 10px;
-}
-
-form.formLogin, form.formSignup {
-  width: 300px;
-  height: 450px;
-  background-color: var(--main-bg-color);
-  display: flex;
-  flex-direction: column;
-}
-form.formLogin input, form.formSignup input {
-  background-color: transparent;
-  color: var(--txt-color);
-}
-
-.container {
-  height: auto;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.container .swiper {
-  padding: 30px;
-}
-.container .swiper .swiper-pagination {
-  bottom: 0px;
-}
-.container .swiper .swiper-pagination .swiper-pagination-bullet {
-  background-color: var(--txt-color);
-}
-.container .swiper .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--interjud-blue);
-}
-
-.main .swiper {
-  padding: 30px;
-}
-.main .swiper .swiper-slide {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: space-between;
-}
-.main .swiper .swiper-pagination {
-  bottom: 0px;
-}
-.main .swiper .swiper-pagination .swiper-pagination-bullet {
-  background-color: var(--txt-color);
-}
-.main .swiper .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--interjud-blue);
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number] .no-spin::-webkit-outer-spin-button {
-  -webkit-appearance: none !important;
-  margin: 0 !important;
-}
-
-section {
-  padding: 40px 0;
-}
-
-section:nth-of-type(odd) {
-  background-color: var(--second-bg-color);
-}
-
-section:nth-of-type(even) {
-  background-color: var(--main-bg-color);
-}
-
-.rec-carousel button {
-  background-color: var(--interjud-blue) !important;
-  color: var(--txt-color) !important;
-}
-.rec-carousel button[disabled] {
-  opacity: 0.3;
-}
-
-.rec-pagination button {
-  border: unset !important;
-  box-shadow: unset !important;
-  background-color: var(--txt-color);
-}
-.rec-pagination button.rec-dot_active {
-  background-color: var(--interjud-blue);
-}
-
 .newCreditOverlay {
   display: flex;
   align-items: center;
@@ -2175,4 +1872,333 @@ section:nth-of-type(even) {
   font-size: 30px;
   display: flex;
   align-items: center;
+}
+
+.notifications {
+  width: 270px;
+  height: 300px;
+  padding: 5px;
+  overflow-y: auto;
+  position: absolute;
+  top: 30px;
+  transform: scale(0);
+  right: 30px;
+  border: 2px solid var(--interjud-blue);
+  background-color: var(--second-bg-color);
+  transform-origin: top right;
+  transition: transform 0.5s;
+}
+.notifications.active {
+  transform: scale(1);
+}
+.notifications::-webkit-scrollbar {
+  width: 3px;
+  z-index: 99;
+  position: relative;
+}
+.notifications::-webkit-scrollbar-track {
+  background: var(--main-bg-color);
+}
+.notifications::-webkit-scrollbar-thumb {
+  background: var(--interjud-blue);
+  border-radius: 10px;
+}
+.notifications::-webkit-scrollbar-thumb:hover {
+  background: var(--main-bg-color);
+}
+.notifications ul {
+  width: 100%;
+  height: auto;
+}
+.notifications ul a.allNotifications {
+  font-size: 13px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
+  width: 70%;
+  display: block;
+  border-bottom: 1px solid var(--interjud-blue);
+}
+.notifications ul li {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  margin-bottom: 5px;
+  padding-left: 0px;
+  border-bottom: 1px solid var(--interjud-blue);
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.notifications ul li:hover {
+  margin-left: -5px;
+}
+.notifications ul li.not_read {
+  opacity: 1;
+}
+.notifications ul li a {
+  display: flex;
+  align-items: center;
+}
+.notifications ul li a > img {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 2px solid var(--interjud-blue);
+}
+.notifications ul li a > div {
+  margin-left: 5px;
+}
+.notifications ul li a > div span {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  border-bottom: 2px solid var(--main-color);
+  max-width: 300px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+main.searchMain .searchMainClose {
+  position: absolute;
+  display: flex;
+  align-self: flex-end;
+  right: 60px;
+  font-size: 35px;
+  cursor: pointer;
+}
+main.searchMain .creditsWrapper {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 60px;
+  max-width: 1400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+main.searchMain .creditsWrapper > .Tilt {
+  margin: 0 auto;
+}
+
+.filterOverlay {
+  position: fixed;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.721);
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  opacity: 0;
+  top: 0;
+  pointer-events: none;
+}
+.filterOverlay .filterOverlayClose {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  cursor: pointer;
+  font-size: 26px !important;
+}
+.filterOverlay.active {
+  opacity: 1;
+  pointer-events: initial;
+}
+.filterOverlay .searchFilter {
+  height: 400px;
+  position: absolute;
+  width: 500px;
+  right: 50%;
+  padding: 20px;
+  transform: translateX(50%);
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--interjud-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-evenly;
+  transition: 0.3s;
+}
+.filterOverlay .searchFilter * {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-left: 5px;
+  font-size: 15px;
+}
+.filterOverlay .searchFilter select {
+  padding-left: 0;
+  font-size: 15px;
+  color: var(--txt-color);
+  height: 40px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--interjud-blue);
+}
+.filterOverlay .searchFilter select option {
+  padding-left: 0;
+  font-size: 15px;
+  border-radius: 0;
+  color: var(--txt-color);
+  background-color: var(--second-bg-color);
+}
+.filterOverlay .searchFilter .valueMinMax > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+.filterOverlay .searchFilter .valueMinMax > div input[type=number] {
+  border: none;
+  outline: none;
+  background: transparent;
+  border-bottom: 1px solid var(--interjud-blue);
+  padding: 5px 25px;
+}
+.filterOverlay .searchFilter .filterRatingContainer .inputRating .stars {
+  min-height: 22.8px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+}
+.filterOverlay .searchFilter .filterRatingContainer .inputRating .stars svg {
+  display: inline-block;
+  width: 20%;
+  fill: var(--interjud-yellow);
+}
+.filterOverlay .searchFilter .searchClear {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.filterOverlay .searchFilter .searchClear input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  background-color: var(--interjud-blue);
+  width: auto;
+  height: auto;
+  padding: 7px 15px;
+}
+.filterOverlay .searchFilter .searchClear input:last-of-type {
+  margin-left: 10px;
+}
+
+form.formLogin, form.formSignup {
+  width: 300px;
+  height: 450px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+}
+form.formLogin input, form.formSignup input {
+  background-color: transparent;
+  color: var(--txt-color);
+}
+
+.container {
+  height: auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.container .swiper {
+  padding: 30px;
+}
+.container .swiper .swiper-pagination {
+  bottom: 0px;
+}
+.container .swiper .swiper-pagination .swiper-pagination-bullet {
+  background-color: var(--txt-color);
+}
+.container .swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--interjud-blue);
+}
+
+.main .swiper {
+  padding: 30px;
+}
+.main .swiper .swiper-slide {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between;
+}
+.main .swiper .swiper-pagination {
+  bottom: 0px;
+}
+.main .swiper .swiper-pagination .swiper-pagination-bullet {
+  background-color: var(--txt-color);
+}
+.main .swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--interjud-blue);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number] .no-spin::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+section {
+  padding: 40px 0;
+}
+
+section:nth-of-type(odd) {
+  background-color: var(--second-bg-color);
+}
+
+section:nth-of-type(even) {
+  background-color: var(--main-bg-color);
+}
+
+.rec-carousel button {
+  background-color: var(--interjud-blue) !important;
+  color: var(--txt-color) !important;
+}
+.rec-carousel button[disabled] {
+  opacity: 0.3;
+}
+
+.rec-pagination button {
+  border: unset !important;
+  box-shadow: unset !important;
+  background-color: var(--txt-color);
+}
+.rec-pagination button.rec-dot_active {
+  background-color: var(--interjud-blue);
+}
+
+.filterFields {
+  height: auto;
+  width: 100%;
+  gap: 10px;
+  display: flex;
+}
+.filterFields .filterFieldSingle {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-size: 13px;
+  padding: 2px 6px;
+  background-color: var(--interjud-blue);
+}
+.filterFields .filterFieldSingle * {
+  margin-left: 4px;
+}
+.filterFields .filterFieldSingle span {
+  display: flex;
+  align-items: center;
+}
+.filterFields .filterFieldSingle svg {
+  font-size: 17px;
+  cursor: pointer;
 }/*# sourceMappingURL=globals.css.map */

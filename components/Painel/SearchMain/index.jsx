@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import Credit from '../../Credit'
+import FilterSearch from '../FilterSearch'
 
 const SearchMain = ({ credits }) => {
     const { sideMenuOpen, searchMainActive, setSearchMainActive, searchContext } = useAuth()
@@ -55,6 +56,7 @@ const SearchMain = ({ credits }) => {
         <main className={`searchMain ${sideMenuOpen ? 'active' : ''}`}>
             <AiFillCloseCircle onClick={() => { handleSearchMainActive() }} className='searchMainClose' />
             <div className="creditsWrapper">
+            <FilterSearch/>
 
                 {
                     searchedCredits ?

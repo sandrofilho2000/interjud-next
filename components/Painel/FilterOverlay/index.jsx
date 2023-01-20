@@ -43,8 +43,6 @@ const FilterOverlay = () => {
         }else{
             setSearchMainActive(false)
         }
-
-        console.log("SEARCH MAIN: ", searchMainActive, searchContext, obj)
     }
 
     return (

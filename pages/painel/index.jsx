@@ -33,7 +33,7 @@ const Painel = () => {
                 <meta name="og:image" content="https://www.interjud.com.br/img/logo.webp" />
             </Head>
             <SideMenu />
-            <MainTop />
+            <MainTop page="home"/>
             {
                 !searchMainActive ? (
                     <HomeMain credits={credits} />

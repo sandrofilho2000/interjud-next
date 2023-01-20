@@ -1,46 +1,28 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { use, useEffect, useState } from 'react'
+import { AiFillCloseCircle } from 'react-icons/ai'
+import FilterSearch from '../../FilterSearch'
 import { FaStar, FaStarHalf } from 'react-icons/fa'
 import { useAuth } from '../../../../context/AuthContext'
 import Pagination from '../../../Pagination'
 
 
 const MyCreditsMain = ({ credits }) => {
-  const { sideMenuOpen, setSideMenuOpen, newCreditOverlayActive, setNewCreditOverlayActive } = useAuth()
+  const { sideMenuOpen, setNewCreditOverlayActive, searchContext, setSearchContext } = useAuth()
 
   const [currPage, setCurrPage] = useState(1)
   const [creditsPerPage, setCreditsPerPage] = useState(4)
+  const [showingCredits, setShowingCredits] = useState([])
   const [showPagination, setShowPagination] = useState(true)
   const [paginationClass, setPaginationClass] = useState('')
 
   const lastCreditIndex = currPage * creditsPerPage
   const firstCreditIndex = lastCreditIndex - creditsPerPage
 
-  const showingCredits = credits.slice(firstCreditIndex, lastCreditIndex)
-
-  useEffect(() => {
-    if (currPage !== 0 || currPage !== Math.ceil((credits.length / creditsPerPage))) {
-      setPaginationClass("")
-    }
-
-    if (currPage === 1) {
-      setPaginationClass("prevNotAllowed")
-    }
-
-    if (currPage === Math.ceil((credits.length / creditsPerPage))) {
-      setPaginationClass("nextNotAllowed")
-    }
-
-    if(credits.length < creditsPerPage){
-      setShowPagination(false)
-    }else{
-      setShowPagination(true)
-    }
-
-    handleCurrPage(currPage)
-
-  }, [currPage, credits])
+  let isEmpty = (obj) => {
+    return Object.values(obj).every(x => x === null || x === '');
+  }
 
   const handleCurrPage = (nextPage) => {
     setCurrPage(nextPage)
@@ -50,11 +32,80 @@ const MyCreditsMain = ({ credits }) => {
     setCurrPage(currPage + next)
   }
 
+  useEffect(() => {
+    let list = [...credits]
+
+    if (!isEmpty(searchContext)) {
+      list.filter((item) => {
+        if (searchContext.name) {
+          list = list.filter((item) => {
+            return item.name.toLowerCase().includes(searchContext.name.toLowerCase())
+          })
+        }
+        if (searchContext.classe) {
+          list = list.filter((item) => {
+            return item.class.toLowerCase().includes(searchContext.classe.toLowerCase())
+          })
+        }
+        if (searchContext.min) {
+          list = list.filter((item) => {
+            return Number(item.value) >= Number(searchContext.min)
+          })
+        }
+        if (searchContext.max) {
+          list = list.filter((item) => {
+            return Number(item.value) <= Number(searchContext.max)
+          })
+        }
+        if (searchContext.rating) {
+          list = list.filter((item) => {
+            return Number(item.rating) >= Number(searchContext.rating)
+          })
+        }
+      })
+    }
+
+    setShowingCredits(list)
+
+    if (showingCredits.length < creditsPerPage) {
+      setShowPagination(false)
+    } else {
+      setShowPagination(true)
+    }
+
+    if (currPage !== 0 || currPage !== Math.ceil((list.length / creditsPerPage))) {
+      setPaginationClass("")
+    }
+
+    if (currPage === 1) {
+      setPaginationClass("prevNotAllowed")
+    }
+
+    if (currPage === Math.ceil((list.length / creditsPerPage))) {
+      setPaginationClass("nextNotAllowed")
+    }
+    if (list.length <= creditsPerPage) {
+      setShowPagination(false)
+    } else {
+      setShowPagination(true)
+    }
+
+    handleCurrPage(currPage)
+
+  }, [currPage, searchContext, credits])
+
+  const listCredits = showingCredits.slice(firstCreditIndex, lastCreditIndex)
+
   return (
     <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
       <h1>
         MEUS CRÉDITOS
       </h1>
+
+      {
+        !isEmpty(searchContext) &&
+        <FilterSearch/>
+      }
 
       <div className='myCreditsMain'>
         <div className="myCreditsContainer">
@@ -97,7 +148,7 @@ const MyCreditsMain = ({ credits }) => {
               </th>
             </tr>
 
-            {showingCredits.map((item, index) => {
+            {listCredits.map((item, index) => {
               let value = item.value && !isNaN(item.value) ? Number(item.value) : ''
               value = value.toLocaleString('pt-BR', {
                 style: 'currency',

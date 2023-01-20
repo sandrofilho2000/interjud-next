@@ -25,6 +25,7 @@ const SideMenuContainer = () => {
                         </span>
                     </Link>
                 </li>
+
                 <li>
                     <Link href="./">
                         <span className='icon' title="Home">
@@ -79,6 +80,7 @@ const SideMenuContainer = () => {
                         </span>
                     </Link>
                 </li>
+
                 <li>
                     <Link href="#">
                         <span className='icon' title="Perfil">
@@ -100,6 +102,7 @@ const SideMenuContainer = () => {
                         </span>
                     </Link>
                 </li>
+
                 <li>
                     <Link href="#">
                         <span className='icon' title="Notificações">
@@ -110,6 +113,7 @@ const SideMenuContainer = () => {
                         </span>
                     </Link>
                 </li>
+
                 <li>
                     <Link href="../">
                         <span className='icon' title="Notificações">
@@ -120,6 +124,7 @@ const SideMenuContainer = () => {
                         </span>
                     </Link>
                 </li>
+                
                 <li>
                     <Link
                         onClick={() => {

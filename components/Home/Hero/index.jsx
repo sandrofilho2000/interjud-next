@@ -3,12 +3,15 @@ import React, { useEffect, useRef } from 'react'
 import heroBg from '../../../public/assets/images/heroBG.webp'
 import Button from '../../Button'
 import Typed from "typed.js";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Hero = () => {
 
     const el = useRef(null);
 
     useEffect(() => {
+        AOS.init();
         const typed = new Typed(el.current, {
             strings: ["NEGOCIE SEU PROCESSO JUDICIAL", "NEGOCIE SEU PROCESSO JUDICIAL", "NEGOCIE SEU PROCESSO JUDICIAL", "NEGOCIE SEU PROCESSO JUDICIAL"], // Strings to display
             // Speed settings, try diffrent values untill you get good results
@@ -41,8 +44,8 @@ const Hero = () => {
                         <h1 ref={el}>NEGOCIE SEU PROCESSO JUDICIAL</h1>
                     </div>
                     <div className="hero-btn">
-                        <Button text="VENDA SEU CRÉDITO" link="https://www.interjud.com.br/cadastrar-se-vendedor" />
-                        <Button text="COMPRE UM CRÉDITO" link="https://www.interjud.com.br/cadastrar-se-investidor" />
+                        <Button text="VENDA SEU CRÉDITO" aos={'fade-left'} link="https://www.interjud.com.br/cadastrar-se-vendedor" />
+                        <Button text="COMPRE UM CRÉDITO" aos={'fade-right'} link="https://www.interjud.com.br/cadastrar-se-investidor" />
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ const Vantagens = () => {
                     <Tilt className="Tilt"
                         {...tiltOptions}
                     >
-                        <div className="single-vantagens">
+                        <div className="single-vantagens" >
                             <div className="vantagens-number">01</div>
                             <div className="vantagens-img">
                                 <ImHammer2 />
@@ -42,7 +42,7 @@ const Vantagens = () => {
                     <Tilt className="Tilt"
                         {...tiltOptions}
                     >
-                        <div  className="single-vantagens">
+                        <div  className="single-vantagens" >
                             <div className="vantagens-number">02</div>
                             <div className="vantagens-img">
                                 <GiInjustice />
@@ -57,7 +57,7 @@ const Vantagens = () => {
                     <Tilt className="Tilt"
                         {...tiltOptions}
                     >
-                        <div  className="single-vantagens">
+                        <div  className="single-vantagens" >
                             <div className="vantagens-number">03</div>
                             <div className="vantagens-img">
                                 <SiFastly />
@@ -72,7 +72,7 @@ const Vantagens = () => {
                     <Tilt className="Tilt"
                         {...tiltOptions}
                     >
-                        <div  className="single-vantagens">
+                        <div  className="single-vantagens" >
                             <div className="vantagens-number">04</div>
                             <div className="vantagens-img">
                                 <FaStar />

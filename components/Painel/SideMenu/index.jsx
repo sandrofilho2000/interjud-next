@@ -27,7 +27,7 @@ const SideMenuContainer = () => {
                 </li>
 
                 <li>
-                    <Link href="./">
+                    <Link href="./home">
                         <span className='icon' title="Home">
                             <AiFillHome />
                         </span>
@@ -38,7 +38,7 @@ const SideMenuContainer = () => {
                 </li>
 
                 <li>
-                    <Link href="./painel/my_credits">
+                    <Link href="./my_credits">
                         <span className='icon' title="Créditos">
                             <AiFillCreditCard />
                         </span>

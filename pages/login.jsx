@@ -22,7 +22,7 @@ const Login = () => {
         e.preventDefault()
         try {
             await login(data.email, data.password)
-            router.push('/painel')
+            router.push('/painel/home')
         } catch (err) {
             console.log(err)
         }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaStar, FaStarHalf, FaInfoCircle } from 'react-icons/fa'
 import { FiSend } from 'react-icons/fi'
 import { AiFillCloseCircle } from 'react-icons/ai'
@@ -9,9 +9,9 @@ import { useAuth } from '../../context/AuthContext'
 const OfferOverlay = () => {
     const [favToggle, setFavToggle] = useState(false)
     const [infoActive, setInfoActive] = useState(false)
-    const [offerValue, setOfferValue] = useState(null)
     const { offerOverlayActive, setOfferOverlayActive, currCreditOffer, systemNotificationActive, setSystemNotificationActive} = useAuth()
     const {} = useAuth()
+    const offerValue = useRef()
     
 
     let [tiltOptions, setTiltOptions] = useState({
@@ -57,7 +57,8 @@ const OfferOverlay = () => {
     }
 
     let handleOfferCurrency = (e) => {
-        e.currentTarget.value = passToCurrency(e.currentTarget.value)
+        let valor = passToCurrency(e.currentTarget.value)
+        e.currentTarget.value = valor.replaceAll("R$", '').trim()
     }
 
     let handleInfoActive = () => {
@@ -83,13 +84,13 @@ const OfferOverlay = () => {
     let handleOfferActive = (e) => {
         setOfferOverlayActive(false)
         setInfoActive(false)
-        setOfferValue(null)
+        offerValue.current.value = ''
     }
 
     let handleOfferSubmit = (e) =>{
         e.preventDefault()
         
-        let valor = offerValue
+        let valor = offerValue.current.value
         valor = valor.replaceAll(".", "")
         valor = valor.replaceAll(",", ".")
         valor = Number(valor)
@@ -152,7 +153,7 @@ const OfferOverlay = () => {
     
                         <div className="offerInput">
                             <span>R$</span>
-                            <input type="text" onChange={(e)=>{setOfferValue(e.target.value)}} onBlur={(e) => { handleOfferCurrency(e) }} placeholder='Sua Oferta' name="offer" id="offer" />
+                            <input type="text" ref={offerValue} onBlur={(e) => { handleOfferCurrency(e) }} placeholder='Sua Oferta' name="offer" id="offer" />
                             <label>
                                 <input style={{display: 'none'}} type="submit" value="" />
                                 <FiSend />

@@ -11,7 +11,7 @@ import HomeMain from '../../components/Painel/Home/HomeMain'
 
 
 const Painel = () => {
-    const { searchContext } = useAuth()
+    const { searchMainActive } = useAuth()
 
     let { credits } = useCredits()
 
@@ -34,8 +34,15 @@ const Painel = () => {
             </Head>
             <SideMenu />
             <MainTop />
-            <HomeMain credits={credits} />
-            <SearchMain credits={credits} />
+            {
+                !searchMainActive ? (
+                    <HomeMain credits={credits} />
+                )
+                : (
+
+                    <SearchMain credits={credits} />
+                )
+            }
             <FilterOverlay />
         </div>
     )

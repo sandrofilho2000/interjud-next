@@ -4,7 +4,7 @@ import { FaStar, FaStarHalf } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 const FilterOverlay = () => {
-    const { filterOverlayActive, setFilterOverlayActive, searchContext, setSearchContext } = useAuth()
+    const { filterOverlayActive, setFilterOverlayActive, searchContext, setSearchContext, searchMainActive, setSearchMainActive } = useAuth()
     const [filterRatingValue, setFilterRatingValue] = useState('')
     const [halfStar, setHalfStar] = useState(false)
     const [fullStars, setFullStars] = useState(0)
@@ -16,6 +16,10 @@ const FilterOverlay = () => {
 
     !isNaN(filterRatingValue) ? Math.floor(filterRatingValue) : 0
     let stars = Array.from(Array(fullStars).keys())
+
+    let isEmpty = (obj) => {
+        return Object.values(obj).every(x => x === null || x === '');
+    }
 
     useEffect(()=>{
         setHalfStar(Number.isInteger(Number(filterRatingValue)))
@@ -34,6 +38,13 @@ const FilterOverlay = () => {
 
         setSearchContext(obj)
         setFilterOverlayActive(false)
+        if(!isEmpty(obj)){
+            setSearchMainActive(true)
+        }else{
+            setSearchMainActive(false)
+        }
+
+        console.log("SEARCH MAIN: ", searchMainActive, searchContext, obj)
     }
 
     return (

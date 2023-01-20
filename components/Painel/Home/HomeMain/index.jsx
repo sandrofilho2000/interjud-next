@@ -9,23 +9,22 @@ const HomeMain = ({ credits }) => {
         return Object.values(obj).every(x => x === null || x === '');
     }
 
-    if (isEmpty(searchContext)) {
-        return (
-            <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
-                <h1>
-                    HOME
-                </h1>
+    return (
+        <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
+            <h1>
+                HOME
+            </h1>
 
-                <div className='creditsWrapper'>
-                    <CreditsSlider credits={credits} text="MAIS RECENTES" />
-                    <CreditsSlider credits={credits} text="5 ESTRELAS" />
-                    <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
-                    <CreditsSlider credits={credits} text="FAVORITOS" />
-                    <CreditsSlider credits={credits} text="MAIS POPULARES" />
-                </div>
-            </main>
-        )
-    }
+            <div className='creditsWrapper'>
+                <CreditsSlider credits={credits} text="MAIS RECENTES" />
+                <CreditsSlider credits={credits} text="5 ESTRELAS" />
+                <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
+                <CreditsSlider credits={credits} text="FAVORITOS" />
+                <CreditsSlider credits={credits} text="MAIS POPULARES" />
+            </div>
+        </main>
+    )
+
 }
 
 export default HomeMain

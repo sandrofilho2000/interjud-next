@@ -25,6 +25,11 @@ const MainTop = () => {
     let handleSearchMainActive = (e) => {
 
         setSearchContext({name: inputSearch.current.value})
+        if(inputSearch.current.value){
+            setSearchMainActive(true)
+        }else{
+            setSearchMainActive(false)
+        }
     }
 
     return (

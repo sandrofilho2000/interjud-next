@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import SideMenu from '../../components/Painel/SideMenu'
 import { useAuth } from '../../context/AuthContext'
 import SearchMain from '../../components/Painel/SearchMain'
@@ -11,8 +11,19 @@ import NewCreditOverlay from '../../components/Painel/MyCredits/NewCreditOverlay
 
 
 const Painel = () => {
-    const { searchContext } = useAuth()
+    const { searchMainActive, setSearchMainActive, searchContext } = useAuth()
     const { credits } = useCredits()
+
+    let isEmpty = (obj) => {
+        return Object.values(obj).every(x => x === null || x === '');
+    }
+
+    useEffect(()=>{
+        if(isEmpty(credits[0])){
+            setSearchMainActive(false)
+        }
+    },[])
+
     return (
         <div>
             <Head>
@@ -32,8 +43,15 @@ const Painel = () => {
             </Head>
             <SideMenu />
             <MainTop />
-            <MyCreditsMain credits={credits} />
-            <SearchMain credits={credits} />
+            {
+                !searchMainActive ? (
+                    <MyCreditsMain credits={credits} />
+                )
+                : (
+
+                    <SearchMain credits={credits} />
+                )
+            }
             <FilterOverlay />
             <NewCreditOverlay />
         </div>

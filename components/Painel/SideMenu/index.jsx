@@ -9,8 +9,7 @@ import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
 
 const SideMenuContainer = () => {
-    const { sideMenuOpen, setSideMenuOpen } = useAuth()
-    const { user, logout } = useAuth()
+    const { sideMenuOpen, setSideMenuOpen, user, logout } = useAuth()
     const router = useRouter()
 
     return (

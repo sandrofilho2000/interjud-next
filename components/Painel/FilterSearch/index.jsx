@@ -20,7 +20,7 @@ const FilterSearch = () => {
             {
                 searchContext.classe && 
                 <div className="filterFieldSingle filterClasse">
-                    Réu:<span className="filterClasseValue">{searchContext.classe}</span> <span> <AiFillCloseCircle onClick={()=>{setSearchContext({...searchContext, classe: null})}} /> </span>
+                    Classe:<span className="filterClasseValue">{searchContext.classe}</span> <span> <AiFillCloseCircle onClick={()=>{setSearchContext({...searchContext, classe: null})}} /> </span>
                 </div>
             }
             {

@@ -1,0 +1,28 @@
+.filterFields{
+    height: auto;
+    width: 100%;
+    gap: 10px;
+    display: flex;
+  
+    .filterFieldSingle{
+      display: flex;
+      align-items: center;
+      height: 30px;
+      font-size: 13px;
+      padding: 2px 6px;
+      background-color: var(--interjud-blue);
+      *{
+        margin-left: 4px;
+      }
+  
+      span{
+        display: flex;
+        align-items: center;
+      }
+  
+      svg{
+        font-size: 17px;
+        cursor: pointer;
+      }
+    }
+  }

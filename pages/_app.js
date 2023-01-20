@@ -5,6 +5,11 @@ import Script from 'next/script'
 import ProtectedRoute from '../components/ProtectedRoute'
 import SystemNotification from '../components/SystemNotification'
 import OfferOverlay from '../components/OfferOverlay'
+import Router from 'next/router';
+
+Router.events.on("routeChangeError", (err, url, { shallow }) => {
+    console.log("Navigating to: " + "url: " + url, {cancelled: err.cancelled} )
+});
 
 const noAuthRequired = ['/', '/login', '/signup']
 

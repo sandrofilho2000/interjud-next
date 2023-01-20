@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
 
 import Logo from '../../public/assets/images/logo.webp'
 
 const Footer = () => {
+    const { user } = useAuth()
     const [subFooterActive, setSubFooterActive] = useState(false)
 
     let handleSubFooterActive = () => {
@@ -19,7 +21,16 @@ const Footer = () => {
                         <li className="menu-submenu-desktop"><Link href="#header">INÍCIO</Link></li>
                         <li><Link href="#sobre-nos">SOBRE NÓS</Link></li>
                         <li><Link href="#contato">CONTATO</Link></li>
-                        <li><Link href="/login">LOGIN</Link></li>
+                        {
+
+                            user ? (
+                                <li><Link href="/painel">PAINEL</Link></li>
+                            )
+                                :
+                                (
+                                    <li><Link href="/login">LOGIN</Link></li>
+                                )
+                        }
                     </ul>
                 </div>
                 <h1 className="logo">

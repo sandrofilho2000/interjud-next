@@ -1414,6 +1414,32 @@ main h1 {
   font-weight: bold;
 }
 
+.filterFields {
+  height: auto;
+  width: 100%;
+  gap: 10px;
+  display: flex;
+}
+.filterFields .filterFieldSingle {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-size: 13px;
+  padding: 2px 6px;
+  background-color: var(--interjud-blue);
+}
+.filterFields .filterFieldSingle * {
+  margin-left: 4px;
+}
+.filterFields .filterFieldSingle span {
+  display: flex;
+  align-items: center;
+}
+.filterFields .filterFieldSingle svg {
+  font-size: 17px;
+  cursor: pointer;
+}
+
 .creditsWrapper {
   max-height: 360px;
 }
@@ -2093,18 +2119,6 @@ main.searchMain .creditsWrapper > .Tilt {
   margin-left: 10px;
 }
 
-form.formLogin, form.formSignup {
-  width: 300px;
-  height: 450px;
-  background-color: var(--main-bg-color);
-  display: flex;
-  flex-direction: column;
-}
-form.formLogin input, form.formSignup input {
-  background-color: transparent;
-  color: var(--txt-color);
-}
-
 .container {
   height: auto;
   width: 90%;
@@ -2201,4 +2215,156 @@ section:nth-of-type(even) {
 .filterFields .filterFieldSingle svg {
   font-size: 17px;
   cursor: pointer;
+}
+
+main.loginMain {
+  position: relative;
+  display: flex;
+  top: unset;
+  left: unset;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 190px);
+}
+main.loginMain > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+main.loginMain form.formLogin,
+main.loginMain form.formSignup {
+  background: var(--main-bg-color);
+  width: 320px;
+  position: absolute;
+  height: 420px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  border: 1px solid var(--interjud-blue);
+  padding: 40px;
+}
+main.loginMain form.formLogin > svg,
+main.loginMain form.formSignup > svg {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  top: -13px;
+  font-size: 60px;
+  color: var(--interjud-blue);
+}
+main.loginMain form.formLogin > svg path,
+main.loginMain form.formSignup > svg path {
+  stroke: var(--interjud-blue);
+}
+main.loginMain form.formLogin input:not([type=submit]),
+main.loginMain form.formSignup input:not([type=submit]) {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-left: 5px;
+  font-size: 17px;
+  height: 40px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--interjud-blue);
+}
+main.loginMain form.formLogin input:not([type=submit]):focus-visible,
+main.loginMain form.formSignup input:not([type=submit]):focus-visible {
+  background-color: transparent;
+}
+main.loginMain form.formLogin input:not([type=submit])::-moz-placeholder, main.loginMain form.formSignup input:not([type=submit])::-moz-placeholder {
+  color: var(--txt-color);
+}
+main.loginMain form.formLogin input:not([type=submit]):-ms-input-placeholder, main.loginMain form.formSignup input:not([type=submit]):-ms-input-placeholder {
+  color: var(--txt-color);
+}
+main.loginMain form.formLogin input:not([type=submit])::placeholder,
+main.loginMain form.formSignup input:not([type=submit])::placeholder {
+  color: var(--txt-color);
+}
+main.loginMain form.formLogin input[type=submit],
+main.loginMain form.formSignup input[type=submit] {
+  align-self: flex-start;
+  background-color: var(--interjud-blue);
+  width: 200px;
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-weight: bold;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+main.loginMain form.formLogin input[type=submit]:hover,
+main.loginMain form.formSignup input[type=submit]:hover {
+  opacity: 0.8;
+}
+main.loginMain form.formLogin .links,
+main.loginMain form.formSignup .links {
+  width: 100%;
+  margin: 15px auto;
+  display: flex;
+  justify-content: space-between;
+}
+main.loginMain form.formLogin .links a,
+main.loginMain form.formSignup .links a {
+  font-size: 13px;
+  width: 100%;
+  display: block;
+  text-decoration: underline;
+}
+main.loginMain form.formLogin .links .resetPassword,
+main.loginMain form.formSignup .links .resetPassword {
+  text-align: right;
+}
+main.loginMain form.formLogin .links .signUp,
+main.loginMain form.formSignup .links .signUp {
+  text-align: left;
+}
+main.loginMain form.formLogin .loginWith,
+main.loginMain form.formSignup .loginWith {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  bottom: -13px;
+}
+main.loginMain form.formLogin .loginWith p,
+main.loginMain form.formSignup .loginWith p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+main.loginMain form.formLogin .loginWith .icons,
+main.loginMain form.formSignup .loginWith .icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+main.loginMain form.formLogin .loginWith .icons > div,
+main.loginMain form.formSignup .loginWith .icons > div {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 30px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+main.loginMain form.formLogin .loginWith .icons > div:hover,
+main.loginMain form.formSignup .loginWith .icons > div:hover {
+  opacity: 0.8;
+}
+main.loginMain form.formLogin .loginWith .icons > div.facebook,
+main.loginMain form.formSignup .loginWith .icons > div.facebook {
+  background-color: #074a9d;
+}
+main.loginMain form.formLogin .loginWith .icons > div.facebook path,
+main.loginMain form.formSignup .loginWith .icons > div.facebook path {
+  fill: white;
 }/*# sourceMappingURL=globals.css.map */

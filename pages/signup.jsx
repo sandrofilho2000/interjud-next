@@ -1,8 +1,14 @@
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import { useAuth } from '../context/AuthContext'
-
+import login_bg from '../public/assets/images/login_bg.png'
+import Image from 'next/image'
+import { AiOutlineUserAdd } from 'react-icons/ai'
+import { FcGoogle } from 'react-icons/fc'
+import { FaFacebookF } from 'react-icons/fa'
+import Link from 'next/link'
 const Signup = () => {
     const { user, signup } = useAuth()
     const [data, setData] = useState({
@@ -26,47 +32,70 @@ const Signup = () => {
             style={{
                 margin: 'auto',
             }}
-
-            
-        >            <Navbar/>
-            <h1 className="text-center my-3 ">Signup</h1>
-            <Form className='formSignup' onSubmit={handleSignup}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
+        >
+            <Navbar />
+            <main className='loginMain'>
+                <Image width={1024} height={560} src={login_bg} />
+                <form onSubmit={handleSignup} className="formLogin">
+                    <AiOutlineUserAdd />
+                    {/* <RiLoginBoxFill/> */}
+                    <input
                         type="email"
-                        placeholder="Enter email"
-                        required
+                        name="email"
+                        id="email"
+                        placeholder='E-mail...'
                         onChange={(e) =>
                             setData({
                                 ...data,
                                 email: e.target.value,
                             })
                         }
-                        value={data.email}
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
+                        value={data.email} />
+                    <input
                         type="password"
-                        placeholder="Password"
-                        required
+                        name="password"
+                        id="password"
+                        placeholder='Senha...'
                         onChange={(e) =>
                             setData({
                                 ...data,
                                 password: e.target.value,
                             })
                         }
-                        value={data.password}
-                    />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Signup
-                </Button>
-            </Form>
+                        value={data.password} />
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder='Repetir senha...'
+                        onChange={(e) =>
+                            setData({
+                                ...data,
+                                password: e.target.value,
+                            })
+                        }
+                        value={data.password} />
+                    <input type="submit" value="SE CADASTRAR" />
+                    <div className="links">
+                        <Link className='signUp' href="/login">Já tenho uma conta</Link>
+                        <Link className='resetPassword' href="#">Esqueci minha senha</Link>
+                    </div>
+                    <div className="loginWith">
+                        <p>
+                            ou continue com
+                        </p>
+                        <div className="icons">
+                            <div className="facebook">
+                                <FaFacebookF />
+                            </div>
+                            <div className="google">
+                                <FcGoogle />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </main>
+            <Footer />
         </div>
     )
 }

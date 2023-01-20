@@ -42,6 +42,7 @@ body {
 @import "components/painel/sidemenu";
 @import "components/painel/main";
 @import "components/painel/mainTop";
+@import "components/painel/filterFields";
 @import "components/painel/home/homeMain";
 @import "components/painel/myCredits/myCreditsMain";
 @import "components/painel/myCredits/newCreditsOverlay";
@@ -139,32 +140,172 @@ section:nth-of-type(even) {
   }
 }
 
-.filterFields{
+.filterFields {
   height: auto;
   width: 100%;
   gap: 10px;
   display: flex;
 
-  .filterFieldSingle{
+  .filterFieldSingle {
     display: flex;
     align-items: center;
     height: 30px;
     font-size: 13px;
     padding: 2px 6px;
     background-color: var(--interjud-blue);
-    *{
+    * {
       margin-left: 4px;
     }
 
-    span{
+    span {
       display: flex;
       align-items: center;
     }
 
-    svg{
+    svg {
       font-size: 17px;
       cursor: pointer;
     }
   }
 }
 
+main.loginMain {
+  position: relative;
+  display: flex;
+  top: unset;
+  left: unset;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 190px);
+  > img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  form.formLogin,
+  form.formSignup {
+    background: var(--main-bg-color);
+    width: 320px;
+    position: absolute;
+    height: 420px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border: 1px solid var(--interjud-blue);
+    padding: 40px;
+    > svg{
+      margin: 0 auto;
+      display: block;
+      position: relative;
+      top: -13px;
+      font-size: 60px;
+      color: var(--interjud-blue);
+      path{
+        stroke: var(--interjud-blue);
+      }
+    }
+
+    input:not([type=submit]) {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      padding-left: 5px;
+      font-size: 17px;
+      height: 40px;
+      margin-top: 10px;
+      border-bottom: 1px solid var(--interjud-blue);
+
+      &:focus-visible {
+        background-color: transparent;
+      }
+
+      &::placeholder {
+        color: var(--txt-color);
+      }
+    }
+
+    input[type=submit] {
+      align-self: flex-start;
+      background-color: var(--interjud-blue);
+      width: 200px;
+      margin-top: 15px;
+      padding: 10px 15px;
+      font-weight: bold;
+      width: 100%;
+      border: none;
+      outline: none;
+      padding-left: 5px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover{
+        opacity: 0.8;
+      }
+    }
+
+    .links{
+      width: 100%;
+      margin: 15px auto;
+      display: flex;
+      justify-content: space-between;
+
+      a{
+        font-size: 13px;
+        width: 100%;
+        display: block;
+        text-decoration: underline;
+      }
+      .resetPassword{
+        text-align: right;
+      }
+      .signUp{
+        text-align: left
+        ;
+      }
+    }
+
+    .loginWith{
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      bottom: -13px;
+      p{
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .icons{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        > div{
+          display: grid;
+          place-items: center;
+          width: 70px;
+          height: 40px;
+          border-radius: 10px;
+          background-color: white;
+          font-size: 30px;
+          transition: 0.3s;
+
+          &:hover{
+            opacity: 0.8;
+          }
+          
+          cursor: pointer;
+          &.facebook{
+            background-color: #074a9d;
+            path{
+              fill: white
+            }
+          }
+        }
+      }
+    }
+  }
+}

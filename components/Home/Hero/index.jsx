@@ -16,6 +16,7 @@ const Hero = () => {
             strings: [ "NEGOCIE SEU PROCESSO JUDICIAL", "GARANTA AGORA SEUS DIREITOS", "ANTECIPE SEUS SONHOS COM A INTERJUD", "RECEBA PROPOSTAS HOJE MESMO"], // Strings to display
             // Speed settings, try diffrent values untill you get good results
 
+            startDelay: 300,
             typeSpeed: 100,
             backSpeed: 100,
             backDelay: 100,

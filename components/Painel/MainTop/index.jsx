@@ -39,7 +39,7 @@ const MainTop = ({ page }) => {
     }
 
     useEffect(() => {
-        setSearchContext([{}])
+        setSearchContext({})
     }, [])
 
     return (

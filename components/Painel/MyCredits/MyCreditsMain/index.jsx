@@ -89,30 +89,32 @@ const MyCreditsMain = ({ credits }) => {
 
     if (!isEmpty(searchContext)) {
       list.filter((item) => {
-        if (searchContext.name) {
-          list = list.filter((item) => {
-            return item.name.toLowerCase().includes(searchContext.name.toLowerCase())
-          })
-        }
-        if (searchContext.classe) {
-          list = list.filter((item) => {
-            return item.class.toLowerCase().includes(searchContext.classe.toLowerCase())
-          })
-        }
-        if (searchContext.min) {
-          list = list.filter((item) => {
-            return Number(item.value) >= Number(searchContext.min)
-          })
-        }
-        if (searchContext.max) {
-          list = list.filter((item) => {
-            return Number(item.value) <= Number(searchContext.max)
-          })
-        }
-        if (searchContext.rating) {
-          list = list.filter((item) => {
-            return Number(item.rating) >= Number(searchContext.rating)
-          })
+        if(!isEmpty(item)){
+          if (searchContext.name) {
+            list = list.filter((item) => {
+              return item.name.toLowerCase().includes(searchContext.name.toLowerCase())
+            })
+          }
+          if (searchContext.classe) {
+            list = list.filter((item) => {
+              return item.class.toLowerCase().includes(searchContext.classe.toLowerCase())
+            })
+          }
+          if (searchContext.min) {
+            list = list.filter((item) => {
+              return Number(item.value) >= Number(searchContext.min)
+            })
+          }
+          if (searchContext.max) {
+            list = list.filter((item) => {
+              return Number(item.value) <= Number(searchContext.max)
+            })
+          }
+          if (searchContext.rating) {
+            list = list.filter((item) => {
+              return Number(item.rating) >= Number(searchContext.rating)
+            })
+          }
         }
       })
     }
@@ -144,7 +146,6 @@ const MyCreditsMain = ({ credits }) => {
     }
 
     handleCurrPage(currPage)
-    console.log(showingCredits)
   }, [currPage, searchContext, credits, ordenation])
 
   const listCredits = showingCredits.slice(firstCreditIndex, lastCreditIndex)

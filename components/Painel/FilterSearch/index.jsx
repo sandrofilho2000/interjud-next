@@ -5,10 +5,6 @@ import { useAuth } from '../../../context/AuthContext'
 const FilterSearch = () => {
     const {searchContext, setSearchContext} = useAuth()
 
-    useEffect(()=>{
-        console.log(searchContext.rating)
-    }, [])
-
     return (
         <div className="filterFields">
             {

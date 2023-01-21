@@ -19,7 +19,7 @@ const Hero = () => {
             startDelay: 300,
             typeSpeed: 50,
             backSpeed: 50,
-            backDelay: 100,
+            backDelay: 300,
             smartBackspace: true,
             loop: true,
             showCursor: false,

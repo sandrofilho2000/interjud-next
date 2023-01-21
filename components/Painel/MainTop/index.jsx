@@ -5,14 +5,13 @@ import { AiFillNotification } from 'react-icons/ai'
 import { FaFilter } from 'react-icons/fa'
 import { useAuth } from '../../../context/AuthContext'
 import Notifications from '../Notifications'
-import useCredits from '../../hooks/useCredits'
+
 
 const MainTop = ({ page }) => {
     const { sideMenuOpen, setSideMenuOpen, setSearchMainActive, setSearchContext, searchContext } = useAuth()
     const [notificationActive, setNotificationActive] = useState(false)
     const { filterOverlayActive, setFilterOverlayActive } = useAuth()
     const inputSearch = useRef()
-    const { credits } = useCredits()
 
     let handleSideMenuOpen = () => {
         setSideMenuOpen(!sideMenuOpen)
@@ -34,7 +33,7 @@ const MainTop = ({ page }) => {
                 break;
 
             case "my_credits":
-                console.log()
+                break;
         }
     }
 

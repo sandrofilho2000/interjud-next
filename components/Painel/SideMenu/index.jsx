@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { memo } from 'react'
-import Avatar from '../../../public/assets/images/Depoimentos/foto1.jpg'
+import React, { memo, useEffect } from 'react'
 import { FaGlobeAmericas, FaHandshake } from 'react-icons/fa'
 import { BiLogOut } from 'react-icons/bi'
 import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage, AiFillNotification, AiFillHome } from 'react-icons/ai'
@@ -9,19 +8,19 @@ import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
 
 const SideMenuContainer = () => {
-    const { sideMenuOpen, setSideMenuOpen, user, logout } = useAuth()
+    const { sideMenuOpen, setSideMenuOpen, userInfo, logout, credits } = useAuth()
     const router = useRouter()
-
+ 
     return (
         <aside className={`sideMenu ${sideMenuOpen ? 'active' : ''}`}>
             <ul>
                 <li>
                     <Link href="#">
                         <span className='icon' title="Olá, Sandro">
-                            <Image src={Avatar} width={50} height={50} alt="Logo interjud da área logada" />
+                            <Image src={userInfo.avatar} width={50} height={50} alt="Logo interjud da área logada" />
                         </span>
                         <span className='icon_text'>
-                            Olá, Sandro
+                            Olá, {userInfo.first_name}
                         </span>
                     </Link>
                 </li>

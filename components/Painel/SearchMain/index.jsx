@@ -4,8 +4,8 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import Credit from '../../Credit'
 import FilterSearch from '../FilterSearch'
 
-const SearchMain = ({ credits }) => {
-    const { sideMenuOpen, searchMainActive, setSearchMainActive, searchContext } = useAuth()
+const SearchMain = () => {
+    const { sideMenuOpen, searchMainActive, setSearchMainActive, searchContext, credits } = useAuth()
     const [searchedCredits, setSearchedCredits] = useState([])
 
     let handleSearchMainActive = () => {

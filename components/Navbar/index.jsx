@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext'
 import Logo from '../../public/assets/images/logo.webp'
 
 const Navbar = () => {
-    const {user} = useAuth()
+    const { user } = useAuth()
     const [subMenuActive, setSubMenuActive] = useState(false)
 
     let handleSubMenuActive = () =>{

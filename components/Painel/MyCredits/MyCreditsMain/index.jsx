@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiFillCloseCircle, AiFillCaretDown } from 'react-icons/ai'
 import FilterSearch from '../../FilterSearch'
 import { FaStar, FaStarHalf } from 'react-icons/fa'
@@ -8,8 +8,8 @@ import { useAuth } from '../../../../context/AuthContext'
 import Pagination from '../../../Pagination'
 
 
-const MyCreditsMain = ({ credits }) => {
-  const { sideMenuOpen, setNewCreditOverlayActive, searchContext, setSearchContext } = useAuth()
+const MyCreditsMain = () => {
+  const { sideMenuOpen, setNewCreditOverlayActive, searchContext, setSearchContext, credits } = useAuth()
 
   const [currPage, setCurrPage] = useState(1)
   const [creditsPerPage, setCreditsPerPage] = useState(4)
@@ -89,7 +89,7 @@ const MyCreditsMain = ({ credits }) => {
 
     if (!isEmpty(searchContext)) {
       list.filter((item) => {
-        if(!isEmpty(item)){
+        if (!isEmpty(item)) {
           if (searchContext.name) {
             list = list.filter((item) => {
               return item.name.toLowerCase().includes(searchContext.name.toLowerCase())
@@ -164,155 +164,158 @@ const MyCreditsMain = ({ credits }) => {
       <div className='myCreditsMain'>
         <div className="myCreditsContainer">
           <table>
-            <tr>
-              <th onClick={() => setNewCreditOverlayActive(true)} className='th_add_credit'>
-                <span>
-                  +
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Nome
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'value', primitive: 'integer', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Valor
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'class', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Classe
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Fase processual
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'rating', primitive: 'integer', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Rating
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Recebimento em (aprox.)
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Nº processo
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Hon. contratuais
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Hon. sucubenciais
-                </span>
-              </th>
-              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
-                <AiFillCaretDown />
-                <span>
-                  Matéria
-                </span>
-              </th>
-            </tr>
+            <thead>
+              <tr>
+                <th onClick={() => setNewCreditOverlayActive(true)} className='th_add_credit'>
+                  <span>
+                    +
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Nome
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'value', primitive: 'integer', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Valor
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'class', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Classe
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Fase processual
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'rating', primitive: 'integer', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Rating
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Recebimento em (aprox.)
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Nº processo
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Hon. contratuais
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Hon. sucubenciais
+                  </span>
+                </th>
+                <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                  <AiFillCaretDown />
+                  <span>
+                    Matéria
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {listCredits.map((item, index) => {
+                let value = item.value && !isNaN(item.value) ? Number(item.value) : ''
+                value = value.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                })
 
-            {listCredits.map((item, index) => {
-              let value = item.value && !isNaN(item.value) ? Number(item.value) : ''
-              value = value.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              })
+                let halfStar = Number.isInteger(item.rating)
+                let fullStars = !isNaN(item.rating) ? Math.floor(item.rating) : 0
+                let stars = Array.from(Array(fullStars).keys())
 
-              let halfStar = Number.isInteger(item.rating)
-              let fullStars = !isNaN(item.rating) ? Math.floor(item.rating) : 0
-              let stars = Array.from(Array(fullStars).keys())
+                return (
+                  <tr key={item.id}>
+                    <td className='td_image'>
+                      <div className="img_container">
+                        <Image width={50} height={50} src={item.img} alt={item.name} />
+                      </div>
+                    </td>
+                    <td>
+                      <span className="credit_name">
+                        {item.name}
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_value">
+                        {value}
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_class">
+                        {item.class}
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_fase">
+                        Inicial
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_rating">
+                        {
+                          stars.map((item, index) => {
+                            return <FaStar key={index} />
+                          })
+                        }
 
-              return (
-                <tr key={item.id}>
-                  <td className='td_image'>
-                    <div className="img_container">
-                      <Image width={50} height={50} src={item.img} alt={item.name} />
-                    </div>
-                  </td>
-                  <td>
-                    <span className="credit_name">
-                      {item.name}
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_value">
-                      {value}
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_class">
-                      {item.class}
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_fase">
-                      Inicial
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_rating">
-                      {
-                        stars.map((item, index) => {
-                          return <FaStar key={index} />
-                        })
-                      }
+                        {
+                          !halfStar &&
+                          <FaStarHalf />
+                        }
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_tempo_recebimento">
+                        6 meses
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_num_processo">
+                        1045539-86.2021.8.26.0114
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_hon_contratuais">
+                        5%
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_hon_sucubenciais">
+                        10%
+                      </span>
+                    </td>
+                    <td>
+                      <span className="credit_materia">
+                        Descomissionamento
+                      </span>
+                    </td>
+                  </tr>
+                )
 
-                      {
-                        !halfStar &&
-                        <FaStarHalf />
-                      }
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_tempo_recebimento">
-                      6 meses
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_num_processo">
-                      1045539-86.2021.8.26.0114
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_hon_contratuais">
-                      5%
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_hon_sucubenciais">
-                      10%
-                    </span>
-                  </td>
-                  <td>
-                    <span className="credit_materia">
-                      Descomissionamento
-                    </span>
-                  </td>
-                </tr>
-              )
-
-            })}
+              })}
+            </tbody>
           </table>
         </div>
         {

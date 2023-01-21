@@ -4,14 +4,12 @@ import SideMenu from '../../components/Painel/SideMenu'
 import { useAuth } from '../../context/AuthContext'
 import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
-import useCredits from '../../components/hooks/useCredits'
 import MyCreditsMain from '../../components/Painel/MyCredits/MyCreditsMain'
 import NewCreditOverlay from '../../components/Painel/MyCredits/NewCreditOverlay'
 
 
 const Painel = () => {
-    const { searchMainActive, setSearchMainActive, searchContext } = useAuth()
-    const { credits } = useCredits()
+    const { searchMainActive, setSearchMainActive, searchContext, credits } = useAuth()
 
     let isEmpty = (obj) => {
         return Object.values(obj).every(x => x === null || x === '');
@@ -42,7 +40,7 @@ const Painel = () => {
             </Head>
             <SideMenu />
             <MainTop page="my_credits"/>
-            <MyCreditsMain credits={credits} />
+            <MyCreditsMain />
             <FilterOverlay />
             <NewCreditOverlay />
         </div>

@@ -47,7 +47,7 @@ const Login = () => {
         >
             <Navbar />
             <main className='loginMain'>
-                <Image width={1024} height={560} src={login_bg} />
+                <Image width={1024} height={560} src={login_bg} alt="Login background"/>
                 <form onSubmit={handleLogin} className="formLogin">
                     <FiLogIn />
                     {/* <RiLoginBoxFill/> */}

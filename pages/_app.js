@@ -8,7 +8,7 @@ import OfferOverlay from '../components/OfferOverlay'
 import Router from 'next/router';
 
 Router.events.on("routeChangeError", (err, url, { shallow }) => {
-    console.log("Navigating to: " + "url: " + url, {cancelled: err.cancelled} )
+    console.log("Navigating to: " + "url: " + url, {cancelled: err} )
 });
 
 const noAuthRequired = ['/', '/login', '/signup']

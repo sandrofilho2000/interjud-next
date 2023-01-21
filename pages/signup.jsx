@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useAuth } from '../context/AuthContext'
-import login_bg from '../public/assets/images/login_bg.png'
+import sign_bg from '../public/assets/images/login_bg.png'
 import Image from 'next/image'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
@@ -35,7 +35,7 @@ const Signup = () => {
         >
             <Navbar />
             <main className='loginMain'>
-                <Image width={1024} height={560} src={login_bg} />
+                <Image width={1024} height={560} src={sign_bg}  alt="Login background"/>
                 <form onSubmit={handleSignup} className="formLogin">
                     <AiOutlineUserAdd />
                     {/* <RiLoginBoxFill/> */}

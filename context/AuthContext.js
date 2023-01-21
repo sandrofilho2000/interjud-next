@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
+import useCredits from '../components/hooks/useCredits'
+import { doc, getDoc } from 'firebase/firestore'
 
 const AuthContext = createContext({})
 
@@ -9,6 +11,7 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
+    const [userInfo, setUserInfo] = useState()
     const [loading, setLoading] = useState(true)
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
@@ -24,7 +27,9 @@ export const AuthContextProvider = ({ children }) => {
         max: null,
         rating: null
     })
-    const [systemNotificationActive, setSystemNotificationActive] = useState({active: false, status: '', message: ""})
+    const [systemNotificationActive, setSystemNotificationActive] = useState({ active: false, status: '', message: "" })
+    
+    const {credits} = useCredits()
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -43,13 +48,15 @@ export const AuthContextProvider = ({ children }) => {
         return () => unsubscribe()
     }, [])
 
+
     useEffect(() => {
-        setTimeout(()=>{
-            if(systemNotificationActive.active){
-                setSystemNotificationActive({...systemNotificationActive, active: false})
+        setTimeout(() => {
+            if (systemNotificationActive.active) {
+                setSystemNotificationActive({ ...systemNotificationActive, active: false })
             }
         }, 4000)
     }, [systemNotificationActive])
+
 
     const signup = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -64,9 +71,22 @@ export const AuthContextProvider = ({ children }) => {
         await (signOut(auth))
     }
 
+    useEffect(() => {
+        if (user) {
+            const userInfoCollection = doc(db, "users", user.uid)
+            const getUserInfo = async () => {
+                const docSnap = await getDoc(userInfoCollection);
+                setUserInfo(docSnap.data())
+            }
+            getUserInfo()
+        }
+    }, [user])
+
     return (
         <AuthContext.Provider value={{
             user,
+            userInfo,
+            credits,
             login,
             signup,
             logout,
@@ -84,12 +104,13 @@ export const AuthContextProvider = ({ children }) => {
             setCurrCreditOffer,
             systemNotificationActive,
             setSystemNotificationActive,
-            searchContext, 
+            searchContext,
             setSearchContext,
             newCreditOverlayActive,
             setNewCreditOverlayActive
         }}>
-            {loading ? '' : children}
+            { loading && !user && !userInfo && !credits ? '' : children}
         </AuthContext.Provider>
     )
+
 }

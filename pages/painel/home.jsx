@@ -5,15 +5,13 @@ import { useAuth } from '../../context/AuthContext'
 import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
-import useCredits from '../../components/hooks/useCredits'
 import HomeMain from '../../components/Painel/Home/HomeMain'
+import useUserInfo from '../../components/hooks/useUserInfo'
 
 
 
 const Painel = () => {
-    const { searchMainActive } = useAuth()
-
-    let { credits } = useCredits()
+    const { searchMainActive, userInfo, credits } = useAuth()
 
     return (
         <div>
@@ -36,11 +34,11 @@ const Painel = () => {
             <MainTop page="home"/>
             {
                 !searchMainActive ? (
-                    <HomeMain credits={credits} />
+                    <HomeMain />
                 )
                 : (
 
-                    <SearchMain credits={credits} />
+                    <SearchMain />
                 )
             }
             <FilterOverlay />

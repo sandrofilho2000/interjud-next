@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../../../context/AuthContext'
 import CreditsSlider from '../../CreditsSlider'
 
-const HomeMain = ({ credits }) => {
-    const { sideMenuOpen, searchContext } = useAuth()
+const HomeMain = () => {
+    const { sideMenuOpen, searchContext, credits } = useAuth()
 
     let isEmpty = (obj) => {
         return Object.values(obj).every(x => x === null || x === '');

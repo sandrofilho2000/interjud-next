@@ -155,7 +155,7 @@ const NewCreditOverlay = () => {
             </div>
 
             <div className="newCreditContainer">
-                <Image src={logo} width={520} height={530} />
+                <Image src={logo} width={520} height={530} alt="Novo crédito" />
                 <div className="newCreditSlider" style={{ left: -(520 * sliderLeft) }}>
                     <div className="newCreditSingle">
                         <form className='firstForm'>

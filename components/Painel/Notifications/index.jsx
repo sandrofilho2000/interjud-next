@@ -10,7 +10,7 @@ const Notifications = ({active}) => {
                 </a>
                 <li className='not_read'>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver
@@ -20,7 +20,7 @@ const Notifications = ({active}) => {
                 </li>
                 <li>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver
@@ -30,7 +30,7 @@ const Notifications = ({active}) => {
                 </li>
                 <li>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver
@@ -40,7 +40,7 @@ const Notifications = ({active}) => {
                 </li>
                 <li>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver
@@ -50,7 +50,7 @@ const Notifications = ({active}) => {
                 </li>
                 <li>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver
@@ -60,7 +60,7 @@ const Notifications = ({active}) => {
                 </li>
                 <li>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver
@@ -70,7 +70,7 @@ const Notifications = ({active}) => {
                 </li>
                 <li>
                     <a href="#">
-                        <Image width={36} height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
+                        <Image width={36} alt="Notificação" title="Notificação" height={36} src='https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fbanco_do_brasil.png?alt=media&token=c29ad5aa-4153-437a-b4ae-f7f24dc93319'/>
                         <div className="notificationText">
                             <span title='O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver'>
                                 O seu crédito "BANCO DO BRASIL" recebeu uma proposta. Clique para ver

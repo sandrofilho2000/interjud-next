@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useAuth } from '../../../context/AuthContext'
 import Credit from '../../Credit'
 
-const CreditsSlider = ({credits, text}) => {
+const CreditsSlider = ({text}) => {
     let slider = useRef()
     let [sliderNav, setSliderNav] = useState(0)
     let [creditsToShow, setCreditsToShow] = useState()
@@ -14,6 +15,7 @@ const CreditsSlider = ({credits, text}) => {
         setCreditsToShow(_creditsToShow)
     }
 
+    const { credits } = useAuth()
 
     let handleSliderNav = (num) => {
         if (sliderNav <= 0 && num == -1) {
@@ -29,7 +31,7 @@ const CreditsSlider = ({credits, text}) => {
     
     useEffect(()=>{
         handleSliderCreditsToShow()
-    }, [credits])
+    }, [])
 
     return (
         <div ref={slider} className='creditsSlider'>

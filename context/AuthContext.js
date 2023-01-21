@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { auth, db } from '../firebase'
 import useCredits from '../components/hooks/useCredits'
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 
 const AuthContext = createContext({})
 
@@ -10,8 +10,9 @@ export const useAuth = () => useContext(AuthContext)
 
 export const AuthContextProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null)
-    const [userInfo, setUserInfo] = useState()
+    const [user, setUser] = useState({})
+    const [userInfo, setUserInfo] = useState({})
+    const [credits, setCredits] = useState([{}])
     const [loading, setLoading] = useState(true)
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
@@ -28,10 +29,14 @@ export const AuthContextProvider = ({ children }) => {
         rating: null
     })
     const [systemNotificationActive, setSystemNotificationActive] = useState({ active: false, status: '', message: "" })
-    
-    const {credits} = useCredits()
 
+    let isEmpty = (obj) => {
+        return Object.values(obj).every(x => x === null || x === '');
+    }
+    
     useEffect(() => {
+
+
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser({
@@ -39,6 +44,13 @@ export const AuthContextProvider = ({ children }) => {
                     email: user.email,
                     displayName: user.displayName
                 })
+                const userInfoCollection = doc(db, "users", user.uid)
+                const getUserInfo = async () => {
+                    const docSnap = await getDoc(userInfoCollection);
+                    setUserInfo(docSnap.data())
+                }
+                getUserInfo(user.uid)
+                
             } else {
                 setUser(null)
             }
@@ -71,46 +83,60 @@ export const AuthContextProvider = ({ children }) => {
         await (signOut(auth))
     }
 
-    useEffect(() => {
+    ///GET USER INFO
+/*     useEffect(() => {
         if (user) {
-            const userInfoCollection = doc(db, "users", user.uid)
-            const getUserInfo = async () => {
-                const docSnap = await getDoc(userInfoCollection);
-                setUserInfo(docSnap.data())
-            }
-            getUserInfo()
-        }
-    }, [user])
 
-    return (
-        <AuthContext.Provider value={{
-            user,
-            userInfo,
-            credits,
-            login,
-            signup,
-            logout,
-            sideMenuOpen,
-            setSideMenuOpen,
-            searchMainActive,
-            setSearchMainActive,
-            searchedCredits,
-            setSearchedCredits,
-            offerOverlayActive,
-            setOfferOverlayActive,
-            filterOverlayActive,
-            setFilterOverlayActive,
-            currCreditOffer,
-            setCurrCreditOffer,
-            systemNotificationActive,
-            setSystemNotificationActive,
-            searchContext,
-            setSearchContext,
-            newCreditOverlayActive,
-            setNewCreditOverlayActive
-        }}>
-            { loading && !user && !userInfo && !credits ? '' : children}
-        </AuthContext.Provider>
-    )
+        }
+        console.log(userInfo)
+    }, [user]) */
+
+
+    ///GET CREDITS
+    useEffect(() => {
+        const creditsCollectionRef = collection(db, "creditos")
+
+        const getCredits = async () => {
+            const data = await getDocs(creditsCollectionRef)
+            let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setCredits(cre)
+
+        }
+        getCredits()
+    }, [])
+ 
+        return (
+            <AuthContext.Provider value={{
+                user,
+                userInfo,
+                credits,
+                login,
+                signup,
+                logout,
+                sideMenuOpen,
+                setSideMenuOpen,
+                searchMainActive,
+                setSearchMainActive,
+                searchedCredits,
+                setSearchedCredits,
+                offerOverlayActive,
+                setOfferOverlayActive,
+                filterOverlayActive,
+                setFilterOverlayActive,
+                currCreditOffer,
+                setCurrCreditOffer,
+                systemNotificationActive,
+                setSystemNotificationActive,
+                searchContext,
+                setSearchContext,
+                newCreditOverlayActive,
+                setNewCreditOverlayActive
+            }}>
+                { !isEmpty(user) && !isEmpty(userInfo) && !isEmpty(credits) ? children : ''}
+            </AuthContext.Provider>
+        )
+    
+    
+
 
 }

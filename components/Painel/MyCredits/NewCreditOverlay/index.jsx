@@ -241,8 +241,8 @@ const NewCreditOverlay = () => {
                             </div>
                         </div>
                         <div className="aceitarRating">
-                            <input type="button" className='recusar' id='recusar' value="RECUSAR" />
-                            <input type="button" className='aceitar' id='aceitar' value="ACEITAR" onClick={() => setRatingInfoActive(true)}/>
+                            <input type="button" className='recusar' id='recusar' defaultValue="RECUSAR" />
+                            <input type="button" className='aceitar' id='aceitar' defaultValue="ACEITAR" onClick={() => setRatingInfoActive(true)}/>
                         </div>
 
                         <AiFillInfoCircle className='setInfoRating' onClick={() => setRatingInfoActive(true)}/>
@@ -252,7 +252,7 @@ const NewCreditOverlay = () => {
                                 A INTERJUD disponibiliza GRATUITAMENTE um serviço de avaliação do seu crédito, realizada por uma equipe de especialista. Serão atribuídas de uma a cinco ESTRELAS ao seu crédito, considerando a solidez do devedor, a fase processual em que se encontra, o tempo médio de conclusão do processo, dentre outras características.
                             </p>
 
-                            <input type="button" className='aceitar' id='aceitar' value="ACEITAR" onClick={() => setRatingInfoActive(true)}/>
+                            <input type="button" className='aceitar' id='aceitar' defaultValue="ACEITAR" onClick={() => setRatingInfoActive(true)}/>
 
                             <small>
                             **Ao aderir à avaliação do seu crédito, você aceita a pontuação atribuída pelos especialistas e se compromete a negociar este crédito exclusivamente pela plataforma InterJud pelo prazo de 6 meses.

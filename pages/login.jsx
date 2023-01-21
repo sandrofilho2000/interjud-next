@@ -62,7 +62,7 @@ const Login = () => {
                                 email: e.target.value,
                             })
                         }
-                        value={data.email} />
+                        defaultValue={data.email} />
                     <input
                         type="password"
                         name="password"
@@ -74,8 +74,8 @@ const Login = () => {
                                 password: e.target.value,
                             })
                         }
-                        value={data.password} />
-                    <input type="submit" value="ENTRAR" />
+                        defaultValue={data.password} />
+                    <input type="submit" defaultValue="ENTRAR" />
                     <div className="links">
                         <Link className='signUp' href="/signup">Não tenho uma conta</Link>
                         <Link className='resetPassword' href="#">Esqueci minha senha</Link>

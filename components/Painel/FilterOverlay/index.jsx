@@ -87,8 +87,8 @@ const FilterOverlay = () => {
                     </div>
                 </div>
                 <div className="searchClear">
-                    <input type="reset" value="Limpar" />
-                    <input type="submit" value="Filtrar" />
+                    <input type="reset" defaultValue="Limpar" />
+                    <input type="submit" defaultValue="Filtrar" />
                 </div>
             </form>
         </div>

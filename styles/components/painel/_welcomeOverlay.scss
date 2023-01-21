@@ -1,0 +1,115 @@
+.welcomeOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  pointer-events: none;
+  background-color: black;
+  .welcomeContainer {
+    width: 520px;
+    height: 530px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--interjud-blue);
+
+    > img {
+      display: block;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .welcomeSlider {
+      width: calc(520px * 3);
+      transition: 0.3s;
+      height: 100%;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      .welcomeSingle {
+        background-color: rgba(0, 0, 0, 0.855);
+        border: red;
+        width: 520px;
+        position: relative;
+        height: 540px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        h2,
+        h3 {
+          font-size: 40px;
+          display: block;
+          width: 80%;
+          text-align: left;
+          position: relative;
+          z-index: 12;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        form {
+          display: flex;
+          justify-content: space-between;
+          input[type="text"] {
+            width: 44%;
+            height: 30px;
+            &::placeholder {
+              font-size: 14px;
+            }
+          }
+
+          input[type="date"] {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid var(--interjud-blue);
+            color-scheme: dark;
+            width: 100%;
+            font-size: 20px;
+            * {
+              background-color: var(--main-bg-color);
+            }
+          }
+        }
+      }
+    }
+
+    .welcomeArrows {
+      width: 100%;
+      position: absolute;
+      height: 40px;
+      display: flex;
+      z-index: 3;
+      align-items: center;
+      justify-content: space-between;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      pointer-events: none;
+      .arrow {
+        pointer-events: initial;
+        position: absolute;
+        cursor: pointer;
+        &.arrowPrev {
+          left: 0;
+        }
+        &.arrowNext {
+          right: 0;
+        }
+
+        svg,
+        polygon {
+          fill: var(--txt-color);
+          font-size: 30px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

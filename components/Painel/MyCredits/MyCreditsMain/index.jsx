@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { use, useEffect, useState } from 'react'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import { AiFillCloseCircle, AiFillCaretDown } from 'react-icons/ai'
 import FilterSearch from '../../FilterSearch'
 import { FaStar, FaStarHalf } from 'react-icons/fa'
 import { useAuth } from '../../../../context/AuthContext'
@@ -16,6 +16,7 @@ const MyCreditsMain = ({ credits }) => {
   const [showingCredits, setShowingCredits] = useState([])
   const [showPagination, setShowPagination] = useState(true)
   const [paginationClass, setPaginationClass] = useState('')
+  const [ordenation, setOrdernation] = useState({ key: 'name', primitive: 'string', asc: true })
 
   const lastCreditIndex = currPage * creditsPerPage
   const firstCreditIndex = lastCreditIndex - creditsPerPage
@@ -23,6 +24,57 @@ const MyCreditsMain = ({ credits }) => {
   let isEmpty = (obj) => {
     return Object.values(obj).every(x => x === null || x === '');
   }
+
+  let handleOrdenation = (list) => {
+    let order = ordenation.asc
+
+    let orderString = (list) => {
+      list.sort((a, b) => {
+        let fa = String(a[ordenation.key]).toLowerCase(),
+          fb = String(b[ordenation.key]).toLowerCase();
+
+        if (order) {
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+        } else {
+          if (fa < fb) {
+            return 1;
+          }
+          if (fa > fb) {
+            return -1;
+          }
+        }
+
+        return 0;
+      });
+
+      return list
+    }
+
+    let orderInteger = (list) => {
+      if (order) {
+        list.sort((a, b) => {
+          return a[ordenation.key] - b[ordenation.key];
+        });
+      } else {
+        list.sort((a, b) => b[ordenation.key] - a[ordenation.key]);
+      }
+      return list
+    }
+
+    if (ordenation.primitive === 'string') {
+      list = orderString(list)
+    } else if (ordenation.primitive === 'integer') {
+      list = orderInteger(list)
+    }
+
+    return list
+  }
+
 
   const handleCurrPage = (nextPage) => {
     setCurrPage(nextPage)
@@ -34,7 +86,7 @@ const MyCreditsMain = ({ credits }) => {
 
   useEffect(() => {
     let list = [...credits]
-
+    console.log(ordenation)
     if (!isEmpty(searchContext)) {
       list.filter((item) => {
         if (searchContext.name) {
@@ -65,6 +117,7 @@ const MyCreditsMain = ({ credits }) => {
       })
     }
 
+    list = handleOrdenation(list)
     setShowingCredits(list)
 
     if (showingCredits.length < creditsPerPage) {
@@ -91,8 +144,8 @@ const MyCreditsMain = ({ credits }) => {
     }
 
     handleCurrPage(currPage)
-
-  }, [currPage, searchContext, credits])
+    console.log(showingCredits)
+  }, [currPage, searchContext, credits, ordenation])
 
   const listCredits = showingCredits.slice(firstCreditIndex, lastCreditIndex)
 
@@ -104,7 +157,7 @@ const MyCreditsMain = ({ credits }) => {
 
       {
         !isEmpty(searchContext) &&
-        <FilterSearch/>
+        <FilterSearch />
       }
 
       <div className='myCreditsMain'>
@@ -116,35 +169,65 @@ const MyCreditsMain = ({ credits }) => {
                   +
                 </span>
               </th>
-              <th>
-                Nome
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Nome
+                </span>
               </th>
-              <th>
-                Valor
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'value', primitive: 'integer', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Valor
+                </span>
               </th>
-              <th>
-                Classe
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'class', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Classe
+                </span>
               </th>
-              <th>
-                Fase processual
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Fase processual
+                </span>
               </th>
-              <th>
-                Rating
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'rating', primitive: 'integer', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Rating
+                </span>
               </th>
-              <th>
-                Recebimento em (aprox.)
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Recebimento em (aprox.)
+                </span>
               </th>
-              <th>
-                Nº processo
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Nº processo
+                </span>
               </th>
-              <th>
-                Hon. contratuais
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Hon. contratuais
+                </span>
               </th>
-              <th>
-                Hon. sucubenciais
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Hon. sucubenciais
+                </span>
               </th>
-              <th>
-                Matéria
+              <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
+                <AiFillCaretDown />
+                <span>
+                  Matéria
+                </span>
               </th>
             </tr>
 

@@ -24,7 +24,7 @@ const Footer = () => {
                         {
 
                             user ? (
-                                <li><Link href="/painel">PAINEL</Link></li>
+                                <li><Link href="/painel/home">PAINEL</Link></li>
                             )
                                 :
                                 (

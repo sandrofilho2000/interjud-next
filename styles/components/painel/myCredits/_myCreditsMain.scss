@@ -36,6 +36,36 @@
           padding: 10px;
           text-align: left;
         }
+
+        th{
+          position: relative;
+          z-index: 1;
+          transition: 0.3s;
+          &:first-of-type{
+            z-index: 2;
+          }
+
+          &:hover{
+            opacity: 0.8;
+          }
+
+          &:not(:first-of-type){
+            span{
+              padding-left: 25px;
+              display: inline-block;
+            }
+          }
+
+
+          cursor: pointer;
+          transition: 0.3;
+           svg{
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            transform: translateY(-50%);
+           }
+        }
   
         .th_add_credit,
         .td_image {

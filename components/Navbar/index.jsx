@@ -31,7 +31,7 @@ const Navbar = () => {
 
                                 <li><Link href="#cadastrar-se-investidor">COMPRE UM CRÉDITO</Link></li>
 
-                                <li><Link href="/painel">PORTAL DE CRÉDITOS</Link></li>
+                                <li><Link href="/painel/home/">PORTAL DE CRÉDITOS</Link></li>
 
                                 <li><Link href="#como-funciona">COMO FUNCIONA</Link></li>
                             </ul>
@@ -41,7 +41,7 @@ const Navbar = () => {
                         {
                             
                             user ? (
-                                <li><Link href="/painel">PAINEL</Link></li>
+                                <li><Link href="/painel/home/">PAINEL</Link></li>
                                 )
                                 : 
                                 (

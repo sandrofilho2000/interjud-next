@@ -53,8 +53,6 @@ const NewCreditOverlay = () => {
         return newValor
     }
 
-
-
     let formatNumProcess = (e) =>{
         e.target.value = (e.target.value.match(/\d/g) || []).join('')
         let valor = e.target.value

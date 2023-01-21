@@ -5,13 +5,13 @@ import { useAuth } from '../../context/AuthContext'
 import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
+import WelcomeOverlay from '../../components/Painel/WelcomeOverlay'
 import HomeMain from '../../components/Painel/Home/HomeMain'
 import useUserInfo from '../../components/hooks/useUserInfo'
 
 
-
 const Painel = () => {
-    const { searchMainActive, userInfo, credits } = useAuth()
+    const { searchMainActive, userInfo, user, credits } = useAuth()
 
     return (
         <div>
@@ -42,6 +42,10 @@ const Painel = () => {
                 )
             }
             <FilterOverlay />
+{/*             {
+                !userInfo && user && 
+            } */}
+            <WelcomeOverlay/>
         </div>
     )
 }

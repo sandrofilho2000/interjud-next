@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useAuth } from '../context/AuthContext'
@@ -10,21 +10,122 @@ import { FcGoogle } from 'react-icons/fc'
 import { FaFacebookF } from 'react-icons/fa'
 import Link from 'next/link'
 const Signup = () => {
-    const { user, signup } = useAuth()
+    const { signup, setSystemNotificationActive, user } = useAuth()
+    const [passwdStrength, setPasswdStrength] = useState('')
+    const router = useRouter()
+
     const [data, setData] = useState({
         email: '',
-        password: '',   
+        password: '',
+        repeat_password: '',
     })
+
+    useEffect(()=>{
+        let notification = {
+            status: 'warning',
+            active: true
+        }
+        notification.message = "Sua senha deve conter um caracter maisculo, um mínusculo e um especial"
+        setSystemNotificationActive(notification)
+    }, [])
 
     const handleSignup = async (e) => {
         e.preventDefault()
-
-        try {
-            await signup(data.email, data.password)
-        } catch (err) {
-            console.log(err)
+        let passwd_1 = password.value
+        let passwd_2 = repeat_password.value
+        let notification = {
+            status: 'error',
+            active: true
+        }
+            if (passwd_1 !== passwd_2) {                
+                if (passwd_1.length < 8) {
+                    notification.message = "Sua senha deve conter no mínimo 8 dígitos!"
+                } else {
+                }
+            }
+            
+            validatePassWord()
+            
+            if(passwdStrength !== "strong"){
+                notification.status = 'warning'
+                notification.message = "Crie uma senha mais forte"
+                setSystemNotificationActive(notification)
+            }else{
+                try {
+                    await signup(data.email, data.password)
+                } catch (err) {
+                    console.log(err)
+                    notification.status = "error"
+                    if(err.message.includes("missing-email")){
+                        notification.message = "Digite seu endereço de E-mail"
+                    }else if(err.message.includes("email-already-in-use")){
+                        notification.message = "E-mail já cadastrado!"
+                    }
+                    setSystemNotificationActive(notification)
+                }
+            }
         }
 
+        
+
+
+        
+
+
+    const validatePassWord = () => {
+        let passwd_1 = password.value
+
+        let regEx_lower = /[a-z]/
+        let regEx_upper = /[A-Z]/
+        let regEx_numeric = /[0-9]/
+        let regEx_special = /[\!\@\#\$\%\¨\&\*\(\)]/
+        let count_check = 0
+
+        if (regEx_lower.exec(passwd_1)) {
+            count_check++
+        }
+
+        else {
+            count_check--
+        }
+
+        if (regEx_upper.exec(passwd_1)) {
+            count_check++
+        }
+
+        else {
+            count_check--
+        }
+
+        if (regEx_numeric.exec(passwd_1)) {
+            count_check++
+        }
+
+        else {
+            count_check--
+        }
+
+        if (regEx_special.exec(passwd_1)) {
+            count_check++
+        }
+
+        else {
+            count_check--
+        }
+
+        if (passwd_1.trim().length >= 8) {
+            count_check += 2
+        }else if(passwd_1.trim().length < 8){
+            count_check -= 3
+        }
+
+        if(count_check < 3){
+            setPasswdStrength("weak")
+        }else if(count_check >= 3 && count_check < 5){
+            setPasswdStrength("regular")
+        }else{
+            setPasswdStrength("strong")
+        }
     }
 
     return (
@@ -35,12 +136,13 @@ const Signup = () => {
         >
             <Navbar />
             <main className='loginMain'>
-                <Image width={1024} height={560} src={sign_bg}  alt="Login background"/>
+                <Image width={1024} height={560} src={sign_bg} alt="Login background" />
                 <form onSubmit={handleSignup} className="formLogin">
                     <AiOutlineUserAdd />
                     {/* <RiLoginBoxFill/> */}
                     <input
                         type="email"
+                        autoComplete='on'
                         name="email"
                         id="email"
                         placeholder='E-mail...'
@@ -51,30 +153,38 @@ const Signup = () => {
                             })
                         }
                         defaultValue={data.email} />
+                    <div className={passwdStrength}>
+
+                        <input
+                            type="text"
+                            autoComplete='on'
+                            name="password"
+                            id="password"
+                            placeholder='Senha...'
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    password: e.target.value,
+                                });
+
+                                validatePassWord()
+                            }
+                            }
+                            defaultValue={data.password} />
+                    </div>
                     <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder='Senha...'
-                        onChange={(e) =>
-                            setData({
-                                ...data,
-                                password: e.target.value,
-                            })
-                        }
-                        defaultValue={data.password} />
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
+                        type="text"
+                        autoComplete='on'
+                        name="repeat_password"
+                        id="repeat_password"
                         placeholder='Repetir senha...'
                         onChange={(e) =>
                             setData({
                                 ...data,
-                                password: e.target.value,
+                                repeat_password: e.target.value,
                             })
                         }
-                        defaultValue={data.password} />
+                        defaultValue={data.repeat_password} />
                     <input type="submit" defaultValue="SE CADASTRAR" />
                     <div className="links">
                         <Link className='signUp' href="/login">Já tenho uma conta</Link>

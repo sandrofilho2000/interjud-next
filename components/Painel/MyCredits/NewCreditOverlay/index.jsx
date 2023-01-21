@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { use, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { AiFillCloseCircle, AiFillInfoCircle, AiOutlineClose } from 'react-icons/ai'
 import { FaCheck, FaStar, FaStarHalf } from 'react-icons/fa'
 import { FcPrevious, FcNext } from 'react-icons/fc'

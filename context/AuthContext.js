@@ -27,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
         max: null,
         rating: null
     })
-    const [systemNotificationActive, setSystemNotificationActive] = useState({ active: false, status: '', message: "" })
+    const [systemNotificationActive, setSystemNotificationActive] = useState({ active: false, status: '', message: "", link: "#" })
 
     let isEmpty = (obj) => {
         if(!obj){
@@ -38,8 +38,6 @@ export const AuthContextProvider = ({ children }) => {
     }
     
     useEffect(() => {
-
-
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser({
@@ -83,7 +81,6 @@ export const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         setUser({})
-        console.log(auth)
         await (signOut(auth))
     }
     
@@ -92,7 +89,6 @@ export const AuthContextProvider = ({ children }) => {
     ///GET CREDITS
     useEffect(() => {
         const creditsCollectionRef = collection(db, "creditos")
-        console.log(auth)
         const getCredits = async () => {
             const data = await getDocs(creditsCollectionRef)
             let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))

@@ -8,8 +8,11 @@ import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
 
 const SideMenuContainer = () => {
-    const { sideMenuOpen, setSideMenuOpen, userInfo, logout, credits } = useAuth()
-    const router = useRouter()
+    const { sideMenuOpen, setSideMenuOpen, userInfo, logout, credits, user } = useAuth()
+
+    const avatar = userInfo ? userInfo.avatar : 'https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/users%2Fdefault_avatar.pbg.webp?alt=media&token=bd0cd8cd-b54b-4b3d-abc7-91ffa81751c5'
+
+    const first_name = userInfo ? userInfo.first_name : ''
  
     return (
         <aside className={`sideMenu ${sideMenuOpen ? 'active' : ''}`}>
@@ -17,10 +20,10 @@ const SideMenuContainer = () => {
                 <li>
                     <Link href="#">
                         <span className='icon' title="Olá, Sandro">
-                            <Image src={userInfo.avatar} width={50} height={50} alt="Logo interjud da área logada" />
+                            <Image src={avatar} width={50} height={50} alt="Logo interjud da área logada" />
                         </span>
                         <span className='icon_text'>
-                            Olá, {userInfo.first_name}
+                            Olá, {first_name}
                         </span>
                     </Link>
                 </li>

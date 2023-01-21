@@ -1,24 +1,38 @@
 import React from 'react'
+import { AiFillCheckCircle, AiFillCloseCircle, AiFillWarning } from 'react-icons/ai'
 import { useAuth } from '../../context/AuthContext'
 
 const SystemNotification = () => {
     const {systemNotificationActive, setSystemNotificationActive} = useAuth()
-    const { active, status, message } = systemNotificationActive
+    const { active, status, message, link } = systemNotificationActive
 
-    let handleCloseNotification = () =>{
+    let handleCloseNotification = (e) =>{
+        e.preventDefault()
         setSystemNotificationActive({...systemNotificationActive, active: false})
     }
 
     return (
-        <div className={`SystemNotification ${ active ? 'active' : '' } ${ status }`}>
+        <a href={link} className={`SystemNotification ${ active ? 'active' : '' } ${ status }`}>
+            {
+                status == 'success' &&
+                <AiFillCheckCircle/>
+            }
+            {
+                status == 'warning' &&
+                <AiFillWarning/>
+            }
+            {
+                status == 'error' &&
+                <AiFillCloseCircle/>
+            }
             <span>
                 {message}
             </span>
 
-            <span className="closeNoti" onClick={()=>{handleCloseNotification()}}>
+            <span className="closeNoti" onClick={(e)=>{handleCloseNotification(e)}}>
                 +
             </span>
-        </div>
+        </a>
     )
 }
 

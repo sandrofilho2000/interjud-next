@@ -22,6 +22,9 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault()
+        let email = data.email
+        let password = data.password
+
         try {
             await login(data.email, data.password)
             router.push('/painel/home')
@@ -31,13 +34,15 @@ const Login = () => {
                 active:true
             }
             
-            setSystemNotificationActive(notification)
             if (err.message.includes("wrong-password")) {
                 notification.message = "E-mail ou senha incorreta!"
                 
             } else if (err.message.includes("user-not-found")) {
-                notification.message = "Usuário não cadastrado!"
+                notification.link ="/signup"
+                notification.status = "success"
+                notification.message = "Usuário não cadastrado. Clique aqui para criar sua conta!"
             }
+            setSystemNotificationActive(notification)
         }
     }
 

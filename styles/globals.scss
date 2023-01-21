@@ -41,6 +41,7 @@ body {
 
 @import "components/painel/sidemenu";
 @import "components/painel/main";
+@import "components/painel/welcomeOverlay";
 @import "components/painel/mainTop";
 @import "components/painel/filterFields";
 @import "components/painel/home/homeMain";
@@ -169,6 +170,28 @@ section:nth-of-type(even) {
   }
 }
 
+input[type=text], input[type=number], input[type=email], input[type=password] {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-left: 5px;
+  font-size: 17px;
+  height: 40px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--interjud-blue);
+  position: relative;
+  &:focus-visible {
+    background-color: transparent;
+  }
+  
+  &::placeholder {
+    color: var(--txt-color);
+  }
+}
+
+
 main.loginMain {
   position: relative;
   display: flex;
@@ -207,26 +230,50 @@ main.loginMain {
       }
     }
 
-    input:not([type=submit]) {
-      width: 100%;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      padding: 0;
-      padding-left: 5px;
-      font-size: 17px;
-      height: 40px;
+
+    div:has(input){
+      position: relative;
+      height: 41px;
+      width: auto;
       margin-top: 10px;
       border-bottom: 1px solid var(--interjud-blue);
-
-      &:focus-visible {
-        background-color: transparent;
+      input{
+        margin-top: 0 !important;
+        border-bottom: unset !important;
       }
-
-      &::placeholder {
-        color: var(--txt-color);
+      &.weak{
+        border-bottom: 1px solid var(--interjud-red);
+        &::before{
+          content: "Senha fraca";
+          color: var(--interjud-red);
+        }
+      }
+      &.regular{
+        border-bottom: 1px solid var(--interjud-yellow);
+        &::before{
+          content: "Senha mediana";
+          color: var(--interjud-yellow);
+        }
+      }
+      &.strong{
+        border-bottom: 1px solid var(--interjud-green);
+        &::before{
+          content: "Senha forte";
+          color: var(--interjud-green);
+        }
+      }
+  
+      &::before{
+        font-size: 13px;
+        right: 0px;
+        bottom: -20px;
+        font-weight: bold;
+        background-attachment: red;
+        position: absolute;
+        display: block !important;
       }
     }
+
 
     input[type=submit] {
       align-self: flex-start;

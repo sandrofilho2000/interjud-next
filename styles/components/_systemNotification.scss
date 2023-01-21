@@ -1,15 +1,17 @@
 .SystemNotification{
     position: fixed;
-    width: auto;
-    padding-left: 5px;
-    border-left: 3px solid white;
+    width: 250px;
+    padding-top: 5px;
+    border-top: 3px solid white;
     height: auto;
-    min-height: 50px;
+    min-height: 100px;
     bottom: -20px;
     right: 20px;
     z-index: 99999999;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: center;
     opacity: 0;
     transition: 0.8s;
     
@@ -24,22 +26,35 @@
         &.warning{
             background-color: var(--interjud-yellow);
             *{
-                color: white !important;
+                color: var(--main-bg-color) !important;
+
+                span:first-of-type{
+                    width: 75%;
+                }
             }
         }
         &.error{
             background-color: var(--interjud-red);
         }
     }
+
+    svg{
+        font-size: 30px;
+        position: relative;
+        top: -5px;
+    }
     
     span{
-        text-align: left;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
         font-weight: bold;
         margin-right: 30px;
-
+        font-size: 13px;
+        margin: 0;
         &:first-of-type{
             display: block;
-            width: 70%;
+            width: 80%;
         }
     }
 
@@ -49,6 +64,7 @@
         margin-right: 0;
         position: absolute;
         right: 5px;
+        top: -7px;
         cursor: pointer;
         transform: rotate(45deg);
     }

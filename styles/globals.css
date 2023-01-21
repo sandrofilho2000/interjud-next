@@ -712,16 +712,6 @@ footer .container .menu-desktop ul li a:hover::before {
 .OfferOverlay article.credit_single .credit_content .offerInput span {
   font-size: 23px;
 }
-.OfferOverlay article.credit_single .credit_content .offerInput input {
-  background-color: transparent;
-  outline: none;
-  margin: 0 10px;
-  font-size: 20px;
-  max-width: 120px;
-  border: none;
-  font-weight: bold;
-  border-bottom: 2px solid var(--interjud-blue);
-}
 .OfferOverlay article.credit_single .credit_content .offerInput svg {
   display: inline-block;
   height: 26px;
@@ -754,16 +744,18 @@ footer .container .menu-desktop ul li a:hover::before {
 
 .SystemNotification {
   position: fixed;
-  width: auto;
-  padding-left: 5px;
-  border-left: 3px solid white;
+  width: 250px;
+  padding-top: 5px;
+  border-top: 3px solid white;
   height: auto;
-  min-height: 50px;
+  min-height: 100px;
   bottom: -20px;
   right: 20px;
   z-index: 99999999;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
   opacity: 0;
   transition: 0.8s;
 }
@@ -778,19 +770,31 @@ footer .container .menu-desktop ul li a:hover::before {
   background-color: var(--interjud-yellow);
 }
 .SystemNotification.active.warning * {
-  color: white !important;
+  color: var(--main-bg-color) !important;
+}
+.SystemNotification.active.warning * span:first-of-type {
+  width: 75%;
 }
 .SystemNotification.active.error {
   background-color: var(--interjud-red);
 }
+.SystemNotification svg {
+  font-size: 30px;
+  position: relative;
+  top: -5px;
+}
 .SystemNotification span {
-  text-align: left;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
   font-weight: bold;
   margin-right: 30px;
+  font-size: 13px;
+  margin: 0;
 }
 .SystemNotification span:first-of-type {
   display: block;
-  width: 70%;
+  width: 80%;
 }
 .SystemNotification .closeNoti {
   font-weight: normal;
@@ -798,6 +802,7 @@ footer .container .menu-desktop ul li a:hover::before {
   margin-right: 0;
   position: absolute;
   right: 5px;
+  top: -7px;
   cursor: pointer;
   transform: rotate(45deg);
 }
@@ -1324,6 +1329,120 @@ main.active {
 main h1 {
   font-size: 26px;
   margin-top: 20px;
+}
+
+.welcomeOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  pointer-events: none;
+  background-color: black;
+}
+.welcomeOverlay .welcomeContainer {
+  width: 520px;
+  height: 530px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--interjud-blue);
+}
+.welcomeOverlay .welcomeContainer > img {
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider {
+  width: 1560px;
+  transition: 0.3s;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle {
+  background-color: rgba(0, 0, 0, 0.855);
+  border: red;
+  width: 520px;
+  position: relative;
+  height: 540px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h2,
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h3 {
+  font-size: 40px;
+  display: block;
+  width: 80%;
+  text-align: left;
+  position: relative;
+  z-index: 12;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h3 {
+  font-size: 20px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form {
+  display: flex;
+  justify-content: space-between;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text] {
+  width: 44%;
+  height: 30px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]::-moz-placeholder {
+  font-size: 14px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]:-ms-input-placeholder {
+  font-size: 14px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]::placeholder {
+  font-size: 14px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=date] {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--interjud-blue);
+  color-scheme: dark;
+  width: 100%;
+  font-size: 20px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=date] * {
+  background-color: var(--main-bg-color);
+}
+.welcomeOverlay .welcomeContainer .welcomeArrows {
+  width: 100%;
+  position: absolute;
+  height: 40px;
+  display: flex;
+  z-index: 3;
+  align-items: center;
+  justify-content: space-between;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.welcomeOverlay .welcomeContainer .welcomeArrows .arrow {
+  pointer-events: initial;
+  position: absolute;
+  cursor: pointer;
+}
+.welcomeOverlay .welcomeContainer .welcomeArrows .arrow.arrowPrev {
+  left: 0;
+}
+.welcomeOverlay .welcomeContainer .welcomeArrows .arrow.arrowNext {
+  right: 0;
+}
+.welcomeOverlay .welcomeContainer .welcomeArrows .arrow svg,
+.welcomeOverlay .welcomeContainer .welcomeArrows .arrow polygon {
+  fill: var(--txt-color);
+  font-size: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .mainTop {
@@ -2239,6 +2358,32 @@ section:nth-of-type(even) {
   cursor: pointer;
 }
 
+input[type=text], input[type=number], input[type=email], input[type=password] {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-left: 5px;
+  font-size: 17px;
+  height: 40px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--interjud-blue);
+  position: relative;
+}
+input[type=text]:focus-visible, input[type=number]:focus-visible, input[type=email]:focus-visible, input[type=password]:focus-visible {
+  background-color: transparent;
+}
+input[type=text]::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder {
+  color: var(--txt-color);
+}
+input[type=text]:-ms-input-placeholder, input[type=number]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder {
+  color: var(--txt-color);
+}
+input[type=text]::placeholder, input[type=number]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
+  color: var(--txt-color);
+}
+
 main.loginMain {
   position: relative;
   display: flex;
@@ -2279,32 +2424,55 @@ main.loginMain form.formLogin > svg path,
 main.loginMain form.formSignup > svg path {
   stroke: var(--interjud-blue);
 }
-main.loginMain form.formLogin input:not([type=submit]),
-main.loginMain form.formSignup input:not([type=submit]) {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  padding: 0;
-  padding-left: 5px;
-  font-size: 17px;
-  height: 40px;
+main.loginMain form.formLogin div:has(input),
+main.loginMain form.formSignup div:has(input) {
+  position: relative;
+  height: 41px;
+  width: auto;
   margin-top: 10px;
   border-bottom: 1px solid var(--interjud-blue);
 }
-main.loginMain form.formLogin input:not([type=submit]):focus-visible,
-main.loginMain form.formSignup input:not([type=submit]):focus-visible {
-  background-color: transparent;
+main.loginMain form.formLogin div:has(input) input,
+main.loginMain form.formSignup div:has(input) input {
+  margin-top: 0 !important;
+  border-bottom: unset !important;
 }
-main.loginMain form.formLogin input:not([type=submit])::-moz-placeholder, main.loginMain form.formSignup input:not([type=submit])::-moz-placeholder {
-  color: var(--txt-color);
+main.loginMain form.formLogin div:has(input).weak,
+main.loginMain form.formSignup div:has(input).weak {
+  border-bottom: 1px solid var(--interjud-red);
 }
-main.loginMain form.formLogin input:not([type=submit]):-ms-input-placeholder, main.loginMain form.formSignup input:not([type=submit]):-ms-input-placeholder {
-  color: var(--txt-color);
+main.loginMain form.formLogin div:has(input).weak::before,
+main.loginMain form.formSignup div:has(input).weak::before {
+  content: "Senha fraca";
+  color: var(--interjud-red);
 }
-main.loginMain form.formLogin input:not([type=submit])::placeholder,
-main.loginMain form.formSignup input:not([type=submit])::placeholder {
-  color: var(--txt-color);
+main.loginMain form.formLogin div:has(input).regular,
+main.loginMain form.formSignup div:has(input).regular {
+  border-bottom: 1px solid var(--interjud-yellow);
+}
+main.loginMain form.formLogin div:has(input).regular::before,
+main.loginMain form.formSignup div:has(input).regular::before {
+  content: "Senha mediana";
+  color: var(--interjud-yellow);
+}
+main.loginMain form.formLogin div:has(input).strong,
+main.loginMain form.formSignup div:has(input).strong {
+  border-bottom: 1px solid var(--interjud-green);
+}
+main.loginMain form.formLogin div:has(input).strong::before,
+main.loginMain form.formSignup div:has(input).strong::before {
+  content: "Senha forte";
+  color: var(--interjud-green);
+}
+main.loginMain form.formLogin div:has(input)::before,
+main.loginMain form.formSignup div:has(input)::before {
+  font-size: 13px;
+  right: 0px;
+  bottom: -20px;
+  font-weight: bold;
+  background-attachment: red;
+  position: absolute;
+  display: block !important;
 }
 main.loginMain form.formLogin input[type=submit],
 main.loginMain form.formSignup input[type=submit] {

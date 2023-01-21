@@ -17,9 +17,9 @@ const Hero = () => {
             // Speed settings, try diffrent values untill you get good results
 
             startDelay: 300,
-            typeSpeed: 100,
-            backSpeed: 100,
-            backDelay: 100,
+            typeSpeed: 50,
+            backSpeed: 50,
+            backDelay: 500,
             smartBackspace: true,
             loop: true,
             showCursor: false,

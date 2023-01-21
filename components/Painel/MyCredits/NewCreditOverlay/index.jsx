@@ -71,8 +71,6 @@ const NewCreditOverlay = () => {
     }
 
 
-
-
     let handleFirstSlideOk = (e) =>{
         let num_processo = numProcesso.current.value
         let count_num_processo = (num_processo.match(/\d/g) || []).length
@@ -80,7 +78,9 @@ const NewCreditOverlay = () => {
         let name_processo = nameProcesso.current.value
         setNumProcessoLength(count_num_processo)
 
-        let classe_processo = classeProcesso.current.value
+        let classe_processo = classeProcesso.current.value == 'Classe judicial' ? '' : classeProcesso.current.value
+
+        console.log(classe_processo)
 
         if(name_processo.length === 0 || count_num_processo !== 20 || classe_processo === ''){
             setFirstSlideOk(false)

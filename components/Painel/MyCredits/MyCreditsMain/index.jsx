@@ -86,7 +86,7 @@ const MyCreditsMain = ({ credits }) => {
 
   useEffect(() => {
     let list = [...credits]
-    console.log(ordenation)
+
     if (!isEmpty(searchContext)) {
       list.filter((item) => {
         if (searchContext.name) {

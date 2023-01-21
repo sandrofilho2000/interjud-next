@@ -17,12 +17,12 @@ const Hero = () => {
             // Speed settings, try diffrent values untill you get good results
 
             startDelay: 300,
-            typeSpeed: 50,
-            backSpeed: 50,
-            backDelay: 300,
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 100,
             smartBackspace: true,
             loop: true,
-            showCursor: false,
+            showCursor: true,
         });
 
         // Destropying

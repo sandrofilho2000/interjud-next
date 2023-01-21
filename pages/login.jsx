@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useAuth } from '../context/AuthContext'
@@ -12,7 +12,9 @@ import Link from 'next/link'
 
 const Login = () => {
     const router = useRouter()
-    const { user, login, setSystemNotificationActive } = useAuth()
+
+    const { login, setSystemNotificationActive } = useAuth()
+
     const [data, setData] = useState({
         email: '',
         password: '',
@@ -50,7 +52,6 @@ const Login = () => {
                 <Image width={1024} height={560} src={login_bg} alt="Login background"/>
                 <form onSubmit={handleLogin} className="formLogin">
                     <FiLogIn />
-                    {/* <RiLoginBoxFill/> */}
                     <input
                         type="email"
                         name="email"

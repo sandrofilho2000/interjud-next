@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { auth, db } from '../firebase'
-import useCredits from '../components/hooks/useCredits'
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 
 const AuthContext = createContext({})
@@ -31,7 +30,11 @@ export const AuthContextProvider = ({ children }) => {
     const [systemNotificationActive, setSystemNotificationActive] = useState({ active: false, status: '', message: "" })
 
     let isEmpty = (obj) => {
-        return Object.values(obj).every(x => x === null || x === '');
+        if(!obj){
+            return false
+        }else{
+            return Object.values(obj).every(x => x === null || x === '');
+        }
     }
     
     useEffect(() => {
@@ -79,29 +82,23 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     const logout = async () => {
-        setUser(null)
+        setUser({})
+        console.log(auth)
         await (signOut(auth))
     }
-
-    ///GET USER INFO
-/*     useEffect(() => {
-        if (user) {
-
-        }
-        console.log(userInfo)
-    }, [user]) */
-
-
+    
+    
+    
     ///GET CREDITS
     useEffect(() => {
         const creditsCollectionRef = collection(db, "creditos")
-
+        console.log(auth)
         const getCredits = async () => {
             const data = await getDocs(creditsCollectionRef)
             let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             setCredits(cre)
-
         }
+
         getCredits()
     }, [])
  
@@ -132,7 +129,7 @@ export const AuthContextProvider = ({ children }) => {
                 newCreditOverlayActive,
                 setNewCreditOverlayActive
             }}>
-                { !isEmpty(user) && !isEmpty(userInfo) && !isEmpty(credits) ? children : ''}
+                { !isEmpty(user) && !isEmpty(userInfo) && !isEmpty(credits) ? children : children}
             </AuthContext.Provider>
         )
     

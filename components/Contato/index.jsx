@@ -23,7 +23,7 @@ const Contato = () => {
                         <input className='contactName' type="text" name="contactName" id="contactName" placeholder='Nome: '/>
                         <input className='contactEmail' type="email" name="contactEmail" id="contactEmail" placeholder='E-mail: '/>
                         <select className='contactTopic' name="contactTopic" id="contactTopic">
-                            <option defaultValue>
+                            <option defaultValue="">
                                 Assunto
                             </option>
                             <option defaultValue="Dúvidas">

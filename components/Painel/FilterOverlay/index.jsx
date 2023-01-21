@@ -51,7 +51,7 @@ const FilterOverlay = () => {
                 <AiFillCloseCircle onClick={() => setFilterOverlayActive(false)} className="filterOverlayClose"/>
 
                 <select name="filterClasse" ref={filterClasse} id="filterClasse">
-                    <option selected defaultValue="">Classe Judicial - Todas</option>
+                    <option defaultValue="">Classe Judicial - Todas</option>
                     <option defaultValue="Trabalhista">Trabalhista</option>
                     <option defaultValue="Cívil">Cívil</option>
                     <option defaultValue="Precatório">Precatório</option>

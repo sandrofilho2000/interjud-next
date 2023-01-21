@@ -128,9 +128,8 @@ const SideMenuContainer = () => {
                     <Link
                         onClick={() => {
                             logout()
-                            router.push("/login")
                         }}
-                        href="#"
+                        href="/login"
                     >
                         <span className='icon' title="Sair">
                             <BiLogOut />

@@ -10,9 +10,8 @@ main {
   -webkit-transition: 0.3s;
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  min-height: 100vh;
-  height: 100%;
-  overflow: auto;
+  height: auto;
+  overflow-x: auto;
   background-color: #111111;
 
   &.active {

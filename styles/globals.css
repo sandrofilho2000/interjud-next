@@ -229,6 +229,7 @@ body {
 .credit_single {
   position: relative;
   width: 250px;
+  overflow: hidden;
   border: 1px solid var(--interjud-blue);
   cursor: pointer;
 }
@@ -1310,9 +1311,8 @@ main {
   top: 60px;
   min-height: 100vh;
   transition: 0.3s;
-  min-height: 100vh;
-  height: 100%;
-  overflow: auto;
+  height: auto;
+  overflow-x: auto;
   background-color: #111111;
 }
 main.active {
@@ -1440,9 +1440,6 @@ main h1 {
   cursor: pointer;
 }
 
-.creditsWrapper {
-  max-height: 360px;
-}
 .creditsWrapper .creditsSlider {
   margin-top: 40px;
   margin-bottom: 60px;

@@ -22,7 +22,7 @@ const Hero = () => {
             backDelay: 100,
             smartBackspace: true,
             loop: true,
-            showCursor: true,
+            showCursor: false,
         });
 
         // Destropying
@@ -41,7 +41,7 @@ const Hero = () => {
             <div className="container">
                 <div className="hero-center">
                     <div className="hero-text">
-                        <h1 ref={el}>NEGOCIE SEU PROCESSO JUDICIAL</h1>
+                        <span ref={el}>NEGOCIE SEU PROCESSO JUDICIAL</span>
                     </div>
                     <div className="hero-btn">
                         <Button text="VENDA SEU CRÉDITO" aos={'fade-left'} link="https://www.interjud.com.br/cadastrar-se-vendedor" />

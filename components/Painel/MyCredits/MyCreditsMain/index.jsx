@@ -317,7 +317,7 @@ const MyCreditsMain = ({ credits }) => {
         </div>
         {
           showPagination && (
-            <Pagination handleCurrPage={handleCurrPage} currPage={currPage} pagClass={paginationClass} handleNextPage={handleNextPage} totalCredits={credits.length} creditsPerPage={creditsPerPage} />
+            <Pagination handleCurrPage={handleCurrPage} currPage={currPage} pagclassName={paginationClass} handleNextPage={handleNextPage} totalCredits={credits.length} creditsPerPage={creditsPerPage} />
           )
         }
       </div>

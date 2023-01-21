@@ -12,7 +12,7 @@ import Link from 'next/link'
 
 const Login = () => {
     const router = useRouter()
-    const { user, login } = useAuth()
+    const { user, login, setSystemNotificationActive } = useAuth()
     const [data, setData] = useState({
         email: '',
         password: '',
@@ -24,7 +24,18 @@ const Login = () => {
             await login(data.email, data.password)
             router.push('/painel/home')
         } catch (err) {
-            console.log(err)
+            let notification = {
+                status:'error',
+                active:true
+            }
+            
+            setSystemNotificationActive(notification)
+            if (err.message.includes("wrong-password")) {
+                notification.message = "E-mail ou senha incorreta!"
+                
+            } else if (err.message.includes("user-not-found")) {
+                notification.message = "Usuário não cadastrado!"
+            }
         }
     }
 

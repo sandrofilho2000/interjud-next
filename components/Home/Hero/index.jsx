@@ -13,7 +13,7 @@ const Hero = () => {
     useEffect(() => {
         AOS.init();
         const typed = new Typed(el.current, {
-            strings: [ "NEGOCIE SEU PROCESSO JUDICIAL", "GARANTA AGORA SEU DIREITO", "ANTECIPE SEUS SONHOS COM A INTERJUD", "RECEBA PROPOSTAS HOJE MESMO"], // Strings to display
+            strings: [ "NEGOCIE SEU PROCESSO JUDICIAL", "GARANTA AGORA SEUS DIREITOS", "ANTECIPE SEUS SONHOS COM A INTERJUD", "RECEBA PROPOSTAS HOJE MESMO"], // Strings to display
             // Speed settings, try diffrent values untill you get good results
 
             typeSpeed: 100,

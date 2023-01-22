@@ -6,20 +6,25 @@ import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
 import MyCreditsMain from '../../components/Painel/MyCredits/MyCreditsMain'
 import NewCreditOverlay from '../../components/Painel/MyCredits/NewCreditOverlay'
+import WelcomeOverlay from '../../components/Painel/WelcomeOverlay'
 
 
 const Painel = () => {
-    const { searchMainActive, setSearchMainActive, searchContext, credits } = useAuth()
+    const { searchMainActive, setSearchMainActive, searchContext, credits, user, userInfo } = useAuth()
 
-    let isEmpty = (obj) => {
-        return Object.values(obj).every(x => x === null || x === '');
+        let isEmpty = (obj) => {
+        if(!obj){
+            return false
+        }else{
+            return Object.values(obj).every(x => x === null || x === '');
+        }
     }
 
-    useEffect(()=>{
-        if(isEmpty(credits[0])){
+    useEffect(() => {
+        if (isEmpty(credits[0])) {
             setSearchMainActive(false)
         }
-    },[])
+    }, [])
 
     return (
         <div>
@@ -38,11 +43,22 @@ const Painel = () => {
                 <meta name="og:url" content="https://www.interjud.com.br/" />
                 <meta name="og:image" content="https://www.interjud.com.br/img/logo.webp" />
             </Head>
-            <SideMenu />
-            <MainTop page="my_credits"/>
-            <MyCreditsMain />
-            <FilterOverlay />
-            <NewCreditOverlay />
+            {
+                user && userInfo 
+                    ? (
+                        <>
+                            <SideMenu />
+                            <MainTop page="my_credits" />
+                            <MyCreditsMain />
+                            <FilterOverlay />
+                            <NewCreditOverlay />
+                        </>
+                    ) :
+                    (
+                        <WelcomeOverlay />
+                    )
+            }
+
         </div>
     )
 }

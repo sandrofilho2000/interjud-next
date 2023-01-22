@@ -7,6 +7,25 @@
   scroll-behavior: smooth;
   resize: none;
   color: var(--txt-color);
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    z-index: 99;
+    position: relative
+}
+
+&::-webkit-scrollbar-track {
+    background: var(--main-bg-color);
+}
+
+&::-webkit-scrollbar-thumb {
+    background: var(--interjud-blue);
+    border-radius: 10px
+}
+
+&::-webkit-scrollbar-thumb:hover {
+    background: var(--main-bg-color)
+}
 }
 
 html,
@@ -179,7 +198,7 @@ input[type=text], input[type=number], input[type=email], input[type=password] {
   padding-left: 5px;
   font-size: 17px;
   height: 40px;
-  margin-top: 10px;
+  margin-top: 10px; 
   border-bottom: 1px solid var(--interjud-blue);
   position: relative;
   &:focus-visible {
@@ -187,6 +206,25 @@ input[type=text], input[type=number], input[type=email], input[type=password] {
   }
   
   &::placeholder {
+    color: var(--txt-color);
+    opacity: 0.5;
+  }
+}
+
+select{
+  margin-top: 10px;
+  border: unset;
+  outline: unset;
+  border-bottom: 1px solid var(--interjud-blue);
+  padding-left: 0;
+  background-color: transparent;
+  font-size: 15px;
+  color: var(--txt-color);
+
+  option{
+    padding-left: 0;
+    background-color: inherit;
+    font-size: 15px;
     color: var(--txt-color);
   }
 }

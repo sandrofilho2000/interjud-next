@@ -26,7 +26,7 @@ const Login = () => {
         let password = data.password
 
         try {
-            await login(data.email, data.password)
+            await login(email, password)
             router.push('/painel/home')
         } catch (err) {
             let notification = {
@@ -42,6 +42,7 @@ const Login = () => {
                 notification.status = "success"
                 notification.message = "Usuário não cadastrado. Clique aqui para criar sua conta!"
             }
+            console.log(err)
             setSystemNotificationActive(notification)
         }
     }

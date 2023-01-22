@@ -5,8 +5,12 @@ import CreditsSlider from '../../CreditsSlider'
 const HomeMain = () => {
     const { sideMenuOpen, searchContext, credits } = useAuth()
 
-    let isEmpty = (obj) => {
-        return Object.values(obj).every(x => x === null || x === '');
+        let isEmpty = (obj) => {
+        if(!obj){
+            return false
+        }else{
+            return Object.values(obj).every(x => x === null || x === '');
+        }
     }
 
     return (

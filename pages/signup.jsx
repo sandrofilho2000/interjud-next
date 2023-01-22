@@ -25,7 +25,7 @@ const Signup = () => {
             status: 'warning',
             active: true
         }
-        notification.message = "Sua senha deve conter um caracter maisculo, um mínusculo e um especial"
+        notification.message = "Sua senha deve conter um caracter maiúsculo, um minúsculo e um especial"
         setSystemNotificationActive(notification)
     }, [])
 
@@ -53,6 +53,7 @@ const Signup = () => {
             }else{
                 try {
                     await signup(data.email, data.password)
+                    router.push("/painel/home")
                 } catch (err) {
                     console.log(err)
                     notification.status = "error"

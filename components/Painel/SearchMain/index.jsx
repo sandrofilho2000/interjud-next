@@ -12,8 +12,12 @@ const SearchMain = () => {
         setSearchMainActive(!searchMainActive)
     }
 
-    let isEmpty = (obj) => {
-        return Object.values(obj).every(x => x === null || x === '');
+        let isEmpty = (obj) => {
+        if(!obj){
+            return false
+        }else{
+            return Object.values(obj).every(x => x === null || x === '');
+        }
     }
 
     useEffect(() => {

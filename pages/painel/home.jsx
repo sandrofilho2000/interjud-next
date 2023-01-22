@@ -13,6 +13,10 @@ import useUserInfo from '../../components/hooks/useUserInfo'
 const Painel = () => {
     const { searchMainActive, userInfo, user, credits } = useAuth()
 
+    useEffect(()=>{
+        console.log(user, userInfo)
+    }, [])
+
     return (
         <div>
             <Head>
@@ -30,22 +34,27 @@ const Painel = () => {
                 <meta name="og:url" content="https://www.interjud.com.br/" />
                 <meta name="og:image" content="https://www.interjud.com.br/img/logo.webp" />
             </Head>
-            <SideMenu />
-            <MainTop page="home"/>
             {
-                !searchMainActive ? (
-                    <HomeMain />
-                )
-                : (
-
-                    <SearchMain />
-                )
+                user && userInfo ? (
+                    <>
+                        <SideMenu />
+                        <MainTop page="home"/>
+                        {
+                            !searchMainActive ? (
+                                <HomeMain />
+                            )
+                            : (
+            
+                                <SearchMain />
+                            )
+                        }
+                        <FilterOverlay />
+                    </>
+                ) :
+                (
+                    <WelcomeOverlay/>
+                )   
             }
-            <FilterOverlay />
-{/*             {
-                !userInfo && user && 
-            } */}
-            <WelcomeOverlay/>
         </div>
     )
 }

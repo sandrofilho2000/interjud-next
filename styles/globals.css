@@ -8,6 +8,21 @@
   resize: none;
   color: var(--txt-color);
 }
+*::-webkit-scrollbar {
+  width: 3px;
+  z-index: 99;
+  position: relative;
+}
+*::-webkit-scrollbar-track {
+  background: var(--main-bg-color);
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--interjud-blue);
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--main-bg-color);
+}
 
 html,
 body {
@@ -1352,7 +1367,7 @@ main h1 {
   z-index: 1;
 }
 .welcomeOverlay .welcomeContainer .welcomeSlider {
-  width: 1560px;
+  width: 2080px;
   transition: 0.3s;
   height: 100%;
   position: relative;
@@ -1362,7 +1377,6 @@ main h1 {
 }
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle {
   background-color: rgba(0, 0, 0, 0.855);
-  border: red;
   width: 520px;
   position: relative;
   height: 540px;
@@ -1371,12 +1385,14 @@ main h1 {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
 }
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h2,
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h3 {
   font-size: 40px;
   display: block;
-  width: 80%;
+  width: 100%;
   text-align: left;
   position: relative;
   z-index: 12;
@@ -1384,9 +1400,17 @@ main h1 {
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h3 {
   font-size: 20px;
 }
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle h4 {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 0 auto;
+}
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text] {
   width: 44%;
@@ -1401,17 +1425,70 @@ main h1 {
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]::placeholder {
   font-size: 14px;
 }
-.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=date] {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid var(--interjud-blue);
-  color-scheme: dark;
-  width: 100%;
-  font-size: 20px;
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.secondSlider form label input {
+  display: none;
 }
-.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=date] * {
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.secondSlider form label input:checked ~ div {
+  background-color: var(--interjud-blue);
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.secondSlider form label input:checked ~ div:hover {
+  transform: unset;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.secondSlider form label > div {
+  border: 2px solid var(--interjud-blue);
+  padding: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.secondSlider form label > div:hover {
+  transform: translateY(-10%);
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.thirdSlider form input {
+  width: 100%;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider {
+  justify-content: space-between;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider h3 {
+  width: 100%;
+  bottom: -40px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider form .address {
+  height: 100%;
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  gap: 20px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider form .address > div {
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider form .address > div input#numero {
+  width: 50px;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider form .address > div select option {
   background-color: var(--main-bg-color);
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider button {
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: var(--interjud-blue);
+  width: 200px;
+  padding: 10px 15px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle.forthSlider button:hover {
+  opacity: 0.8;
 }
 .welcomeOverlay .welcomeContainer .welcomeArrows {
   width: 100%;
@@ -1443,6 +1520,30 @@ main h1 {
   font-size: 30px;
   display: flex;
   align-items: center;
+}
+.welcomeOverlay .links {
+  display: flex;
+  justify-content: space-between;
+  width: 520px;
+  margin: 0 auto;
+}
+.welcomeOverlay .links > a {
+  margin-top: 10px;
+  font-size: 14px;
+  display: flex;
+  transition: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  margin-top: 5px;
+  gap: 5px;
+}
+.welcomeOverlay .links > a > svg {
+  display: inline-block;
+  height: 100%;
+}
+.welcomeOverlay .links > a.active {
+  pointer-events: initial;
+  opacity: 1;
 }
 
 .mainTop {
@@ -2058,21 +2159,6 @@ main h1 {
 .notifications.active {
   transform: scale(1);
 }
-.notifications::-webkit-scrollbar {
-  width: 3px;
-  z-index: 99;
-  position: relative;
-}
-.notifications::-webkit-scrollbar-track {
-  background: var(--main-bg-color);
-}
-.notifications::-webkit-scrollbar-thumb {
-  background: var(--interjud-blue);
-  border-radius: 10px;
-}
-.notifications::-webkit-scrollbar-thumb:hover {
-  background: var(--main-bg-color);
-}
 .notifications ul {
   width: 100%;
   height: auto;
@@ -2376,11 +2462,31 @@ input[type=text]:focus-visible, input[type=number]:focus-visible, input[type=ema
 }
 input[type=text]::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder {
   color: var(--txt-color);
+  opacity: 0.5;
 }
 input[type=text]:-ms-input-placeholder, input[type=number]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder {
   color: var(--txt-color);
+  opacity: 0.5;
 }
 input[type=text]::placeholder, input[type=number]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
+  color: var(--txt-color);
+  opacity: 0.5;
+}
+
+select {
+  margin-top: 10px;
+  border: unset;
+  outline: unset;
+  border-bottom: 1px solid var(--interjud-blue);
+  padding-left: 0;
+  background-color: transparent;
+  font-size: 15px;
+  color: var(--txt-color);
+}
+select option {
+  padding-left: 0;
+  background-color: inherit;
+  font-size: 15px;
   color: var(--txt-color);
 }
 

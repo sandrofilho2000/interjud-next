@@ -244,7 +244,6 @@ body {
 .credit_single {
   position: relative;
   width: 250px;
-  overflow: hidden;
   border: 1px solid var(--interjud-blue);
   cursor: pointer;
 }
@@ -486,6 +485,7 @@ body {
   pointer-events: none;
   transition: 0.6s;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
 }
 .credit_single .info svg {

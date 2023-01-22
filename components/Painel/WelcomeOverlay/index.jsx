@@ -297,6 +297,7 @@ const WelcomeOverlay = () => {
                 id: user.uid,
                 email: user.email,
                 emailValidation: false,
+                favorites: [],
                 fullName: `${newUserInfo.first_name} ${newUserInfo.last_name}`,
                 address: userAddress,
             }

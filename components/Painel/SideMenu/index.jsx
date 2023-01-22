@@ -10,7 +10,9 @@ import { useRouter } from 'next/router'
 const SideMenuContainer = () => {
     const { sideMenuOpen, setSideMenuOpen, userInfo, logout, credits, user } = useAuth()
 
-    const avatar = userInfo ? userInfo.avatar : 'https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/users%2Fdefault_avatar.pbg.webp?alt=media&token=bd0cd8cd-b54b-4b3d-abc7-91ffa81751c5'
+    const avatar = userInfo.avatar ? userInfo.avatar : 'https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/users%2Fdefault_avatar.pbg.webp?alt=media&token=bd0cd8cd-b54b-4b3d-abc7-91ffa81751c5'
+
+    console.log(avatar)
 
     const first_name = userInfo ? userInfo.first_name : ''
  

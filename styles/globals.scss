@@ -63,12 +63,17 @@ body {
 @import "components/painel/welcomeOverlay";
 @import "components/painel/mainTop";
 @import "components/painel/filterFields";
-@import "components/painel/home/homeMain";
-@import "components/painel/myCredits/myCreditsMain";
-@import "components/painel/myCredits/newCreditsOverlay";
 @import "components/painel/notifications";
 @import "components/painel/searchMain";
 @import "components/painel/filterOverlay";
+
+@import "components/painel/home/homeMain";
+
+@import "components/painel/myCredits/myCreditsMain";
+@import "components/painel/myCredits/newCreditsOverlay";
+
+@import "components/painel/favorites/favoritesMain";
+
 
 @import "components/login/login";
 

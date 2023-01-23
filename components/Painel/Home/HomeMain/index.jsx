@@ -3,15 +3,11 @@ import { useAuth } from '../../../../context/AuthContext'
 import CreditsSlider from '../../CreditsSlider'
 
 const HomeMain = () => {
-    const { sideMenuOpen, searchContext, credits } = useAuth()
+    const { sideMenuOpen, searchContext, credits, favoritesCredits } = useAuth()
 
-        let isEmpty = (obj) => {
-        if(!obj){
-            return false
-        }else{
-            return Object.values(obj).every(x => x === null || x === '');
-        }
-    }
+    useEffect(()=>{
+        
+    }, [favoritesCredits])
 
     return (
         <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
@@ -23,7 +19,7 @@ const HomeMain = () => {
                 <CreditsSlider credits={credits} text="MAIS RECENTES" />
                 <CreditsSlider credits={credits} text="5 ESTRELAS" />
                 <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
-                <CreditsSlider credits={credits} text="FAVORITOS" />
+                <CreditsSlider credits={favoritesCredits} text="FAVORITOS" />
                 <CreditsSlider credits={credits} text="MAIS POPULARES" />
             </div>
         </main>

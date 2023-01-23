@@ -73,7 +73,7 @@ const SideMenuContainer = () => {
                 </li>
 
                 <li>
-                    <Link href="#">
+                    <Link href="./favorites">
                         <span className='icon' title="Favoritos">
                             <AiFillHeart />
                         </span>

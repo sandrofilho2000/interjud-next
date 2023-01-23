@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
     const [offerOverlayActive, setOfferOverlayActive] = useState(false)
     const [newCreditOverlayActive, setNewCreditOverlayActive] = useState(false)
     const [filterOverlayActive, setFilterOverlayActive] = useState(false)
+    const [favoritesCredits, setFavoritesCredits] = useState([])
     const [searchedCredits, setSearchedCredits] = useState([{}])
     const [currCreditOffer, setCurrCreditOffer] = useState({})
     const [searchContext, setSearchContext] = useState({
@@ -30,13 +31,13 @@ export const AuthContextProvider = ({ children }) => {
     const [systemNotificationActive, setSystemNotificationActive] = useState({ active: false, status: '', message: "", link: "#" })
 
     let isEmpty = (obj) => {
-        if(!obj){
+        if (!obj) {
             return false
-        }else{
+        } else {
             return Object.values(obj).every(x => x === null || x === '');
         }
     }
-    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -51,7 +52,7 @@ export const AuthContextProvider = ({ children }) => {
                     setUserInfo(docSnap.data())
                 }
                 getUserInfo(user.uid)
-                
+
             } else {
                 setUser(null)
             }
@@ -83,9 +84,9 @@ export const AuthContextProvider = ({ children }) => {
         setUser({})
         await (signOut(auth))
     }
-    
-    
-    
+
+
+
     ///GET CREDITS
     useEffect(() => {
         const creditsCollectionRef = collection(db, "creditos")
@@ -97,39 +98,52 @@ export const AuthContextProvider = ({ children }) => {
 
         getCredits()
     }, [])
- 
-        return (
-            <AuthContext.Provider value={{
-                user,
-                userInfo,
-                credits,
-                login,
-                signup,
-                logout,
-                sideMenuOpen,
-                setSideMenuOpen,
-                searchMainActive,
-                setSearchMainActive,
-                searchedCredits,
-                setSearchedCredits,
-                offerOverlayActive,
-                setOfferOverlayActive,
-                filterOverlayActive,
-                setFilterOverlayActive,
-                currCreditOffer,
-                setCurrCreditOffer,
-                systemNotificationActive,
-                setSystemNotificationActive,
-                searchContext,
-                setSearchContext,
-                newCreditOverlayActive,
-                setNewCreditOverlayActive
-            }}>
-                { !isEmpty(user) && !isEmpty(userInfo) && !isEmpty(credits) ? children : children}
-            </AuthContext.Provider>
-        )
-    
-    
+
+    ///GET FAVORITES
+    useEffect(() => {
+        if(userInfo){
+            if(userInfo.favorites){
+                setFavoritesCredits(
+                    credits.filter(item => userInfo.favorites.includes(item.id))
+                )
+            }
+        }
+    }, [credits, userInfo])
+
+    return (
+        <AuthContext.Provider value={{
+            user,
+            userInfo,
+            credits,
+            favoritesCredits,
+            login,
+            signup,
+            logout,
+            sideMenuOpen,
+            setFavoritesCredits,
+            setSideMenuOpen,
+            searchMainActive,
+            setSearchMainActive,
+            searchedCredits,
+            setSearchedCredits,
+            offerOverlayActive,
+            setOfferOverlayActive,
+            filterOverlayActive,
+            setFilterOverlayActive,
+            currCreditOffer,
+            setCurrCreditOffer,
+            systemNotificationActive,
+            setSystemNotificationActive,
+            searchContext,
+            setSearchContext,
+            newCreditOverlayActive,
+            setNewCreditOverlayActive
+        }}>
+            {!isEmpty(user) && !isEmpty(userInfo) && !isEmpty(credits) && !isEmpty(favoritesCredits) ? children : children}
+        </AuthContext.Provider>
+    )
+
+
 
 
 }

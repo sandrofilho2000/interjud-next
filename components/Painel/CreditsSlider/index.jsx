@@ -2,20 +2,20 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
 import Credit from '../../Credit'
 
-const CreditsSlider = ({text}) => {
+const CreditsSlider = ({text, credits}) => {
     let slider = useRef()
     let [sliderNav, setSliderNav] = useState(0)
     let [creditsToShow, setCreditsToShow] = useState()
 
+    let { favoritesCredits } = useAuth()
+
     let handleSliderCreditsToShow = () =>{
-        let length = 15
+        let length = credits.length * 2
         let windowWidth = window.innerWidth - 60
         let creditsShown = Math.floor(windowWidth / 270)
         let _creditsToShow = length - creditsShown
         setCreditsToShow(_creditsToShow)
     }
-
-    const { credits } = useAuth()
 
     let handleSliderNav = (num) => {
         if (sliderNav <= 0 && num == -1) {
@@ -31,7 +31,9 @@ const CreditsSlider = ({text}) => {
     
     useEffect(()=>{
         handleSliderCreditsToShow()
-    }, [])
+    }, [favoritesCredits])
+
+
 
     return (
         <div ref={slider} className='creditsSlider'>
@@ -57,13 +59,6 @@ const CreditsSlider = ({text}) => {
                 {text}
             </h2>
             <div style={{ marginLeft: `-${272 * sliderNav}px` }} className='creditsSliderSingle'>
-                {
-                    credits.map((item) => {
-                        return (
-                            <Credit key={item.id} credit={item} />
-                        )
-                    })
-                }
                 {
                     credits.map((item) => {
                         return (

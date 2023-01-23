@@ -191,7 +191,6 @@ const WelcomeOverlay = () => {
             let address = await fetch(`https://viacep.com.br/ws/${formatedCEP.replace(/\D/g, '')}/json/`)
                 .then((response) => { return response.json() })
 
-            console.log(address.erro)
             if (!address.erro) {
                 logradouroInput.current.value = address.logradouro
                 cidadeInput.current.value = address.localidade
@@ -200,7 +199,6 @@ const WelcomeOverlay = () => {
                 var select = ufInput.current
                 select.querySelectorAll("option").forEach((item) => {
                     if (item.value === address.uf) {
-                        console.log(item.value)
                         item.selected = true
                     }
                 })

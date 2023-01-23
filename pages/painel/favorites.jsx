@@ -6,11 +6,12 @@ import SearchMain from '../../components/Painel/SearchMain'
 import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
 import WelcomeOverlay from '../../components/Painel/WelcomeOverlay'
-import HomeMain from '../../components/Painel/Home/HomeMain'
+import FavoritesMain from '../../components/Painel/Favorites/FavoritesMain'
 
 
 
 const Painel = () => {
+    
     const { searchMainActive, userInfo, user, credits } = useAuth()
 
     return (
@@ -34,10 +35,10 @@ const Painel = () => {
                 user && userInfo ? (
                     <>
                         <SideMenu />
-                        <MainTop page="home"/>
+                        <MainTop page="favorites"/>
                         {
                             !searchMainActive ? (
-                                <HomeMain />
+                                <FavoritesMain />
                             )
                             : (
             

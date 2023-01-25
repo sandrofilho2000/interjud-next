@@ -20,8 +20,12 @@ const HomeMain = () => {
                 <CreditsSlider credits={credits} text="5 ESTRELAS" />
                 <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
                 {
-                    favoritesCredits ??  
-                    <CreditsSlider credits={favoritesCredits} text="FAVORITOS" />
+                    favoritesCredits ? (                        
+                        <CreditsSlider credits={favoritesCredits} text="FAVORITOS" />
+                    )
+                    : (
+                        ''
+                    )
                 }
                 <CreditsSlider credits={credits} text="MAIS POPULARES" />
             </div>

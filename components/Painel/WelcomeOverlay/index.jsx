@@ -387,7 +387,7 @@ const WelcomeOverlay = () => {
                                     <input type="text" name="cep" id="cep" placeholder='CEP...' maxLength={9} onChange={(e) => { formatCEP(e) }} />
                                     <input type="text" ref={logradouroInput} name="logradouro" id="logradouro" placeholder='Logradouro...' onChange={(e) => { setUserAddress({ ...userAddress, logradouro: e.currentTarget.value.trim() }) }} />
                                     <select id="estado" ref={ufInput} name="estado" onChange={(e) => { setUserAddress({ ...userAddress, uf: e.currentTarget.value.trim() }) }} >
-                                        <option disabled>Estado</option>
+                                        <option disabled selected>Estado</option>
                                         <option defaultValue="AC">AC</option>
                                         <option defaultValue="AL">AL</option>
                                         <option defaultValue="AP">AP</option>

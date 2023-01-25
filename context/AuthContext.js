@@ -136,6 +136,7 @@ export const AuthContextProvider = ({ children }) => {
             setSystemNotificationActive,
             searchContext,
             setSearchContext,
+            setUserInfo,
             newCreditOverlayActive,
             setNewCreditOverlayActive
         }}>

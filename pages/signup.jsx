@@ -9,6 +9,7 @@ import { AiOutlineUserAdd } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { FaFacebookF } from 'react-icons/fa'
 import Link from 'next/link'
+
 const Signup = () => {
     const { signup, setSystemNotificationActive, user } = useAuth()
     const [passwdStrength, setPasswdStrength] = useState('')
@@ -20,13 +21,16 @@ const Signup = () => {
         repeat_password: '',
     })
 
-    useEffect(()=>{
+    useEffect(() => {
+
         let notification = {
             status: 'warning',
             active: true
         }
+
         notification.message = "Sua senha deve conter um caracter maiúsculo, um minúsculo e um especial"
         setSystemNotificationActive(notification)
+
     }, [])
 
     const handleSignup = async (e) => {
@@ -37,40 +41,44 @@ const Signup = () => {
             status: 'error',
             active: true
         }
-            if (passwd_1 !== passwd_2) {                
-                if (passwd_1.length < 8) {
-                    notification.message = "Sua senha deve conter no mínimo 8 dígitos!"
-                } else {
-                }
-            }
-            
-            validatePassWord()
-            
-            if(passwdStrength !== "strong"){
-                notification.status = 'warning'
-                notification.message = "Crie uma senha mais forte"
+        if (passwd_1 !== passwd_2) {
+            notification.message = "As senhas não batem!"
+            setSystemNotificationActive(notification)
+            return false
+        } else {
+            if (passwd_1.length < 8) {
+                notification.message = "Sua senha deve conter no mínimo 8 dígitos!"
                 setSystemNotificationActive(notification)
-            }else{
-                try {
-                    await signup(data.email, data.password)
-                    router.push("/painel/home")
-                } catch (err) {
-                    console.log(err)
-                    notification.status = "error"
-                    if(err.message.includes("missing-email")){
-                        notification.message = "Digite seu endereço de E-mail"
-                    }else if(err.message.includes("email-already-in-use")){
-                        notification.message = "E-mail já cadastrado!"
-                    }
-                    setSystemNotificationActive(notification)
-                }
+                return false
+            } else {
+                validatePassWord()
             }
         }
 
-        
 
-
-        
+        if (passwdStrength !== "strong") {
+            notification.status = 'warning'
+            notification.message = "Crie uma senha mais forte"
+            setSystemNotificationActive(notification)
+            return false
+        }
+        else {
+            try {
+                await signup(data.email, data.password)
+                router.push("/painel/home")
+            } catch (err) {
+                console.log(err)
+                notification.status = "error"
+                if (err.message.includes("missing-email")) {
+                    notification.message = "Digite seu endereço de E-mail"
+                } else if (err.message.includes("email-already-in-use")) {
+                    notification.message = "E-mail já cadastrado!"
+                }
+                setSystemNotificationActive(notification)
+                return false
+            }
+        }
+    }
 
 
     const validatePassWord = () => {
@@ -116,15 +124,15 @@ const Signup = () => {
 
         if (passwd_1.trim().length >= 8) {
             count_check += 2
-        }else if(passwd_1.trim().length < 8){
+        } else if (passwd_1.trim().length < 8) {
             count_check -= 3
         }
 
-        if(count_check < 3){
+        if (count_check < 3) {
             setPasswdStrength("weak")
-        }else if(count_check >= 3 && count_check < 5){
+        } else if (count_check >= 3 && count_check < 5) {
             setPasswdStrength("regular")
-        }else{
+        } else {
             setPasswdStrength("strong")
         }
     }

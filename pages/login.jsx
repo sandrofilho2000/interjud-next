@@ -37,7 +37,11 @@ const Login = () => {
             if (err.message.includes("wrong-password")) {
                 notification.message = "E-mail ou senha incorreta!"
                 
-            } else if (err.message.includes("user-not-found")) {
+            } 
+            else if (err.message.includes("invalid-email")) {
+                notification.message = "E-mail inválido!"
+            }
+            else if (err.message.includes("user-not-found")) {
                 notification.link ="/signup"
                 notification.status = "success"
                 notification.message = "Usuário não cadastrado. Clique aqui para criar sua conta!"

@@ -381,10 +381,22 @@ body {
 .credit_single .wishlist_icon.active .heart-main path {
   -webkit-animation: stroke-animation 2s ease-in-out forwards;
   animation: stroke-animation 2s ease-in-out forwards;
+  -webkit-animation-duration: 0s;
+          animation-duration: 0s;
+}
+.credit_single .wishlist_icon.active.animate .heart-main path {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 .credit_single .wishlist_icon.active .heart-background path {
   -webkit-animation: fade-animation 2s ease-in-out forwards;
   animation: fade-animation 2s ease-in-out forwards;
+  -webkit-animation-duration: 0s;
+          animation-duration: 0s;
+}
+.credit_single .wishlist_icon.active.animate .heart-background path {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 @-webkit-keyframes stroke-animation {
   0% {
@@ -1763,6 +1775,12 @@ main.searchMain .creditsWrapper {
 main.searchMain .creditsWrapper > .Tilt {
   margin: 0 auto;
 }
+main.searchMain .creditsWrapper h4 {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
 
 .filterOverlay {
   position: fixed;
@@ -2357,9 +2375,18 @@ main.main .creditsWrapper.favorites {
   grid-template-columns: repeat(auto-fill, minmax(252px, 1fr));
   justify-content: left;
   gap: 40px;
+  position: relative;
 }
 main.main .creditsWrapper.favorites article {
   margin: 0 auto;
+}
+main.main .creditsWrapper.favorites h4 {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .container {

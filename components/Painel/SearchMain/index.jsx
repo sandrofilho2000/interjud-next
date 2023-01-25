@@ -63,16 +63,16 @@ const SearchMain = ({credits}) => {
             <FilterSearch/>
 
                 {
-                    searchedCredits ?
+                    searchedCredits.length ?
                         searchedCredits.map((item) => {
                             return (
                                 <Credit key={item.id} credit={item} />
                             )
                         })
                         :
-                        <h1>
-                            Sem créditos disponíveis
-                        </h1>
+                        <h4>
+                            CRÉDITO NÃO ENCONTRADO
+                        </h4>
                 }
             </div>
         </main>

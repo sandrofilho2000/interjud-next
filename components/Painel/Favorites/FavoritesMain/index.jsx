@@ -14,12 +14,19 @@ const Favorites = () => {
 
             <div className='creditsWrapper favorites'>
                 {
-
+                    favoritesCredits.length ?
                     favoritesCredits.map((item) => {
                         return (
                             <Credit key={item.id} credit={item} />
                         )
                     })
+
+                    : (
+
+                        <h4>
+                            VOCÊ NÃO POSSUI CRÉDITOS FAVORITOS
+                        </h4>
+                    )
                 }
             </div>
         </main>

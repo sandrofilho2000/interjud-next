@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { memo, useEffect } from 'react'
 import { FaGlobeAmericas, FaHandshake } from 'react-icons/fa'
 import { BiLogOut } from 'react-icons/bi'
-import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage, AiFillNotification, AiFillHome } from 'react-icons/ai'
+import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage, AiFillNotification, AiFillHome, AiOutlineWhatsApp } from 'react-icons/ai'
 import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
 
@@ -18,7 +18,7 @@ const SideMenuContainer = () => {
         <aside className={`sideMenu ${sideMenuOpen ? 'active' : ''}`}>
             <ul>
                 <li>
-                    <Link href="#">
+                    <Link href="./profile">
                         <span className='icon' title="Olá, Sandro">
                             <Image src={avatar} width={50} height={50} alt="Logo interjud da área logada" />
                         </span>
@@ -52,17 +52,6 @@ const SideMenuContainer = () => {
 
                 <li>
                     <Link href="#">
-                        <span className='icon' title="Créditos Avaliados">
-                            <AiFillStar />
-                        </span>
-                        <span className='icon_text'>
-                            Créditos Avaliados
-                        </span>
-                    </Link>
-                </li>
-
-                <li>
-                    <Link href="#">
                         <span className='icon' title="Propostas">
                             <FaHandshake />
                         </span>
@@ -84,7 +73,7 @@ const SideMenuContainer = () => {
                 </li>
 
                 <li>
-                    <Link href="#">
+                    <Link href="./profile">
                         <span className='icon' title="Perfil">
                             <AiOutlineUser />
                         </span>
@@ -97,10 +86,10 @@ const SideMenuContainer = () => {
                 <li>
                     <Link href="#">
                         <span className='icon' title="Mensagens">
-                            <AiFillMessage />
+                            <AiOutlineWhatsApp />
                         </span>
                         <span className='icon_text'>
-                            Mensagens
+                            Fale conosco
                         </span>
                     </Link>
                 </li>

@@ -6,7 +6,7 @@ const HomeMain = () => {
     const { sideMenuOpen, searchContext, credits, favoritesCredits } = useAuth()
 
     useEffect(()=>{
-        
+        console.log(favoritesCredits)
     }, [favoritesCredits])
 
     return (
@@ -19,7 +19,10 @@ const HomeMain = () => {
                 <CreditsSlider credits={credits} text="MAIS RECENTES" />
                 <CreditsSlider credits={credits} text="5 ESTRELAS" />
                 <CreditsSlider credits={credits} text="RECEBA EM ATÉ 1 ANO" />
-                <CreditsSlider credits={favoritesCredits} text="FAVORITOS" />
+                {
+                    favoritesCredits ??  
+                    <CreditsSlider credits={favoritesCredits} text="FAVORITOS" />
+                }
                 <CreditsSlider credits={credits} text="MAIS POPULARES" />
             </div>
         </main>

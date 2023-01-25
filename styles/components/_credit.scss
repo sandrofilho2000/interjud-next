@@ -1,327 +1,339 @@
 .credit_single {
+  position: relative;
+  width: 250px;
+  border: 1px solid var(--interjud-blue);
+  cursor: pointer;
+
+  img {
     position: relative;
-    width: 250px;
-    border: 1px solid var(--interjud-blue);
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    width: 100%;
+    user-select: none;
+  }
+
+  .credit_content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .rating {
+      display: flex;
+      width: 90%;
+      min-height: 30px;
+      margin: 0 auto;
+      justify-content: center;
+
+      svg {
+        fill: var(--interjud-yellow) !important;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        font-size: 28px;
+        width: 20%;
+        display: inline-block;
+      }
+    }
+
+    &::before {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      content: "";
+      top: 0;
+      left: 0;
+      background-color: var(--main-bg-color);
+      opacity: 0.85;
+    }
+
+    * {
+      position: relative;
+      z-index: 2;
+    }
+
+    p {
+      text-align: center;
+      width: 90%;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transform: translateY(-20%);
+      display: -webkit-box !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      border-bottom: 2px solid var(--main-color);
+      max-width: 300px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      &.name {
+        min-height: 60px;
+      }
+    }
+
+    .value {
+      transform: translateY(-90%);
+      color: var(--interjud-green);
+      font-size: 24px;
+      user-select: none;
+    }
+
+    .button {
+      transform: translateY(-90%);
+
+      a {
+        font-size: 14px;
+      }
+    }
+
+    svg.infoBtn {
+      fill: var(--txt-color);
+      font-size: 24px;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+
+  .wishlist_icon {
+    fill: transparent;
+    stroke: var(--interjud-red);
+    stroke-width: 20;
     cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 12;
+    height: 24px;
+    transition: 0.3s;
+  }
 
-    img {
-        position: relative;
-        object-fit: cover;
-        display: block;
-        margin: 0;
-        width: 100%;
-        user-select: none;
-    }
+  .wishlist_icon:active {
+    transform: scale(0.85);
+  }
 
-    .credit_content {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
+  .wishlist_icon *,
+  .wishlist_icon *::before,
+  .wishlist_icon *::after {
+    box-sizing: border-box;
+  }
 
-        .rating {
-            display: flex;
-            width: 90%;
-            min-height: 30px;
-            margin: 0 auto;
-            justify-content: center;
+  .wishlist_icon svg {
+    overflow: visible;
+    width: 1.5rem;
+  }
 
-            svg {
-                fill: var(--interjud-yellow) !important;
-                background-clip: text;
-                -webkit-background-clip: text;
-                color: transparent;
-                font-size: 28px;
-                width: 20%;
-                display: inline-block;
-            }
-        }
+  .wishlist_icon path {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1550;
+    transform-origin: center;
+  }
 
-        &::before {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 1;
-            content: '';
-            top: 0;
-            left: 0;
-            background-color: var(--main-bg-color);
-            opacity: 0.85;
-        }
-
-        * {
-            position: relative;
-            z-index: 2;
-        }
-
-        p {
-            text-align: center;
-            width: 90%;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transform: translateY(-20%);
-            display: -webkit-box !important;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            border-bottom: 2px solid var(--main-color);
-            max-width: 300px;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-
-            &.name {
-                min-height: 60px;
-            }
-        }
-
-        .value {
-            transform: translateY(-90%);
-            color: var(--interjud-green);
-            font-size: 24px;
-            user-select: none;
-        }
-
-        .button {
-            transform: translateY(-90%);
-
-            a {
-                font-size: 14px;
-            }
-        }
-
-        svg.infoBtn {
-            fill: var(--txt-color);
-            font-size: 24px;
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-        }
-
-    }
+  .wishlist_icon .heart-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    stroke: none;
+  }
 
 
-    .wishlist_icon {
-        fill: transparent;
-        stroke: var(--interjud-red);
-        stroke-width: 20;
-        cursor: pointer;
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        z-index: 12;
-        height: 24px;
-        transition: 0.3s;
-    }
-
-    .wishlist_icon:active {
-        transform: scale(0.85);
-    }
-
-    .wishlist_icon *,
-    .wishlist_icon *::before,
-    .wishlist_icon *::after {
-        box-sizing: border-box;
-    }
-
-    .wishlist_icon svg {
-        overflow: visible;
-        width: 1.5rem;
-    }
-
-    .wishlist_icon path {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 1550;
-        transform-origin: center;
-    }
-
-    .wishlist_icon .heart-background {
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: -1;
-        stroke: none;
-    }
-
-    .wishlist_icon.active .heart-main path {
+  .wishlist_icon.active {
+    .heart-main {
+      path {
         -webkit-animation: stroke-animation 2s ease-in-out forwards;
         animation: stroke-animation 2s ease-in-out forwards;
+        animation-duration: 0s;
+      }
     }
-
-    .wishlist_icon.active .heart-background path {
+    &.animate .heart-main path {
+      animation-duration: 2s;
+    }
+  }
+  .wishlist_icon.active {
+    .heart-background {
+      path {
         -webkit-animation: fade-animation 2s ease-in-out forwards;
         animation: fade-animation 2s ease-in-out forwards;
+        animation-duration: 0s;
+      }
+    }
+    &.animate .heart-background path {
+      animation-duration: 2s;
+    }
+  }
+
+  @-webkit-keyframes stroke-animation {
+    0% {
+      stroke-dashoffset: 0;
     }
 
-    @-webkit-keyframes stroke-animation {
-        0% {
-            stroke-dashoffset: 0;
-        }
-
-        30% {
-            stroke-dashoffset: 1550;
-        }
-
-        60% {
-            stroke-dashoffset: 3100;
-            fill: transparent;
-            transform: scale(1);
-        }
-
-        80% {
-            fill: var(--interjud-red);
-            transform: scale(1.1);
-        }
-
-        90% {
-            transform: scale(1);
-        }
-
-        100% {
-            stroke-dashoffset: 3100;
-            fill: var(--interjud-red);
-        }
+    30% {
+      stroke-dashoffset: 1550;
     }
 
-    @keyframes stroke-animation {
-        0% {
-            stroke-dashoffset: 0;
-        }
-
-        30% {
-            stroke-dashoffset: 1550;
-        }
-
-        60% {
-            stroke-dashoffset: 3100;
-            fill: transparent;
-            transform: scale(1);
-        }
-
-        80% {
-            fill: var(--interjud-red);
-            transform: scale(1.1);
-        }
-
-        90% {
-            transform: scale(1);
-        }
-
-        100% {
-            stroke-dashoffset: 3100;
-            fill: var(--interjud-red);
-        }
+    60% {
+      stroke-dashoffset: 3100;
+      fill: transparent;
+      transform: scale(1);
     }
 
-    @-webkit-keyframes fade-animation {
-        70% {
-            fill: transparent;
-            transform: scale(1);
-        }
-
-        80% {
-            fill: var(--interjud-red);
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        90% {
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(2.5);
-            opacity: 0;
-        }
+    80% {
+      fill: var(--interjud-red);
+      transform: scale(1.1);
     }
 
-    @keyframes fade-animation {
-        70% {
-            fill: transparent;
-            transform: scale(1);
-        }
-
-        80% {
-            fill: var(--interjud-red);
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        90% {
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(2.5);
-            opacity: 0;
-        }
+    90% {
+      transform: scale(1);
     }
 
-    .info {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 99;
-        background-color: var(--main-bg-color);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.6s;
-        display: flex;
-        overflow: hidden;
-        flex-direction: column;
-
-        svg {
-            fill: var(--txt-color);
-            font-size: 24px;
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            z-index: 2;
-        }
-
-        p {
-            color: var(--txt-color);
-            position: relative;
-            z-index: 2;
-            margin: 15px 10px;
-
-            &.name {
-                text-align: center;
-                display: block;
-                width: 90%;
-                margin: 0 auto;
-                font-size: 16px;
-                margin-top: 15px;
-            }
-        }
-
-        &::before {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 1;
-            content: '';
-            top: 0;
-            left: 0;
-            background-color: var(--main-bg-color);
-            opacity: 0.85;
-
-
-        }
-
-        &.active {
-            opacity: 1;
-            pointer-events: initial;
-        }
+    100% {
+      stroke-dashoffset: 3100;
+      fill: var(--interjud-red);
     }
+  }
+
+  @keyframes stroke-animation {
+    0% {
+      stroke-dashoffset: 0;
+    }
+
+    30% {
+      stroke-dashoffset: 1550;
+    }
+
+    60% {
+      stroke-dashoffset: 3100;
+      fill: transparent;
+      transform: scale(1);
+    }
+
+    80% {
+      fill: var(--interjud-red);
+      transform: scale(1.1);
+    }
+
+    90% {
+      transform: scale(1);
+    }
+
+    100% {
+      stroke-dashoffset: 3100;
+      fill: var(--interjud-red);
+    }
+  }
+
+  @-webkit-keyframes fade-animation {
+    70% {
+      fill: transparent;
+      transform: scale(1);
+    }
+
+    80% {
+      fill: var(--interjud-red);
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-animation {
+    70% {
+      fill: transparent;
+      transform: scale(1);
+    }
+
+    80% {
+      fill: var(--interjud-red);
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  .info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: var(--main-bg-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.6s;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+
+    svg {
+      fill: var(--txt-color);
+      font-size: 24px;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 2;
+    }
+
+    p {
+      color: var(--txt-color);
+      position: relative;
+      z-index: 2;
+      margin: 15px 10px;
+
+      &.name {
+        text-align: center;
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+    }
+
+    &::before {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      content: "";
+      top: 0;
+      left: 0;
+      background-color: var(--main-bg-color);
+      opacity: 0.85;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
 }

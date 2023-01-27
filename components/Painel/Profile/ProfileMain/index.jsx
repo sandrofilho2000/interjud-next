@@ -105,6 +105,8 @@ const Favorites = () => {
         picInput.current.setAttribute("type", "file")
     }
 
+    console.log(userInfo)
+
     return (
         <main className={`main profileMain ${sideMenuOpen ? 'active' : ''}`}>
             <h1>
@@ -136,8 +138,8 @@ const Favorites = () => {
                 <input type="text" name='celphone' placeholder='Tel...*' onChange={maskPhone} defaultValue={userInfo.celPhone}/>
                 <div className="address">
                     <div className="middle">
-                        <input type="text" name="cep" id="cep" placeholder='CEP...*' maxLength={9} value={userInfo.cep} />
-                        <input type="text" name="logradouro" id="logradouro" placeholder='Logradouro...*' />
+                        <input type="text" name="cep" id="cep" placeholder='CEP...*' maxLength={9} defaultValue={userInfo.address.cep} />
+                        <input type="text" name="logradouro" id="logradouro" placeholder='Logradouro...*' defaultValue={userInfo.address.logradouro} />
                         <select id="estado" name="estado" >
                             <option disabled selected>Estado</option>
                             <option defaultValue="AC">AC</option>
@@ -171,9 +173,9 @@ const Favorites = () => {
                         </select>
                     </div>
                     <div className="bottom">
-                        <input type="text" name="cidade" id="cidade" placeholder='Cidade...*' />
-                        <input type="text" name="bairro" id="bairro" placeholder='Bairro...*' />
-                        <input type="text" name="numero" id="numero" placeholder='Nº...' />
+                        <input type="text" name="cidade" id="cidade" placeholder='Cidade...*' defaultValue={userInfo.address.localidade} />
+                        <input type="text" name="bairro" id="bairro" placeholder='Bairro...*' defaultValue={userInfo.address.bairro} />
+                        <input type="text" name="numero" id="numero" placeholder='Nº...' defaultValue={userInfo.address.numero}/>
                     </div>
                 </div>
 

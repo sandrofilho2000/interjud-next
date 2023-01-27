@@ -18,36 +18,62 @@ const WelcomeOverlay = () => {
     const { systemNotificationActive, setSystemNotificationActive, user } = useAuth()
 
     const [newUserInfo, setNewUserInfo] = useState({})
-    const [userFirstName, setUserFirstName] = useState()
-    const [userLastName, setUserLastName] = useState()
-    const [userProfile, setUserProfile] = useState()
-
-    const [userAddress, setUserAddress] = useState({
-        bairro: "",
-        cep: "",
-        localidade: "",
-        logradouro: "",
-        numero: "",
-        uf: ""
-    })
+    const [userAddress, setuserAddress] = useState({})
+    const [userFirstName, setUserFirstName] = useState('')
+    const [userLastName, setUserLastName] = useState('')
+    const [userProfile, setUserProfile] = useState('')
 
     const ufInput = useRef()
     const cidadeInput = useRef()
     const bairroInput = useRef()
     const logradouroInput = useRef()
 
-    const [userCPF, setUserCPF] = useState()
-    const [userPhone, setUserPhone] = useState()
-    const [userCEP, setUserCEP] = useState()
+    const [userCPF, setUserCPF] = useState('')
+    const [userPhone, setUserPhone] = useState('')
+    const [userCEP, setUserCEP] = useState('')
     const [sliderLeft, setSliderLeft] = useState(0)
 
     const notification = {}
+
+    let validateAddress = () => {
+        notification.message = ''
+        notification.active = true
+        notification.status = 'error'
+
+        if (!userCEP) {
+            notification.message = "Por favor, insira seu CEP!"
+        }
+
+        if (!userAddress.logradouro) {
+            notification.message = "Por favor, insira um logradouro!"
+        }
+
+        if (!userAddress.uf) {
+            notification.message = "Por favor, selecione seu estado!"
+        }
+
+        if (!userAddress.localidade) {
+            notification.message = "Por favor, insira sua cidade!"
+        }
+
+        if (!userAddress.bairro) {
+            notification.message = "Por favor, insira seu bairro!"
+        }
+
+        if (notification.message) {
+            setSystemNotificationActive(notification)
+            return false
+        }
+
+        else {
+            return true
+        }
+    }
 
     let validateName = (num) => {
         if (userFirstName && userLastName) {
             setSliderLeft(sliderLeft + num)
             setNewUserInfo({ ...newUserInfo, first_name: userFirstName, last_name: userLastName })
-
         } else {
             notification.message = "Revise todos os campos antes de prosseguir"
             notification.status = 'error'
@@ -135,8 +161,8 @@ const WelcomeOverlay = () => {
     }
 
     let formatCPF = (e) => {
-
-        let cpf = e.target.value.replaceAll(".", "").replaceAll("-", "")
+        let cpf = e.target.value ? e.target.value : ''
+        cpf = e.target.value.replaceAll(".", "").replaceAll("-", "")
         let formatedCPF = cpf
 
         if (cpf.length >= 3) {
@@ -165,16 +191,13 @@ const WelcomeOverlay = () => {
         r = r.replace(/^0/, "");
         if (r.length > 10) {
             r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+            setNewUserInfo({ ...newUserInfo, phone: r })
         } else if (r.length > 5) {
             r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
         } else if (r.length > 2) {
             r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
         } else {
             r = r.replace(/^(\d*)/, "($1");
-        }
-
-        if (r.length >= 8) {
-            setUserPhone(r)
         }
         return r;
     }
@@ -202,13 +225,12 @@ const WelcomeOverlay = () => {
                         item.selected = true
                     }
                 })
-                setUserAddress(address)
+                setNewUserInfo({ ...newUserInfo, address: address })
             } else {
                 notification.message = "CEP não localizado!"
                 notification.status = 'warning'
                 notification.active = true
                 setSystemNotificationActive(notification)
-
             }
 
         }
@@ -243,9 +265,7 @@ const WelcomeOverlay = () => {
                 }
 
                 if (sliderLeft === 2) {
-
                     validateCPF(num)
-
                 }
             } else {
                 setSliderLeft(sliderLeft + num)
@@ -254,70 +274,37 @@ const WelcomeOverlay = () => {
 
     }
 
-    let validateSignUp = (e, skipSign = false) => {
-        e.preventDefault()
-
-        notification.status = 'error'
+    let validateSignUp = (e, skipSignUp = false) => {
         notification.active = true
 
-        if(!skipSign){
-            if (!userAddress.cep) {
-                notification.message = "Por favor, insira seu CEP!"
-    
-                if (!userAddress.logradouro) {
-                    notification.message = "Por favor, insira um logradouro!"
-    
-                    if (!userAddress.uf) {
-                        notification.message = "Por favor, selecione seu estado!"
-    
-                        if (!userAddress.localidade) {
-                            notification.message = "Por favor, insira sua cidade!"
-    
-                            if (!userAddress.bairro) {
-                                notification.message = "Por favor, insira seu bairro!"
-    
-                            }
-                        }
-                    }
-                    notification.active = true
-                }
-            }
-    
-            if (!userPhone) {
-                notification.message = "Por favor, insira seu telefone!"
-                notification.active = true
-            }
-        }
+        let addressOk = validateAddress()
 
-        if (!notification.active) {
-            let newUser = {
-                ...newUserInfo,
-                id: user.uid,
-                email: user.email,
-                emailValidation: false,
-                favorites: [],
-                fullName: `${newUserInfo.first_name} ${newUserInfo.last_name}`,
-                address: userAddress,
+        if(newUserInfo.first_name && newUserInfo.last_name && newUserInfo.profile && newUserInfo.cpf && addressOk && newUserInfo.phone.length >= 10){
+            let addUserToDataBase = async (obj) => {
+                await setDoc(doc(db, "users", user.uid), obj);
             }
-            setNewUserInfo(newUser)
-        }
-        // Add a new document in collection "cities"
-        let addUserToDataBase = async (obj) =>{
-            await setDoc(doc(db, "users", user.uid), obj);
-        }
-        
-        try{
             addUserToDataBase(newUserInfo)
-            notification.status = 'success'
-            notification.message = "Usuário criado com sucesso!"
+    
+            notification.status = "success"
+            notification.message = "Perfil criado com sucesso"
+            setSystemNotificationActive(notification)
+    
+            
             setTimeout(()=>{
                 Router.reload(window.location.pathname)
             }, 1000)
-        }catch{
-
+        }else{
+            notification.status = "error"
+            if(addressOk){
+                notification.message = "Erro ao criar perfil! Por favor revise todos os campos."
+            }
+            setSystemNotificationActive(notification)
         }
-        setSystemNotificationActive(notification)
     }
+
+    useEffect(() => {
+        setNewUserInfo({ ...newUserInfo, address: { ...userAddress } })
+    }, [userAddress])
 
     useEffect(() => {
         AOS.init();
@@ -385,8 +372,8 @@ const WelcomeOverlay = () => {
                             <div className="address">
                                 <div className="top">
                                     <input type="text" name="cep" id="cep" placeholder='CEP...' maxLength={9} onChange={(e) => { formatCEP(e) }} />
-                                    <input type="text" ref={logradouroInput} name="logradouro" id="logradouro" placeholder='Logradouro...' onChange={(e) => { setUserAddress({ ...userAddress, logradouro: e.currentTarget.value.trim() }) }} />
-                                    <select id="estado" ref={ufInput} name="estado" onChange={(e) => { setUserAddress({ ...userAddress, uf: e.currentTarget.value.trim() }) }} >
+                                    <input type="text" ref={logradouroInput} name="logradouro" id="logradouro" placeholder='Logradouro...' onChange={(e) => { setuserAddress({ ...userAddress, logradouro: e.currentTarget.value }) }} />
+                                    <select id="estado" ref={ufInput} name="estado" onChange={(e) => { setuserAddress({ ...userAddress, uf: e.currentTarget.value }) }}>
                                         <option disabled selected>Estado</option>
                                         <option defaultValue="AC">AC</option>
                                         <option defaultValue="AL">AL</option>
@@ -419,9 +406,9 @@ const WelcomeOverlay = () => {
                                     </select>
                                 </div>
                                 <div className="bottom">
-                                    <input type="text" ref={cidadeInput} name="cidade" id="cidade" placeholder='Cidade...' onChange={(e) => { setUserAddress({ ...userAddress, localidade: e.currentTarget.value.trim() }) }} />
-                                    <input type="text" ref={bairroInput} name="bairro" id="bairro" placeholder='Bairro...' onChange={(e) => { setUserAddress({ ...userAddress, bairro: e.currentTarget.value.trim() }) }} />
-                                    <input type="text" name="numero" id="numero" placeholder='Nº...' onChange={(e) => { setUserAddress({ ...userAddress, numero: e.currentTarget.value.trim() }) }} />
+                                    <input type="text" ref={cidadeInput} name="cidade" id="cidade" onChange={(e) => { setuserAddress({ ...userAddress, localidade: e.currentTarget.value }) }} placeholder='Cidade...' />
+                                    <input type="text" ref={bairroInput} name="bairro" id="bairro" onChange={(e) => { setuserAddress({ ...userAddress, bairro: e.currentTarget.value }) }} placeholder='Bairro...' />
+                                    <input type="text" name="numero" id="numero" onChange={(e) => { setuserAddress({ ...userAddress, logradouro: e.currentTarget.value }) }} placeholder='Nº...' />
                                 </div>
                             </div>
 
@@ -453,7 +440,7 @@ const WelcomeOverlay = () => {
             </div>
             <div className="links">
                 <Link href="../login/" className='active'> <AiOutlineArrowLeft /> <span>VOLTAR PARA O SITE</span> </Link>
-                <Link href={window.location.pathname} className={sliderLeft === 3 ? 'active' : ''} onClick={(e)=>{validateSignUp(e, true)}}>  <span>FINALIZAR DEPOIS</span> <AiOutlineArrowRight /></Link>
+                <Link href={window.location.pathname} className={sliderLeft === 3 ? 'active' : ''} onClick={(e) => { validateSignUp(e, true) }}>  <span>FINALIZAR DEPOIS</span> <AiOutlineArrowRight /></Link>
             </div>
         </div>
     )

@@ -10,9 +10,9 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState({})
-    const [userInfo, setUserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState({address: {}})
     const [credits, setCredits] = useState([{}])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
     const [offerOverlayActive, setOfferOverlayActive] = useState(false)
@@ -56,7 +56,6 @@ export const AuthContextProvider = ({ children }) => {
             } else {
                 setUser(null)
             }
-            setLoading(false)
         })
 
         return () => unsubscribe()
@@ -95,7 +94,6 @@ export const AuthContextProvider = ({ children }) => {
             let cre = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             setCredits(cre)
         }
-
         getCredits()
     }, [])
 
@@ -127,6 +125,8 @@ export const AuthContextProvider = ({ children }) => {
             searchedCredits,
             setSearchedCredits,
             offerOverlayActive,
+            loading,
+            setLoading,
             setOfferOverlayActive,
             filterOverlayActive,
             setFilterOverlayActive,

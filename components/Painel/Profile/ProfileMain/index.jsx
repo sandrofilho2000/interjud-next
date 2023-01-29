@@ -2,16 +2,34 @@ import Image from 'next/image'
 import React, { useEffect, useState, useRef } from 'react'
 import { useAuth } from '../../../../context/AuthContext'
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from '../../../../firebase';
+import { db, storage } from '../../../../firebase';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const Favorites = () => {
-    const { sideMenuOpen, userInfo, setUserInfo } = useAuth()
+    const { sideMenuOpen, user, userInfo, setUserInfo, setSystemNotificationActive, setLoading, loading } = useAuth()
+
+    const notification = {}
 
     const defaultPic = 'https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/users%2Fdefault_avatar.pbg.webp?alt=media&token=bd0cd8cd-b54b-4b3d-abc7-91ffa81751c5'
 
-    const [newPic, setNewPic] = useState(userInfo.avatar ? userInfo.avatar : defaultPic)
+    const [ newPic, setNewPic ] = useState(userInfo.avatar ? userInfo.avatar : defaultPic)
+    const [ updateUser, setUpdateUser ] = useState({...userInfo})
+    
+    const [ oab, setOab ] = useState()
 
-    const picInput = useRef()
+    const firstName = useRef()
+    const lastName = useRef()
+    const phone = useRef()
+
+    const cep = useRef()
+    const uf = useRef()
+    const localidade = useRef()
+    const bairro = useRef()
+    const logradouro = useRef()
+    const pic = useRef()
+
+    const ufOab = useRef()
+    const numOab = useRef()
 
     let formatPhone = (v) => {
         var r = v.replace(/\D/g, "");
@@ -28,14 +46,40 @@ const Favorites = () => {
 
         return r;
     }
-    storage
+
+    let handleOab = () =>{
+        let _num = numOab.current.value.replace(/\D/g, "");
+        numOab.current.value = _num
+
+        let _uf = ufOab.current.value == 'UF' ? ufOab.current.value = '' : ufOab.current.value 
+    
+        if(_uf){
+            numOab.current.setAttribute("required", true)
+        }
+        else{
+            numOab.current.removeAttribute("required")
+        }
+        if(_num){
+            ufOab.current.setAttribute("required", true)
+        }
+        else{
+            ufOab.current.removeAttribute("required")
+        }
+
+        if(_num.length === 6 && _uf){
+            setOab(`${_uf}${_num}`)
+        }else{
+            setOab(false)
+        }
+
+    }
 
     let formatCEP = async (e) => {
-        let cep = e.target.value.replaceAll("-", "")
-        let formatedCEP = cep
+        let _cep = cep.current.value.replaceAll("-", "")
+        let formatedCEP = _cep
 
-        if (cep.length >= 5) {
-            formatedCEP = cep.slice(0, 5) + '-' + cep.slice(5)
+        if (_cep.length >= 5) {
+            formatedCEP = _cep.slice(0, 5) + '-' + _cep.slice(5)
         }
 
         if (formatedCEP.replace(/\D/g, '').length === 8) {
@@ -43,17 +87,16 @@ const Favorites = () => {
                 .then((response) => { return response.json() })
 
             if (!address.erro) {
-                logradouroInput.current.value = address.logradouro
-                cidadeInput.current.value = address.localidade
-                bairroInput.current.value = address.bairro
+                logradouro.current.value = address.logradouro
+                localidade.current.value = address.localidade
+                bairro.current.value = address.bairro
 
-                var select = ufInput.current
+                var select = uf.current
                 select.querySelectorAll("option").forEach((item) => {
                     if (item.value === address.uf) {
                         item.selected = true
                     }
                 })
-                setUserAddress(address)
             } else {
                 notification.message = "CEP não localizado!"
                 notification.status = 'warning'
@@ -64,8 +107,9 @@ const Favorites = () => {
 
         }
 
-        e.target.value = formatedCEP
-        setUserCEP(formatedCEP)
+        console.log(formatedCEP)
+
+        cep.current.value = formatedCEP
     }
 
     let maskPhone = (o, f) => {
@@ -84,28 +128,80 @@ const Favorites = () => {
     }
 
     let handleNewPic = async (e) => {
-        let file = e.target.files[0]
-        let fileName = `${file.name}${generateRandom(10240 * 1243)}`
-
-        const storageRef = ref(storage, `users/${fileName}`);
-
-        await uploadBytes(storageRef, file).then((snapshot) => {
-            console.log('Uploaded a blob or file!');
-        });
-
-        await getDownloadURL(storageRef).then((url) => {
-            setNewPic(url)
-            setUserInfo({...userInfo, avatar: url})
-        })
+        let file = pic.current.files[0]
+        let url = window.URL.createObjectURL(file);        
+        setNewPic(url)
     }
 
     let removePic = () => {
         setNewPic(defaultPic)
-        picInput.current.setAttribute("type", "text")
-        picInput.current.setAttribute("type", "file")
+        setUpdateUser({...updateUser, avatar: defaultPic})
+        pic.current.setAttribute("type", "text")
+        pic.current.setAttribute("type", "file")
     }
 
-    console.log(userInfo)
+    let handleUpdateProfile = async (e) =>{
+        e.preventDefault()
+
+        let updatedUser = {
+            first_name: firstName.current.value.trim(),
+            avatar: newPic,
+            last_name: lastName.current.value.trim(),
+            full_name: `${firstName.current.value.trim()} ${lastName.current.value.trim()}`,
+            phone: formatPhone(phone.current.value.trim()),
+            address: {
+                bairro: bairro.current.value.trim(),
+                cep: cep.current.value.trim(),
+                localidade: localidade.current.value.trim(),
+                logradouro: logradouro.current.value.trim(),
+                uf: uf.current.value.trim()
+            },
+            oab: oab ? oab : false
+        }
+
+        console.log(updatedUser)
+        
+        let file = pic.current.files[0]
+
+        setLoading(true)
+        
+        if(file){
+            let fileName = file ? `${file.name}${generateRandom(10240 * 1243)}` : ''
+    
+            const storageRef = ref(storage, `users/${fileName}`);
+
+            await uploadBytes(storageRef, file).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+                pic.current.setAttribute("type", "text")
+                pic.current.setAttribute("type", "file")
+            });
+    
+            await getDownloadURL(storageRef).then((url) => {
+                updatedUser.avatar = url
+            })
+        }else{
+        }
+        
+        const userReference = doc(db, "users", user.uid)
+        await updateDoc(userReference, updatedUser);
+        
+        setLoading(false)        
+        setUserInfo({...updatedUser})
+    }
+
+    useEffect(()=>{
+        setNewPic(userInfo.avatar)
+    }, [userInfo])
+
+    useEffect(()=>{
+        var select = uf.current
+        select.querySelectorAll("option").forEach((item) => {
+            if (item.value === userInfo.address.uf) {
+                item.selected = true
+            }
+        })
+    }, [])
+
 
     return (
         <main className={`main profileMain ${sideMenuOpen ? 'active' : ''}`}>
@@ -113,7 +209,7 @@ const Favorites = () => {
                 PERFIL
             </h1>
 
-            <form>
+            <form onSubmit={handleUpdateProfile}>
                 <div className="profilePic">
                     <Image src={newPic} width={180} height={180} alt='' />
                     <div className="changePic">
@@ -123,7 +219,7 @@ const Favorites = () => {
                             </span>
                         </label>
                         <label className='change'>
-                            <input ref={picInput} onChange={handleNewPic} type="file" name="file" id="file" />
+                            <input ref={pic} onChange={handleNewPic} type="file" name="file" id="file" />
                             <span>
                                 TROCAR
                             </span>
@@ -131,17 +227,17 @@ const Favorites = () => {
                     </div>
                 </div>
                 <div className="fullName">
-                    <input type="text" name="firstName" id="firstName" defaultValue={userInfo.first_name} placeholder='Nome...*' />
-                    <input type="text" name="lastName" id="lastName" placeholder='Sobrenome...*' defaultValue={userInfo.last_name} />
+                    <input type="text" name="firstName" ref={firstName} id="firstName" defaultValue={userInfo.first_name} placeholder='Nome...*' required={true}/>
+                    <input type="text" name="lastName" ref={lastName} id="lastName" placeholder='Sobrenome...*' defaultValue={userInfo.last_name} required={true}/>
                 </div>
 
-                <input type="text" name='celphone' placeholder='Tel...*' onChange={maskPhone} defaultValue={userInfo.celPhone}/>
+                <input type="text" name='phone' ref={phone} placeholder='Tel...*' defaultValue={userInfo.phone} maxLength={15} onChange={(e)=>{maskPhone(e)}} required={true}/>
                 <div className="address">
                     <div className="middle">
-                        <input type="text" name="cep" id="cep" placeholder='CEP...*' maxLength={9} defaultValue={userInfo.address.cep} />
-                        <input type="text" name="logradouro" id="logradouro" placeholder='Logradouro...*' defaultValue={userInfo.address.logradouro} />
-                        <select id="estado" name="estado" >
-                            <option disabled selected>Estado</option>
+                        <input type="text" ref={cep} name="cep" id="cep" placeholder='CEP...*' maxLength={9} defaultValue={userInfo.address.cep} required={true} onChange={formatCEP}/>
+                        <input ref={logradouro} type="text" name="logradouro" id="logradouro" placeholder='Logradouro...*' defaultValue={userInfo.address.logradouro} required={true}/>
+                        <select ref={uf} id="estado" name="estado" required={true}>
+                            <option disabled selected>UF</option>
                             <option defaultValue="AC">AC</option>
                             <option defaultValue="AL">AL</option>
                             <option defaultValue="AP">AP</option>
@@ -173,16 +269,15 @@ const Favorites = () => {
                         </select>
                     </div>
                     <div className="bottom">
-                        <input type="text" name="cidade" id="cidade" placeholder='Cidade...*' defaultValue={userInfo.address.localidade} />
-                        <input type="text" name="bairro" id="bairro" placeholder='Bairro...*' defaultValue={userInfo.address.bairro} />
+                        <input ref={localidade} type="text" name="localidade" id="localidade" placeholder='Cidade...*' defaultValue={userInfo.address.localidade} required={true} />
+                        <input ref={bairro} type="text" name="bairro" id="bairro" placeholder='Bairro...*' defaultValue={userInfo.address.bairro} required={true} />
                         <input type="text" name="numero" id="numero" placeholder='Nº...' defaultValue={userInfo.address.numero}/>
                     </div>
                 </div>
 
                 <div className="oabContainer">
-                    <input type="text" id="oab" placeholder='OAB...' />
-                    <select id="estado" name="estado" >
-                        <option disabled selected>Estado</option>
+                    <select ref={ufOab} id="estado" name="estado" onChange={handleOab}>
+                        <option selected>UF</option>
                         <option defaultValue="AC">AC</option>
                         <option defaultValue="AL">AL</option>
                         <option defaultValue="AP">AP</option>
@@ -212,11 +307,10 @@ const Favorites = () => {
                         <option defaultValue="TO">TO</option>
                         <option defaultValue="EX">EX</option>
                     </select>
+                    <input ref={numOab} maxLength={6} type="text" id="oab" placeholder='Nº OAB...' onChange={handleOab}/>
                 </div>
 
-                <button>
-                    ENVIAR
-                </button>
+                <input type="submit" value='SALVAR'/>
             </form>
 
         </main>

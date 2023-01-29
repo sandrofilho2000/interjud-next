@@ -18,12 +18,12 @@ const WelcomeOverlay = () => {
     const { systemNotificationActive, setSystemNotificationActive, user } = useAuth()
 
     const [newUserInfo, setNewUserInfo] = useState({})
-    const [userAddress, setuserAddress] = useState({})
+    const [userAddress, setUserAddress] = useState({})
     const [userFirstName, setUserFirstName] = useState('')
     const [userLastName, setUserLastName] = useState('')
     const [userProfile, setUserProfile] = useState('')
 
-    const ufInput = useRef()
+    const ufSelect = useRef()
     const cidadeInput = useRef()
     const bairroInput = useRef()
     const logradouroInput = useRef()
@@ -59,6 +59,8 @@ const WelcomeOverlay = () => {
         if (!userAddress.bairro) {
             notification.message = "Por favor, insira seu bairro!"
         }
+
+        console.log(userAddress)
 
         if (notification.message) {
             setSystemNotificationActive(notification)
@@ -219,13 +221,13 @@ const WelcomeOverlay = () => {
                 cidadeInput.current.value = address.localidade
                 bairroInput.current.value = address.bairro
 
-                var select = ufInput.current
+                var select = ufSelect.current
                 select.querySelectorAll("option").forEach((item) => {
                     if (item.value === address.uf) {
                         item.selected = true
                     }
                 })
-                setNewUserInfo({ ...newUserInfo, address: address })
+                setUserAddress({ ...address })
             } else {
                 notification.message = "CEP não localizado!"
                 notification.status = 'warning'
@@ -304,7 +306,7 @@ const WelcomeOverlay = () => {
 
     useEffect(() => {
         setNewUserInfo({ ...newUserInfo, address: { ...userAddress } })
-    }, [userAddress])
+    }, [userAddress, userCEP])
 
     useEffect(() => {
         AOS.init();
@@ -372,8 +374,8 @@ const WelcomeOverlay = () => {
                             <div className="address">
                                 <div className="top">
                                     <input type="text" name="cep" id="cep" placeholder='CEP...' maxLength={9} onChange={(e) => { formatCEP(e) }} />
-                                    <input type="text" ref={logradouroInput} name="logradouro" id="logradouro" placeholder='Logradouro...' onChange={(e) => { setuserAddress({ ...userAddress, logradouro: e.currentTarget.value }) }} />
-                                    <select id="estado" ref={ufInput} name="estado" onChange={(e) => { setuserAddress({ ...userAddress, uf: e.currentTarget.value }) }}>
+                                    <input type="text" ref={logradouroInput} name="logradouro" id="logradouro" placeholder='Logradouro...' onChange={(e) => { setUserAddress({ ...userAddress, logradouro: e.currentTarget.value }) }} />
+                                    <select id="estado" ref={ufSelect} name="estado" onChange={(e) => { setUserAddress({ ...userAddress, uf: e.currentTarget.value }) }}>
                                         <option disabled selected>Estado</option>
                                         <option defaultValue="AC">AC</option>
                                         <option defaultValue="AL">AL</option>
@@ -406,9 +408,9 @@ const WelcomeOverlay = () => {
                                     </select>
                                 </div>
                                 <div className="bottom">
-                                    <input type="text" ref={cidadeInput} name="cidade" id="cidade" onChange={(e) => { setuserAddress({ ...userAddress, localidade: e.currentTarget.value }) }} placeholder='Cidade...' />
-                                    <input type="text" ref={bairroInput} name="bairro" id="bairro" onChange={(e) => { setuserAddress({ ...userAddress, bairro: e.currentTarget.value }) }} placeholder='Bairro...' />
-                                    <input type="text" name="numero" id="numero" onChange={(e) => { setuserAddress({ ...userAddress, logradouro: e.currentTarget.value }) }} placeholder='Nº...' />
+                                    <input type="text" ref={cidadeInput} name="cidade" id="cidade" onChange={(e) => { setUserAddress({ ...userAddress, localidade: e.currentTarget.value }) }} placeholder='Cidade...' />
+                                    <input type="text" ref={bairroInput} name="bairro" id="bairro" onChange={(e) => { setUserAddress({ ...userAddress, bairro: e.currentTarget.value }) }} placeholder='Bairro...' />
+                                    <input type="text" name="numero" id="numero" onChange={(e) => { setUserAddress({ ...userAddress, logradouro: e.currentTarget.value }) }} placeholder='Nº...' />
                                 </div>
                             </div>
 

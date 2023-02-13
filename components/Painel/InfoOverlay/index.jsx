@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
 import { FaStar, FaStarHalf } from 'react-icons/fa'
-import { AiFillCloseCircle, AiOutlineWhatsApp } from 'react-icons/ai'
+import { AiFillCloseCircle, AiOutlineWhatsApp, AiOutlineFieldTime } from 'react-icons/ai'
 import { MdAttachMoney } from 'react-icons/md'
 import { BsGraphUp } from 'react-icons/bs'
 import { ImHammer2 } from 'react-icons/im'
-import { BiTimeFive } from 'react-icons/Bi'
 import { GoLaw } from 'react-icons/go'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -118,7 +117,7 @@ const InfoOverlay = () => {
                         </div>
                         <div className="time">
                             <div className="symbol">
-                                <BiTimeFive />
+                                <AiOutlineFieldTime />
                             </div>
                             <div>
                                 <p>

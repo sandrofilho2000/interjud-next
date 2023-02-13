@@ -1,5 +1,17 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+
+import {
+    onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    sendPasswordResetEmail,
+    GoogleAuthProvider,
+    signInWithPopup,
+    FacebookAuthProvider
+} 
+
+from 'firebase/auth'
 import { auth, db } from '../firebase'
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 
@@ -10,12 +22,15 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState({})
-    const [userInfo, setUserInfo] = useState({address: {}})
+    const [userInfo, setUserInfo] = useState({ address: {} })
     const [credits, setCredits] = useState([{}])
     const [loading, setLoading] = useState(false)
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
     const [searchMainActive, setSearchMainActive] = useState(false)
+    const [googleSignInInfo, setGoogleSignInInfo] = useState({})
+    const [faceSignInInfo, setFaceSignInInfo] = useState({})
     const [offerOverlayActive, setOfferOverlayActive] = useState(false)
+    const [infoOverlayActive, setInfoOverlayActive] = useState(false)
     const [newCreditOverlayActive, setNewCreditOverlayActive] = useState(false)
     const [filterOverlayActive, setFilterOverlayActive] = useState(false)
     const [favoritesCredits, setFavoritesCredits] = useState([])
@@ -79,6 +94,20 @@ export const AuthContextProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const signInWithGoogle = () => {
+        const provider = new GoogleAuthProvider()
+        return signInWithPopup(auth, provider)
+    }
+
+    const signInWithFacebook = () => {
+        const provider = new FacebookAuthProvider();
+        return signInWithPopup(auth, provider)
+    }
+
+    const reset_password = (email, password) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
     const logout = async () => {
         setUser({})
         await (signOut(auth))
@@ -99,8 +128,8 @@ export const AuthContextProvider = ({ children }) => {
 
     ///GET FAVORITES
     useEffect(() => {
-        if(userInfo){
-            if(userInfo.favorites){
+        if (userInfo) {
+            if (userInfo.favorites) {
                 setFavoritesCredits(
                     credits.filter(item => userInfo.favorites.includes(item.id))
                 )
@@ -113,10 +142,14 @@ export const AuthContextProvider = ({ children }) => {
             user,
             userInfo,
             credits,
+            setCredits,
             favoritesCredits,
             login,
             signup,
             logout,
+            signInWithGoogle,
+            signInWithFacebook,
+            reset_password,
             sideMenuOpen,
             setFavoritesCredits,
             setSideMenuOpen,
@@ -124,6 +157,8 @@ export const AuthContextProvider = ({ children }) => {
             setSearchMainActive,
             searchedCredits,
             setSearchedCredits,
+            infoOverlayActive,
+            setInfoOverlayActive,
             offerOverlayActive,
             loading,
             setLoading,
@@ -132,6 +167,10 @@ export const AuthContextProvider = ({ children }) => {
             setFilterOverlayActive,
             currCreditOffer,
             setCurrCreditOffer,
+            googleSignInInfo,
+            setGoogleSignInInfo,
+            faceSignInInfo,
+            setFaceSignInInfo,
             systemNotificationActive,
             setSystemNotificationActive,
             searchContext,

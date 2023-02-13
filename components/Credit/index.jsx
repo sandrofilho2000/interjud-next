@@ -12,7 +12,7 @@ import { db } from '../../firebase'
 
 const CreditContainer = ({ credit }) => {
 
-    let { userInfo, user, favoritesCredits, setFavoritesCredits } = useAuth()
+    let { userInfo, user, favoritesCredits, setFavoritesCredits, setInfoOverlayActive } = useAuth()
 
     const [infoActive, setInfoActive] = useState(false)
     const [animationLoad, setAnimationLoad] = useState('')
@@ -22,7 +22,7 @@ const CreditContainer = ({ credit }) => {
     let halfStar = Number.isInteger(credit.rating)
     let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
     let stars = Array.from(Array(fullStars).keys())
-    let value = credit.value && !isNaN(credit.value) ? Number(credit.value) : ''
+    let value = credit.valor_negociar && !isNaN(credit.valor_negociar) ? Number(credit.valor_negociar) : ''
     
     value = value.toLocaleString('pt-BR', {
         style: 'currency',
@@ -35,15 +35,17 @@ const CreditContainer = ({ credit }) => {
     }, [userInfo, favoritesCredits])
 
 
-    let handleInfoActive = () => {
-        setInfoActive(!infoActive)
+    let handleInfoActive = (credit) => {
+        setInfoOverlayActive(credit)
     }
 
     var infoBG = {
         backgroundImage: `url('${logo_j.src}')`,
     }
 
-    let handleFavToggle = async () => {
+    let handleFavToggle = async (e) => {
+        e.stopPropagation()
+
         var new_list = favoritesCredits
         let toggle = favToggle
         
@@ -74,19 +76,22 @@ const CreditContainer = ({ credit }) => {
     }
 
     let handleOfferActive = (e) => {
+
+        e.stopPropagation()
         setOfferOverlayActive(true)
         setCurrCreditOffer(credit)
+        
     }
 
     let img = credit.img ? credit.img : creditPlaceholder
 
     return (
 
-        <article title={credit.name} className='credit_single'>
+        <article onClick={(e) => handleInfoActive(credit)} title={credit.name} className='credit_single'>
             <Image placeholder="empty" width={240} height={330} src={img} loading="lazy" alt="Banco do brasil" />
 
             <div className='credit_content'>
-                <div onClick={() => { handleFavToggle(); setAnimationLoad('animate') }} className={`wishlist_icon ${favToggle ? 'active' : ''} ${animationLoad}`}>
+                <div onClick={(e) => { handleFavToggle(e); setAnimationLoad('animate') }} className={`wishlist_icon ${favToggle ? 'active' : ''} ${animationLoad}`}>
                     <svg className="heart-main" viewBox="0 0 512 512" width="200" title="heart">
                         <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
                     </svg>
@@ -115,30 +120,11 @@ const CreditContainer = ({ credit }) => {
                     {value}
                 </p>
 
-                <div onClick={() => handleOfferActive(credit)} className="button">
+                <div onClick={(e) => handleOfferActive(e, credit)} className="button">
                     <Link href="#">FAZER OFERTA</Link>
                 </div>
 
-                <FaInfoCircle onClick={() => handleInfoActive()} className='infoBtn' />
-            </div>
-
-            <div className={`info ${infoActive ? 'active' : ''}`} style={infoBG}>
-                <AiFillCloseCircle onClick={() => handleInfoActive()} />
-                <p className="name">
-                    {credit.name}
-                </p>
-                <p className='tempo_recebimento'>
-                    Tempo estimado recebimento: 6 meses
-                </p>
-                <p className='honorarios_sucubenciais'>
-                    Honorários sucubenciais: 0%
-                </p>
-                <p className='materia'>
-                    Matéria: PIX
-                </p>
-                <p className='observacoes'>
-                    Observações: Possível ED, condenação honorários
-                </p>
+                <FaInfoCircle className='infoBtn' />
             </div>
         </article>
 

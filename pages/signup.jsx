@@ -197,7 +197,7 @@ const Signup = () => {
                     <input type="submit" defaultValue="SE CADASTRAR" />
                     <div className="links">
                         <Link className='signUp' href="/login">Já tenho uma conta</Link>
-                        <Link className='resetPassword' href="#">Esqueci minha senha</Link>
+                        <Link className='resetPassword' href="/reset_password">Esqueci minha senha</Link>
                     </div>
                     <div className="loginWith">
                         <p>

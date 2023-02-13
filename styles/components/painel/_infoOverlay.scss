@@ -1,0 +1,151 @@
+.infoOverlay {
+  .infoContainer {
+    height: 520px;
+    padding: 4px;
+    width: 600px;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--interjud-blue);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    
+    .infoOverlayClose {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      cursor: pointer;
+      font-size: 26px !important;
+    }
+
+    .infoTop {
+      height: 120px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      padding-bottom: 25px;
+
+      span {
+        font-size: 13px;
+      }
+
+      img {
+        box-sizing: border-box;
+        border: 4px solid var(--interjud-blue);
+        object-fit: cover;
+      }
+
+      .infoRating {
+        position: absolute;
+        bottom: 0;
+        width: 120px;
+        transform: translateY(calc(120% - 25px));
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 4px;
+        svg {
+          fill: var(--interjud-yellow);
+        }
+      }
+
+      .infoName {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 0 10px;
+
+        .name {
+          span {
+            font-size: 18px;
+            font-weight: bold;
+          }
+        }
+
+        .obs {
+          overflow-y: auto;
+          max-height: 50px;
+        }
+      }
+    }
+
+    .infoMiddle {
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      margin-top: -4%;
+      > div {
+        display: flex;
+        padding: 6px 20px;
+        box-sizing: border-box;
+        align-items: start;
+        width: 100%;
+        align-items: center;
+        border-bottom: 1px solid var(--interjud-blue);
+
+        &:last-of-type{
+          border-bottom: none;
+        }
+
+        div {
+          p:first-of-type {
+            font-size: 13px;
+          }
+          p:last-of-type {
+            font-size: 15px;
+          }
+        }
+
+        svg {
+          font-size: 38px;
+          fill: var(--txt-color);
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .infoBottom {
+      display: flex;
+      height: 50px;
+      padding-bottom: 10px;
+      align-items: center;
+      width: 95%;
+      margin: 0 auto;
+      justify-content: space-between;
+      .button {
+        height: 43px;
+        padding: 0;
+        margin: unset;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        a {
+          height: 100%;
+          font-size: 14px;
+          letter-spacing: 0.075rem;
+          width: 100%;
+          padding: 0 15px;
+          display: flex;
+          align-items: center;
+
+          &::before {
+            display: none;
+          }
+
+        }
+/*         &:last-of-type{
+          background-color: transparent;
+
+          a span{
+            color: var(--interjud-blue);
+          }
+        } */
+        svg {
+          font-size: 24px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

@@ -62,12 +62,13 @@ body {
 @import "components/painel/main";
 @import "components/painel/welcomeOverlay";
 @import "components/painel/mainTop";
-@import "components/painel/filterFields";
+@import "components/painel/filterFields"; 
 @import "components/painel/notifications";
 @import "components/painel/searchMain";
 @import "components/painel/filterOverlay";
+@import "components/painel/infoOverlay";
 @import "components/painel/loadingOverlay";
-
+ 
 @import "components/painel/home/homeMain";
 
 @import "components/painel/myCredits/myCreditsMain";
@@ -76,6 +77,8 @@ body {
 @import "components/painel/favorites/favoritesMain";
 
 @import "components/painel/profile/profileMain";
+
+@import "components/painel/faleConosco/faleConoscoMain";
 
 @import "components/login/login";
 
@@ -380,7 +383,7 @@ main.loginMain {
           place-items: center;
           width: 70px;
           height: 40px;
-          border-radius: 10px;
+          border-radius: 5px;
           background-color: white;
           font-size: 30px;
           transition: 0.3s;

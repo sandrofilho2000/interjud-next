@@ -4,7 +4,7 @@ import SideMenu from '../../components/Painel/SideMenu'
 import { useAuth } from '../../context/AuthContext'
 import MainTop from '../../components/Painel/MainTop'
 import WelcomeOverlay from '../../components/Painel/WelcomeOverlay'
-import ProfileMain from '../../components/Painel/Profile/ProfileMain'
+import FaleConoscoMain from '../../components/Painel/FaleConosco/FaleConoscoMain'
 import LoadingOverlay from '../../components/Painel/LoadingOverlay'
 
 
@@ -34,8 +34,8 @@ const Painel = () => {
                 user && userInfo ? (
                     <>
                         <SideMenu />
-                        <MainTop page="profile"/>
-                        <ProfileMain />
+                        <MainTop page="fale_conosco"/>
+                        <FaleConoscoMain />
                     </>
                 ) :
                 (

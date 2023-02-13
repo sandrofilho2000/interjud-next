@@ -37,12 +37,12 @@ const SearchMain = ({credits}) => {
                 }
                 if (searchContext.min) {
                     list = list.filter((item) => {
-                        return Number(item.value) >= Number(searchContext.min)
+                        return Number(item.valor_negociar) >= Number(searchContext.min)
                     })
                 }
                 if (searchContext.max) {
                     list = list.filter((item) => {
-                        return Number(item.value) <= Number(searchContext.max)
+                        return Number(item.valor_negociar) <= Number(searchContext.max)
                     })
                 }
                 if (searchContext.rating) {

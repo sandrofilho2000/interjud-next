@@ -6,11 +6,14 @@ import { BiLogOut } from 'react-icons/bi'
 import { AiFillCreditCard, AiFillStar, AiFillHeart, AiOutlineUser, AiFillMessage, AiFillNotification, AiFillHome, AiOutlineWhatsApp } from 'react-icons/ai'
 import { useAuth } from '../../../context/AuthContext'
 import { useRouter } from 'next/router'
+import { confirmPasswordReset } from 'firebase/auth'
 
 const SideMenuContainer = () => {
     const { sideMenuOpen, setSideMenuOpen, userInfo, logout, credits, user } = useAuth()
 
-    const avatar = userInfo.avatar ? userInfo.avatar : 'https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/users%2Fdefault_avatar.pbg.webp?alt=media&token=bd0cd8cd-b54b-4b3d-abc7-91ffa81751c5'
+    const avatar = userInfo.avatar ? userInfo.avatar  : 'https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/users%2Fdefault_avatar.pbg.webp?alt=media&token=bd0cd8cd-b54b-4b3d-abc7-91ffa81751c5'
+
+    console.log(userInfo.avatar)
 
     const first_name = userInfo ? userInfo.first_name : ''
  
@@ -83,8 +86,8 @@ const SideMenuContainer = () => {
                     </Link>
                 </li>
 
-                <li>
-                    <Link href="#">
+{/*                 <li>
+                    <Link href="./fale_conosco">
                         <span className='icon' title="Mensagens">
                             <AiOutlineWhatsApp />
                         </span>
@@ -92,7 +95,7 @@ const SideMenuContainer = () => {
                             Fale conosco
                         </span>
                     </Link>
-                </li>
+                </li> */}
 
                 <li>
                     <Link href="#">
@@ -107,7 +110,7 @@ const SideMenuContainer = () => {
 
                 <li>
                     <Link href="../">
-                        <span className='icon' title="Notificações">
+                        <span className='icon' title="Site">
                             <FaGlobeAmericas />
                         </span>
                         <span className='icon_text'>

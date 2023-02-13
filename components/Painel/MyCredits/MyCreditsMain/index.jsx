@@ -102,12 +102,12 @@ const MyCreditsMain = () => {
           }
           if (searchContext.min) {
             list = list.filter((item) => {
-              return Number(item.value) >= Number(searchContext.min)
+              return Number(item.valor_negociar) >= Number(searchContext.min)
             })
           }
           if (searchContext.max) {
             list = list.filter((item) => {
-              return Number(item.value) <= Number(searchContext.max)
+              return Number(item.valor_negociar) <= Number(searchContext.max)
             })
           }
           if (searchContext.rating) {
@@ -146,6 +146,7 @@ const MyCreditsMain = () => {
     }
 
     handleCurrPage(currPage)
+
   }, [currPage, searchContext, credits, ordenation])
 
   const listCredits = showingCredits.slice(firstCreditIndex, lastCreditIndex)
@@ -235,7 +236,7 @@ const MyCreditsMain = () => {
             </thead>
             <tbody>
               {listCredits.map((item, index) => {
-                let value = item.value && !isNaN(item.value) ? Number(item.value) : ''
+                let value = item.valor_negociar && !isNaN(item.valor_negociar) ? Number(item.valor_negociar) : ''
                 value = value.toLocaleString('pt-BR', {
                   style: 'currency',
                   currency: 'BRL'
@@ -244,12 +245,13 @@ const MyCreditsMain = () => {
                 let halfStar = Number.isInteger(item.rating)
                 let fullStars = !isNaN(item.rating) ? Math.floor(item.rating) : 0
                 let stars = Array.from(Array(fullStars).keys())
+                let img = item.img ? item.img : "https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fdefault.png?alt=media&token=5822245b-dbc3-4996-a475-69938f25dd86"
 
                 return (
                   <tr key={item.id}>
                     <td className='td_image'>
                       <div className="img_container">
-                        <Image width={50} height={50} src={item.img} alt={item.name} />
+                        <Image width={50} height={50} src={img} alt={item.name} />
                       </div>
                     </td>
                     <td>

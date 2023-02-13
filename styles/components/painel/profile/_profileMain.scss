@@ -18,18 +18,23 @@
         .profilePic{
             margin: 0 auto;
             margin-bottom: 70px;
+            width: 150px;
+            height: 150px;
             position: relative;
             border-radius: 50%;
             outline: 5px solid var(--interjud-blue);
-            display: flex;
-            align-items: center;
+            display: grid;
+            place-items: center;
+            padding: 0;
             cursor: pointer;
+            
             > img{
                 border-radius: 50%;
                 object-fit: cover;
+                max-width: 150px;
+                max-height: 150px;
+                padding: 0;
             }
-
-
             
             .changePic{
                 width: 100%;

@@ -13,16 +13,12 @@ Router.events.on("routeChangeError", (err, url, { shallow }) => {
     console.log("Navigating to: " + "url: " + url, {cancelled: err} )
 });
 
-const noAuthRequired = ['/', '/login', '/signup']
+const noAuthRequired = ['/', '/login', '/signup', '/reset_password']
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   const { loading } = useAuth()
-
-  useEffect(()=>{
-    console.log("LOADING: ", loading)
-  }, [loading])
 
   return (
     <AuthContextProvider>

@@ -15,13 +15,14 @@ import Router from 'next/router';
 
 const WelcomeOverlay = () => {
 
-    const { systemNotificationActive, setSystemNotificationActive, user } = useAuth()
+    const { systemNotificationActive, setSystemNotificationActive, user, googleSignInInfo } = useAuth()
 
     const [newUserInfo, setNewUserInfo] = useState({})
     const [userAddress, setUserAddress] = useState({})
     const [userFirstName, setUserFirstName] = useState('')
     const [userLastName, setUserLastName] = useState('')
     const [userProfile, setUserProfile] = useState('')
+    const [emailVerified, setEmailVerified] = useState(false)
 
     const ufSelect = useRef()
     const cidadeInput = useRef()
@@ -34,6 +35,14 @@ const WelcomeOverlay = () => {
     const [sliderLeft, setSliderLeft] = useState(0)
 
     const notification = {}
+
+    let isEmpty = (obj) => {
+        if (!obj) {
+            return false
+        } else {
+            return Object.values(obj).every(x => x === null || x === '');
+        }
+    }
 
     let validateAddress = () => {
         notification.message = ''
@@ -305,8 +314,27 @@ const WelcomeOverlay = () => {
     }
 
     useEffect(() => {
-        setNewUserInfo({ ...newUserInfo, address: { ...userAddress } })
+        setNewUserInfo({ ...newUserInfo, address: { ...userAddress }, emailVerified: emailVerified })
     }, [userAddress, userCEP])
+
+    
+    useEffect(()=>{
+        console.log(googleSignInInfo)
+        if(!isEmpty(googleSignInInfo)){
+            let name = googleSignInInfo.user.displayName.split(" ")
+            let first_name = name[0]
+            let last_name = name[1] 
+
+            first_name = first_name[0].toUpperCase() + first_name.substring(1)
+            last_name = last_name[0].toUpperCase() + last_name.substring(1)
+
+            setUserFirstName(first_name)
+            setUserLastName(last_name)
+            setEmailVerified(true)
+            console.log(googleSignInInfo.user.providerData[0].photoURL)
+            setNewUserInfo({...newUserInfo, avatar: googleSignInInfo.user.providerData[0].photoURL})
+        }
+    }, [])
 
     useEffect(() => {
         AOS.init();
@@ -323,8 +351,8 @@ const WelcomeOverlay = () => {
                         <h2 data-aos='fade-up' data-aos-delay="700" data-aos-duration="1200">Bem-vindo à InterJud!</h2>
                         <h3 data-aos='fade-up' data-aos-delay="1900" data-aos-duration="1200">Antes de mais nada, qual é o seu nome?</h3>
                         <form data-aos='fade-up' data-aos-delay="2300" data-aos-duration="1200" className='firstForm'>
-                            <input type="text" placeholder='Nome...' onChange={(e) => { setUserFirstName(e.currentTarget.value.trim()) }} />
-                            <input type="text" placeholder='Sobrenome...' onChange={(e) => { setUserLastName(e.currentTarget.value.trim()) }} />
+                            <input type="text" placeholder='Nome...' onChange={(e) => { setUserFirstName(e.currentTarget.value.trim()) }} defaultValue={userFirstName} />
+                            <input type="text" placeholder='Sobrenome...' onChange={(e) => { setUserLastName(e.currentTarget.value.trim()) }}  defaultValue={userLastName} />
                         </form>
                     </div>
 

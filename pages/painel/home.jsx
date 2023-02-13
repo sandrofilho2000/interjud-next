@@ -7,6 +7,7 @@ import MainTop from '../../components/Painel/MainTop'
 import FilterOverlay from '../../components/Painel/FilterOverlay'
 import WelcomeOverlay from '../../components/Painel/WelcomeOverlay'
 import HomeMain from '../../components/Painel/Home/HomeMain'
+import InfoOverlay from '../../components/Painel/InfoOverlay'
 
 
 
@@ -45,6 +46,7 @@ const Painel = () => {
                             )
                         }
                         <FilterOverlay />
+                        <InfoOverlay />
                     </>
                 ) :
                 (

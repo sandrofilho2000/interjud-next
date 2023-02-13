@@ -3,6 +3,11 @@
   width: 250px;
   border: 1px solid var(--interjud-blue);
   cursor: pointer;
+  transition: 0.2s;
+
+  &:not(.OfferContainer):hover {
+    transform: translateY(-3%);
+  }
 
   img {
     position: relative;
@@ -146,7 +151,6 @@
     stroke: none;
   }
 
-
   .wishlist_icon.active {
     .heart-main {
       path {
@@ -159,6 +163,7 @@
       animation-duration: 2s;
     }
   }
+
   .wishlist_icon.active {
     .heart-background {
       path {

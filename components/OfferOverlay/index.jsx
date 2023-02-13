@@ -31,7 +31,7 @@ const OfferOverlay = () => {
     let halfStar = Number.isInteger(credit.rating)
     let fullStars = !isNaN(credit.rating) ? Math.floor(credit.rating) : 0
     let stars = Array.from(Array(fullStars).keys())
-    let value = credit.value && !isNaN(credit.value) ? Number(credit.value) : ''
+    let value = credit.valor_negociar && !isNaN(credit.valor_negociar) ? Number(credit.valor_negociar) : ''
     
     value = value.toLocaleString('pt-BR', {
         style: 'currency',
@@ -114,7 +114,7 @@ const OfferOverlay = () => {
     if(currCreditOffer.name){
         return (
             <div className={`${offerOverlayActive ? 'OfferOverlay overlay active' : 'OfferOverlay overlay'}`}>
-                <article title={credit.name} className='credit_single'>
+                <article title={credit.name} className='credit_single OfferOverlay'>
                     <AiFillCloseCircle onClick={() => handleOfferActive()} className="closeOfferOverlay"/>
                     <Image width={240} height={330} src={credit.img} loading="lazy" alt="Banco do brasil" />
     

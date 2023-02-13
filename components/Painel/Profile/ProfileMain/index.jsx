@@ -107,8 +107,6 @@ const Favorites = () => {
 
         }
 
-        console.log(formatedCEP)
-
         cep.current.value = formatedCEP
     }
 
@@ -158,8 +156,6 @@ const Favorites = () => {
             },
             oab: oab ? oab : false
         }
-
-        console.log(updatedUser)
         
         let file = pic.current.files[0]
 
@@ -171,7 +167,6 @@ const Favorites = () => {
             const storageRef = ref(storage, `users/${fileName}`);
 
             await uploadBytes(storageRef, file).then((snapshot) => {
-                console.log('Uploaded a blob or file!');
                 pic.current.setAttribute("type", "text")
                 pic.current.setAttribute("type", "file")
             });

@@ -246,6 +246,10 @@ body {
   width: 250px;
   border: 1px solid var(--interjud-blue);
   cursor: pointer;
+  transition: 0.2s;
+}
+.credit_single:not(.OfferContainer):hover {
+  transform: translateY(-3%);
 }
 .credit_single img {
   position: relative;
@@ -256,7 +260,6 @@ body {
   width: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .credit_single .credit_content {
@@ -326,7 +329,6 @@ body {
   font-size: 24px;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .credit_single .credit_content .button {
@@ -379,48 +381,18 @@ body {
   stroke: none;
 }
 .credit_single .wishlist_icon.active .heart-main path {
-  -webkit-animation: stroke-animation 2s ease-in-out forwards;
   animation: stroke-animation 2s ease-in-out forwards;
-  -webkit-animation-duration: 0s;
-          animation-duration: 0s;
+  animation-duration: 0s;
 }
 .credit_single .wishlist_icon.active.animate .heart-main path {
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
+  animation-duration: 2s;
 }
 .credit_single .wishlist_icon.active .heart-background path {
-  -webkit-animation: fade-animation 2s ease-in-out forwards;
   animation: fade-animation 2s ease-in-out forwards;
-  -webkit-animation-duration: 0s;
-          animation-duration: 0s;
+  animation-duration: 0s;
 }
 .credit_single .wishlist_icon.active.animate .heart-background path {
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-}
-@-webkit-keyframes stroke-animation {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  30% {
-    stroke-dashoffset: 1550;
-  }
-  60% {
-    stroke-dashoffset: 3100;
-    fill: transparent;
-    transform: scale(1);
-  }
-  80% {
-    fill: var(--interjud-red);
-    transform: scale(1.1);
-  }
-  90% {
-    transform: scale(1);
-  }
-  100% {
-    stroke-dashoffset: 3100;
-    fill: var(--interjud-red);
-  }
+  animation-duration: 2s;
 }
 @keyframes stroke-animation {
   0% {
@@ -444,24 +416,6 @@ body {
   100% {
     stroke-dashoffset: 3100;
     fill: var(--interjud-red);
-  }
-}
-@-webkit-keyframes fade-animation {
-  70% {
-    fill: transparent;
-    transform: scale(1);
-  }
-  80% {
-    fill: var(--interjud-red);
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
   }
 }
 @keyframes fade-animation {
@@ -732,7 +686,7 @@ footer .container .menu-desktop ul li a:hover::before {
   min-height: 40px;
 }
 .OfferOverlay article.credit_single .credit_content .offerInput {
-  margin-top: -25px;
+  margin-top: -40px;
   display: flex;
   align-items: center;
 }
@@ -863,7 +817,6 @@ footer .container .menu-desktop ul li a:hover::before {
   transition: 0.3s;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
 }
@@ -1197,9 +1150,6 @@ section.contato .container .contato-right form * {
 section.contato .container .contato-right form *::-moz-placeholder {
   color: var(--txt-color);
 }
-section.contato .container .contato-right form *:-ms-input-placeholder {
-  color: var(--txt-color);
-}
 section.contato .container .contato-right form *::placeholder {
   color: var(--txt-color);
 }
@@ -1436,9 +1386,6 @@ main h1 {
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]::-moz-placeholder {
   font-size: 14px;
 }
-.welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]:-ms-input-placeholder {
-  font-size: 14px;
-}
 .welcomeOverlay .welcomeContainer .welcomeSlider .welcomeSingle form input[type=text]::placeholder {
   font-size: 14px;
 }
@@ -1609,11 +1556,6 @@ main h1 {
   color: var(--txt-color);
   opacity: 0.8;
 }
-.mainTop .searchField input:-ms-input-placeholder {
-  font-size: 16px;
-  color: var(--txt-color);
-  opacity: 0.8;
-}
 .mainTop .searchField input::placeholder {
   font-size: 16px;
   color: var(--txt-color);
@@ -1637,7 +1579,6 @@ main h1 {
 .mainTop .notificationWrapper .notificationNumber {
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   pointer-events: none;
   display: block;
@@ -1736,7 +1677,6 @@ main h1 {
      object-fit: cover;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 2px solid var(--interjud-blue);
 }
@@ -1889,6 +1829,138 @@ main.searchMain .creditsWrapper h4 {
   margin-left: 10px;
 }
 
+.infoOverlay .infoContainer {
+  height: 520px;
+  padding: 4px;
+  width: 600px;
+  background-color: var(--main-bg-color);
+  border: 2px solid var(--interjud-blue);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.infoOverlay .infoContainer .infoOverlayClose {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  cursor: pointer;
+  font-size: 26px !important;
+}
+.infoOverlay .infoContainer .infoTop {
+  height: 120px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding-bottom: 25px;
+}
+.infoOverlay .infoContainer .infoTop span {
+  font-size: 13px;
+}
+.infoOverlay .infoContainer .infoTop img {
+  box-sizing: border-box;
+  border: 4px solid var(--interjud-blue);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.infoOverlay .infoContainer .infoTop .infoRating {
+  position: absolute;
+  bottom: 0;
+  width: 120px;
+  transform: translateY(calc(120% - 25px));
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.infoOverlay .infoContainer .infoTop .infoRating svg {
+  fill: var(--interjud-yellow);
+}
+.infoOverlay .infoContainer .infoTop .infoName {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 10px;
+}
+.infoOverlay .infoContainer .infoTop .infoName .name span {
+  font-size: 18px;
+  font-weight: bold;
+}
+.infoOverlay .infoContainer .infoTop .infoName .obs {
+  overflow-y: auto;
+  max-height: 50px;
+}
+.infoOverlay .infoContainer .infoMiddle {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  margin-top: -4%;
+}
+.infoOverlay .infoContainer .infoMiddle > div {
+  display: flex;
+  padding: 6px 20px;
+  box-sizing: border-box;
+  align-items: start;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid var(--interjud-blue);
+}
+.infoOverlay .infoContainer .infoMiddle > div:last-of-type {
+  border-bottom: none;
+}
+.infoOverlay .infoContainer .infoMiddle > div div p:first-of-type {
+  font-size: 13px;
+}
+.infoOverlay .infoContainer .infoMiddle > div div p:last-of-type {
+  font-size: 15px;
+}
+.infoOverlay .infoContainer .infoMiddle > div svg {
+  font-size: 38px;
+  fill: var(--txt-color);
+  margin-right: 10px;
+}
+.infoOverlay .infoContainer .infoBottom {
+  display: flex;
+  height: 50px;
+  padding-bottom: 10px;
+  align-items: center;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.infoOverlay .infoContainer .infoBottom .button {
+  height: 43px;
+  padding: 0;
+  margin: unset;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  /*         &:last-of-type{
+            background-color: transparent;
+
+            a span{
+              color: var(--interjud-blue);
+            }
+          } */
+}
+.infoOverlay .infoContainer .infoBottom .button a {
+  height: 100%;
+  font-size: 14px;
+  letter-spacing: 0.075rem;
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+.infoOverlay .infoContainer .infoBottom .button a::before {
+  display: none;
+}
+.infoOverlay .infoContainer .infoBottom .button svg {
+  font-size: 24px;
+  margin-left: 10px;
+}
+
 .loadingOverlay {
   display: grid !important;
   place-items: center;
@@ -1908,29 +1980,17 @@ main.searchMain .creditsWrapper h4 {
   margin: 8px;
   border: 8px solid var(--interjud-blue);
   border-radius: 50%;
-  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: var(--interjud-blue) transparent transparent transparent;
 }
 .loadingOverlay .lds-ring div:nth-child(1) {
-  -webkit-animation-delay: -0.45s;
-          animation-delay: -0.45s;
+  animation-delay: -0.45s;
 }
 .loadingOverlay .lds-ring div:nth-child(2) {
-  -webkit-animation-delay: -0.3s;
-          animation-delay: -0.3s;
+  animation-delay: -0.3s;
 }
 .loadingOverlay .lds-ring div:nth-child(3) {
-  -webkit-animation-delay: -0.15s;
-          animation-delay: -0.15s;
-}
-@-webkit-keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  animation-delay: -0.15s;
 }
 @keyframes lds-ring {
   0% {
@@ -2065,7 +2125,6 @@ main.searchMain .creditsWrapper h4 {
   width: 75px;
 }
 .myCreditsMain .myCreditsContainer table .th_add_credit {
-  position: -webkit-sticky;
   position: sticky;
   left: -1px;
   background-color: var(--interjud-blue);
@@ -2083,7 +2142,6 @@ main.searchMain .creditsWrapper h4 {
   font-size: 46px;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   font-weight: normal;
 }
@@ -2271,9 +2329,6 @@ main.searchMain .creditsWrapper h4 {
 .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button])::-moz-placeholder, .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select::-moz-placeholder {
   color: var(--txt-color) !important;
 }
-.newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button]):-ms-input-placeholder, .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select:-ms-input-placeholder {
-  color: var(--txt-color) !important;
-}
 .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form input:not([type=range], [type=button])::placeholder,
 .newCreditOverlay .newCreditContainer .newCreditSlider .newCreditSingle form select::placeholder {
   color: var(--txt-color) !important;
@@ -2458,17 +2513,23 @@ main.main .creditsWrapper.favorites h4 {
 .profileMain form .profilePic {
   margin: 0 auto;
   margin-bottom: 70px;
+  width: 150px;
+  height: 150px;
   position: relative;
   border-radius: 50%;
   outline: 5px solid var(--interjud-blue);
-  display: flex;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  padding: 0;
   cursor: pointer;
 }
 .profileMain form .profilePic > img {
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+  max-width: 150px;
+  max-height: 150px;
+  padding: 0;
 }
 .profileMain form .profilePic .changePic {
   width: 100%;
@@ -2540,6 +2601,58 @@ main.main .creditsWrapper.favorites h4 {
   opacity: 0.8;
 }
 
+/* form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    *{
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: 0;
+        padding-left: 5px;
+        font-size: 15px;
+        &::placeholder{
+            color: var(--txt-color);
+        }
+
+
+    }
+    input, select{
+        height: 40px;
+        margin-top: 10px;
+        border-bottom: 1px solid var(--interjud-blue);
+    }
+
+    textarea{
+        border-bottom: 1px solid var(--interjud-blue);
+        height: 80px;
+        padding-top: 20px;
+    }
+
+    select, option{
+        padding-left: 0;
+        font-size: 15px;                
+        color: var(--txt-color);
+    }
+
+    option{
+        background-color: var(--second-bg-color);
+    }
+
+    button{
+        align-self: flex-start;
+        background-color: var(--interjud-blue);
+        width: 200px;
+        margin-top: 30px;
+        padding: 10px 15px;
+        font-weight: bold;
+    }
+} */
 .container {
   height: auto;
   width: 90%;
@@ -2655,10 +2768,6 @@ input[type=text]:focus-visible, input[type=number]:focus-visible, input[type=ema
   background-color: transparent;
 }
 input[type=text]::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder {
-  color: var(--txt-color);
-  opacity: 0.5;
-}
-input[type=text]:-ms-input-placeholder, input[type=number]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder {
   color: var(--txt-color);
   opacity: 0.5;
 }
@@ -2840,7 +2949,7 @@ main.loginMain form.formSignup .loginWith .icons > div {
   place-items: center;
   width: 70px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: white;
   font-size: 30px;
   transition: 0.3s;

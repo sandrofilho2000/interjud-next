@@ -5,10 +5,6 @@ import CreditsSlider from '../../CreditsSlider'
 const HomeMain = () => {
     const { sideMenuOpen, searchContext, credits, favoritesCredits } = useAuth()
 
-    useEffect(()=>{
-        console.log(favoritesCredits)
-    }, [favoritesCredits])
-
     return (
         <main className={`main ${sideMenuOpen ? 'active' : ''}`}>
             <h1>

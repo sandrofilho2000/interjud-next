@@ -1,15 +1,22 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { AiFillCloseCircle, AiFillCaretDown } from 'react-icons/ai'
+import { AiFillCloseCircle, AiFillCaretDown, AiFillDelete } from 'react-icons/ai'
+import { BsFillPencilFill } from 'react-icons/bs'
 import FilterSearch from '../../FilterSearch'
 import { FaStar, FaStarHalf } from 'react-icons/fa'
 import { useAuth } from '../../../../context/AuthContext'
 import Pagination from '../../../Pagination'
+import creditPlaceholder from '../../../../public/assets/images/credit_placeholder.png'
+import { db } from '../../../../firebase'
+import { deleteDoc, doc } from 'firebase/firestore'
+
 
 
 const MyCreditsMain = () => {
-  const { sideMenuOpen, setNewCreditOverlayActive, searchContext, setSearchContext, credits } = useAuth()
+  const { sideMenuOpen, setNewCreditOverlayActive, searchContext, setSearchContext, credits, setSystemPromptActive, setSystemNotificationActive, setCurrCredit, currCredit } = useAuth()
+
+  console.log("loads")
 
   const [currPage, setCurrPage] = useState(1)
   const [creditsPerPage, setCreditsPerPage] = useState(4)
@@ -75,6 +82,22 @@ const MyCreditsMain = () => {
     return list
   }
 
+  let handleDeleteCredit = async () =>{
+
+    await deleteDoc(doc(db, "credits", currCredit.id));
+
+    setSystemNotificationActive({ active: true, status: 'success', message: "Crédito excluído com sucesso!", link: "#" })
+    setSystemPromptActive({ active: false, message: '', link: "#", callback: ()=>{} })
+  }
+
+  let handleDeleteCreditPrompt = (credit) =>{
+    let credit_name = credit.name
+    credit_name = credit_name.length > 9 ? `${credit_name.slice(0, 7)}...` : credit_name
+
+    let message = `Deseja realmente excluir este crédito? (${credit_name})`
+    setCurrCredit(credit)
+    setSystemPromptActive({ active: true, message: message, link: "#", callback: handleDeleteCredit })
+  }
 
   const handleCurrPage = (nextPage) => {
     setCurrPage(nextPage)
@@ -172,6 +195,7 @@ const MyCreditsMain = () => {
                     +
                   </span>
                 </th>
+                <th><span style={{paddingLeft: 0}}>Img</span></th>
                 <th onClick={() => { setOrdernation({ ...ordenation, key: 'name', primitive: 'string', asc: !ordenation.asc }) }}>
                   <AiFillCaretDown />
                   <span>
@@ -245,10 +269,16 @@ const MyCreditsMain = () => {
                 let halfStar = Number.isInteger(item.rating)
                 let fullStars = !isNaN(item.rating) ? Math.floor(item.rating) : 0
                 let stars = Array.from(Array(fullStars).keys())
-                let img = item.img ? item.img : "https://firebasestorage.googleapis.com/v0/b/interjud-6e608.appspot.com/o/creditos%2Fdefault.png?alt=media&token=5822245b-dbc3-4996-a475-69938f25dd86"
+
+                let img = item.img && item.img !== 'default.png' && item.img !== 'NULL' && item.img !== 'Avaliado' ? item.img : creditPlaceholder
 
                 return (
                   <tr key={item.id}>
+
+                    <td className='td_edit_delete_credit'>
+                      <BsFillPencilFill className='edit_credit' />
+                      <AiFillDelete onClick={()=>{handleDeleteCreditPrompt(item)}} className='delete_credit' />
+                    </td>
                     <td className='td_image'>
                       <div className="img_container">
                         <Image width={50} height={50} src={img} alt={item.name} />
@@ -313,6 +343,7 @@ const MyCreditsMain = () => {
                         Descomissionamento
                       </span>
                     </td>
+
                   </tr>
                 )
 
